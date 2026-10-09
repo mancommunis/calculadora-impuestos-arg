@@ -524,11 +524,16 @@ func (m modelo) viewDetalle() string {
 	var b strings.Builder
 	b.WriteString(estTitulo.Render("▓ "+s.Nombre) + "  " + estCian.Render(s.Regimen) + "\n")
 
-	precio := fmt.Sprintf("%s %s", formatoNum(m.monto), s.Moneda)
+	// Monto bien visible: input neto y, si aplica, el bruto con el VAT de origen.
+	montoStr := fmt.Sprintf("%s %s", formatoNum(m.monto), s.Moneda)
 	if s.IVAOrigen > 0 {
-		precio += fmt.Sprintf(" +%.0f%% VAT = %s", s.IVAOrigen*100, formatoNum((m.monto)*(1+s.IVAOrigen)))
+		montoStr += fmt.Sprintf("   +%.0f%% VAT → %s %s", s.IVAOrigen*100, formatoNum(m.monto*(1+s.IVAOrigen)), s.Moneda)
 	}
-	b.WriteString(estSub.Render(fmt.Sprintf("%s · %s", precio, m.provincia)) + "\n")
+	lineaMonto := estCian.Render("monto: ") + estTitulo.Render(montoStr)
+	if m.esOnDemand() {
+		lineaMonto += estTenue.Render("   (ajustá con = / -)")
+	}
+	b.WriteString(lineaMonto + estSub.Render("  ·  "+m.provincia) + "\n")
 
 	var fxParts []string
 	for _, k := range []string{"oficial", "mep", "cripto"} {
