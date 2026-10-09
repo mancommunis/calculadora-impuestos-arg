@@ -3,19 +3,10 @@
   "servicios": [
     { "id": "netflix_estandar", "nombre": "Netflix Estandar", "regimen": "servicios_digitales", "moneda": "ARS", "precio": null },
     { "id": "spotify_premium", "nombre": "Spotify Premium", "regimen": "servicios_digitales", "moneda": "ARS", "precio": null },
-    { "id": "chatgpt_plus", "nombre": "ChatGPT Plus", "regimen": "servicios_digitales", "moneda": "USD", "precio": 20 },
-    {
-      "id": "wow",
-      "nombre": "World of Warcraft",
-      "aliases": ["WoW", "WoW Forever", "World of Warcraft", "el wow"],
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": null,
-      "tienda": "battle_net"
-    }
+    { "id": "chatgpt_plus", "nombre": "ChatGPT Plus", "regimen": "servicios_digitales", "moneda": "USD", "precio": 20 }
   ],
   "_notas": {
     "precio_null": "se completa desde el dataset / scraping",
-    "aliases": "se indexan para busqueda fuzzy"
+    "juegos": "los juegos viven en dataset/catalogo.json"
   }
 }

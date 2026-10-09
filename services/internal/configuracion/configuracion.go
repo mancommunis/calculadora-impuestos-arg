@@ -28,7 +28,9 @@ type Servicio struct {
 	Regimen string   `json:"regimen"`
 	Moneda  string   `json:"moneda"`
 	Precio  *float64 `json:"precio"`
-	Tienda  string   `json:"tienda"`
+	Tienda  string   `json:"tienda,omitempty"`
+	AppID   int      `json:"appid,omitempty"`
+	Manual  bool     `json:"manual,omitempty"`
 }
 
 type Medio struct {
@@ -66,7 +68,37 @@ func Cargar(dir string) (Config, error) {
 		return c, err
 	}
 	c.Medios = wal.Medios
+
+	// Catálogo de juegos (dataset/catalogo.json), si existe: se suma a los servicios.
+	catalogoPath := filepath.Join(filepath.Dir(dir), "dataset", "catalogo.json")
+	if cat, err := CargarCatalogo(catalogoPath); err == nil {
+		c.Servicios = append(c.Servicios, cat.Productos...)
+	}
 	return c, nil
+}
+
+// Catalogo es el archivo dataset/catalogo.json (juegos + precios por tienda).
+type Catalogo struct {
+	Productos []Servicio `json:"productos"`
+}
+
+func CargarCatalogo(path string) (Catalogo, error) {
+	var c Catalogo
+	if err := leer(path, &c); err != nil {
+		return c, err
+	}
+	return c, nil
+}
+
+func GuardarCatalogo(path string, c Catalogo) error {
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		return err
+	}
+	b, err := json.MarshalIndent(c, "", "  ")
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, append(b, '\n'), 0o644)
 }
 
 // DirPorDefecto ubica el directorio config/ subiendo desde el cwd.

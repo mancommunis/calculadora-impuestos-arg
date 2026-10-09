@@ -25,4 +25,11 @@ for (const f of readdirSync(cfgOrigen)) {
 	if (f.endsWith('.json')) copyFileSync(join(cfgOrigen, f), join(cfgDestino, f));
 }
 
-console.log('[copiar-wasm] motor.wasm + config/*.json copiados a static/');
+// Catálogo de juegos (dataset), si existe.
+const catOrigen = join(repo, 'dataset/catalogo.json');
+if (existsSync(catOrigen)) {
+	mkdirSync(join(raiz, 'static/dataset'), { recursive: true });
+	copyFileSync(catOrigen, join(raiz, 'static/dataset/catalogo.json'));
+}
+
+console.log('[copiar-wasm] motor.wasm + config/*.json + dataset copiados a static/');

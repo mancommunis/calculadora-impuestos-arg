@@ -1,4 +1,4 @@
-.PHONY: all help core test-core services test-services agente tui web dev-web
+.PHONY: all help core test-core services test-services agente scrape tui web dev-web
 
 all: core services web
 
@@ -8,6 +8,7 @@ help:
 	@echo "make services      - build de servicios Go (CGO_ENABLED=0)"
 	@echo "make test-services - tests de servicios (Go) [depende de core]"
 	@echo "make agente        - corre el agente de config en local"
+	@echo "make scrape        - actualiza precios del catálogo (Steam; Battle.net bloqueado)"
 	@echo "make tui           - abre la TUI (Go + Bubble Tea)"
 	@echo "make web           - build de la web (SvelteKit)"
 	@echo "make dev-web       - dev server de SvelteKit"
@@ -27,6 +28,9 @@ test-services: core
 
 agente:
 	cd services && go run ./cmd/agente -fuentes ../config/fuentes.json -estado ../agente/estado.json -out ../agente
+
+scrape:
+	cd services && go run ./cmd/scraper -dataset ../dataset/catalogo.json
 
 tui:
 	cd services && go run ./cmd/tui

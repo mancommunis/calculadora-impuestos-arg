@@ -37,6 +37,16 @@ export async function cargarServicios(): Promise<Servicio[]> {
 	return data.servicios;
 }
 
+/** Catálogo de juegos (dataset). Si no existe, devuelve vacío. */
+export async function cargarCatalogo(): Promise<Servicio[]> {
+	try {
+		const data = await json<{ productos: Servicio[] }>('/dataset/catalogo.json');
+		return data.productos ?? [];
+	} catch {
+		return [];
+	}
+}
+
 export async function cargarMedios(): Promise<Medio[]> {
 	const data = await json<{ medios: Medio[] }>('/config/wallets.json');
 	return data.medios;

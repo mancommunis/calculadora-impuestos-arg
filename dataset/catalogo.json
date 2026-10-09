@@ -1,0 +1,84 @@
+{
+  "productos": [
+    {
+      "id": "steam:1091500",
+      "nombre": "Cyberpunk 2077",
+      "aliases": [
+        "Cyberpunk",
+        "CP2077"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": 44.99,
+      "tienda": "steam",
+      "appid": 1091500
+    },
+    {
+      "id": "steam:1245620",
+      "nombre": "Elden Ring",
+      "aliases": [
+        "Elden"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": 47.99,
+      "tienda": "steam",
+      "appid": 1245620
+    },
+    {
+      "id": "steam:271590",
+      "nombre": "Grand Theft Auto V",
+      "aliases": [
+        "GTA V",
+        "GTA 5",
+        "GTAV"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": null,
+      "tienda": "steam",
+      "appid": 271590
+    },
+    {
+      "id": "battlenet:wow-sub",
+      "nombre": "World of Warcraft (suscripcion)",
+      "aliases": [
+        "WoW",
+        "WoW Forever",
+        "el wow",
+        "World of Warcraft"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": 14.99,
+      "tienda": "battle_net",
+      "manual": true
+    },
+    {
+      "id": "battlenet:diablo-iv",
+      "nombre": "Diablo IV",
+      "aliases": [
+        "Diablo 4",
+        "D4"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": null,
+      "tienda": "battle_net",
+      "manual": true
+    },
+    {
+      "id": "battlenet:d2r",
+      "nombre": "Diablo II: Resurrected",
+      "aliases": [
+        "Diablo 2",
+        "D2R"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": null,
+      "tienda": "battle_net",
+      "manual": true
+    }
+  ]
+}

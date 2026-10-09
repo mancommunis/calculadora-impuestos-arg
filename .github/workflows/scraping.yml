@@ -1,0 +1,42 @@
+name: scraping
+
+on:
+  schedule:
+    # Todos los días, 09:00 UTC.
+    - cron: '0 9 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scraping
+  cancel-in-progress: false
+
+jobs:
+  precios:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache-dependency-path: services/go.sum
+
+      - name: Actualizar precios del catálogo
+        working-directory: services
+        run: go run ./cmd/scraper -dataset ../dataset/catalogo.json
+
+      # Battle.net hoy está bloqueado (401): sus precios quedan manuales.
+      - name: Commit del dataset
+        run: |
+          git config user.name "mancommunis-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- dataset/catalogo.json; then
+            git add dataset/catalogo.json
+            git commit -m "chore(dataset): precios $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "dataset sin cambios"
+          fi

@@ -5,6 +5,7 @@
 		buscar,
 		cargarConfig,
 		cargarCotizaciones,
+		cargarCatalogo,
 		cargarMedios,
 		cargarServicios,
 		parametros,
@@ -41,12 +42,17 @@
 
 	onMount(async () => {
 		try {
-			[motor, cfg, servicios, medios] = await Promise.all([
+			const [m, c, subs, meds, cat] = await Promise.all([
 				cargarMotor(),
 				cargarConfig(),
 				cargarServicios(),
-				cargarMedios()
+				cargarMedios(),
+				cargarCatalogo()
 			]);
+			motor = m;
+			cfg = c;
+			servicios = [...cat, ...subs];
+			medios = meds;
 		} catch (e) {
 			error = e instanceof Error ? e.message : String(e);
 		} finally {
