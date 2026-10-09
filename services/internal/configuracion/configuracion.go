@@ -34,11 +34,17 @@ type Servicio struct {
 }
 
 type Medio struct {
-	ID           string   `json:"id"`
-	Tipo         string   `json:"tipo"`
-	Fx           string   `json:"fx"`
-	RecargoExtra float64  `json:"recargo_extra"`
-	AceptaEn     []string `json:"acepta_en"`
+	ID             string   `json:"id"`
+	Nombre         string   `json:"nombre"`
+	Emisor         string   `json:"emisor"`
+	Origen         string   `json:"origen"`
+	Tipo           string   `json:"tipo"`
+	Fx             string   `json:"fx"`
+	Comision       float64  `json:"comision"`
+	Cashback       float64  `json:"cashback"`
+	SuscripcionUSD float64  `json:"suscripcion_usd"`
+	AceptaEn       []string `json:"acepta_en"`
+	Monedas        []string `json:"monedas"`
 }
 
 // Config es el conjunto de la config-as-code que consume la app.
@@ -161,9 +167,23 @@ func (c Config) Parametros(regimen, provincia string) (ParametrosFiscales, error
 	return ParametrosFiscales{IVA: r.IVA, Ganancias: r.Ganancias, IIBB: iibb, ImpuestoPais: c.Fiscal.ImpuestoPais}, nil
 }
 
-func (m Medio) AplicaA(tienda string) bool {
+// AplicaA indica si el medio sirve para una tienda y una moneda del precio.
+func (m Medio) AplicaA(tienda, moneda string) bool {
+	tiendaOK := len(m.AceptaEn) == 0
 	for _, t := range m.AceptaEn {
 		if t == "*" || (tienda != "" && t == tienda) {
+			tiendaOK = true
+			break
+		}
+	}
+	if !tiendaOK {
+		return false
+	}
+	if len(m.Monedas) == 0 {
+		return true
+	}
+	for _, mo := range m.Monedas {
+		if strings.EqualFold(mo, moneda) {
 			return true
 		}
 	}
@@ -189,6 +209,7 @@ type MedioEntrada struct {
 	Tipo         string  `json:"tipo"`
 	Fx           string  `json:"fx"`
 	RecargoExtra float64 `json:"recargo_extra"`
+	Cashback     float64 `json:"cashback"`
 }
 
 // Desglose es lo que devuelve el motor.
@@ -202,6 +223,7 @@ type Desglose struct {
 	IVA          float64 `json:"iva"`
 	IIBB         float64 `json:"iibb"`
 	Ganancias    float64 `json:"ganancias"`
+	Cashback     float64 `json:"cashback"`
 	TotalARS     float64 `json:"total_ars"`
 	TasaEfectiva float64 `json:"tasa_efectiva"`
 }

@@ -47,12 +47,18 @@ func TestParametros(t *testing.T) {
 }
 
 func TestMedioAplicaA(t *testing.T) {
-	todos := Medio{ID: "oficial", AceptaEn: []string{"*"}}
-	if !todos.AplicaA("battle_net") {
+	todos := Medio{ID: "oficial", AceptaEn: []string{"*"}, Monedas: []string{"USD", "ARS"}}
+	if !todos.AplicaA("battle_net", "USD") {
 		t.Fatal("'*' debería aplicar a cualquier tienda")
 	}
-	soloSteam := Medio{ID: "arq_local", AceptaEn: []string{"steam"}}
-	if !soloSteam.AplicaA("steam") || soloSteam.AplicaA("battle_net") {
-		t.Fatal("acotado a steam mal evaluado")
+	soloSteamUSD := Medio{ID: "arq_local", AceptaEn: []string{"steam"}, Monedas: []string{"USD"}}
+	if !soloSteamUSD.AplicaA("steam", "USD") {
+		t.Fatal("arq_local debería aplicar en steam/USD")
+	}
+	if soloSteamUSD.AplicaA("battle_net", "USD") {
+		t.Fatal("arq_local no debería aplicar en battle_net")
+	}
+	if soloSteamUSD.AplicaA("steam", "ARS") {
+		t.Fatal("arq_local es solo USD")
 	}
 }

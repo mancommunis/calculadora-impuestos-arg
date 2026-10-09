@@ -18,10 +18,16 @@ export interface Servicio {
 
 export interface Medio {
 	id: string;
+	nombre?: string;
+	emisor?: string;
+	origen?: string;
 	tipo: string;
 	fx: string;
-	recargo_extra: number;
+	comision?: number;
+	cashback?: number;
+	suscripcion_usd?: number;
 	acepta_en: string[];
+	monedas?: string[];
 }
 
 async function json<T>(ruta: string): Promise<T> {
@@ -85,16 +91,43 @@ export function buscar(servicios: Servicio[], q: string): Servicio[] {
 }
 
 export interface Cotizaciones {
-	oficial: number;
-	mep: number;
+	tasas: Record<string, number>;
 	actualizado: string;
 }
 
+const FUENTES_FX: Record<string, string> = {
+	oficial: 'https://dolarapi.com/v1/dolares/oficial',
+	mep: 'https://dolarapi.com/v1/dolares/bolsa',
+	cripto: 'https://dolarapi.com/v1/dolares/cripto',
+	ccl: 'https://dolarapi.com/v1/dolares/contadoconliqui'
+};
+
 /** Cotizaciones en vivo desde dolarapi.com (público, CORS abierto). */
 export async function cargarCotizaciones(): Promise<Cotizaciones> {
-	const [oficial, mep] = await Promise.all([
-		json<{ venta: number; fechaActualizacion: string }>('https://dolarapi.com/v1/dolares/oficial'),
-		json<{ venta: number }>('https://dolarapi.com/v1/dolares/bolsa')
-	]);
-	return { oficial: oficial.venta, mep: mep.venta, actualizado: oficial.fechaActualizacion };
+	const claves = Object.keys(FUENTES_FX);
+	const respuestas = await Promise.allSettled(
+		claves.map((k) => json<{ venta: number; fechaActualizacion?: string }>(FUENTES_FX[k]))
+	);
+	const tasas: Record<string, number> = {};
+	let actualizado = '';
+	respuestas.forEach((r, i) => {
+		if (r.status === 'fulfilled') {
+			tasas[claves[i]] = r.value.venta;
+			if (!actualizado && r.value.fechaActualizacion) actualizado = r.value.fechaActualizacion;
+		}
+	});
+	return { tasas, actualizado };
+}
+
+/** ¿El medio sirve para esta tienda y esta moneda del precio? */
+export function aplicaMedio(m: Medio, tienda: string | undefined, moneda: string): boolean {
+	const tiendaOK =
+		!m.acepta_en?.length || m.acepta_en.includes('*') || (!!tienda && m.acepta_en.includes(tienda));
+	if (!tiendaOK) return false;
+	if (!m.monedas?.length) return true;
+	return m.monedas.some((x) => x.toUpperCase() === moneda.toUpperCase());
+}
+
+export function nombreMedio(m: Medio): string {
+	return m.nombre || m.id;
 }

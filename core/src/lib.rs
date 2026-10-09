@@ -64,9 +64,12 @@ pub struct MedioPago {
     pub tipo: TipoPago,
     /// Fuente de cotización a usar: "oficial", "mep", "ccl", "cripto", "arq", ...
     pub fx: String,
-    /// Comisión/recargo propio de la billetera (fracción, ej. 0.02 = 2%).
+    /// Comisión/recargo propio del medio (fracción, ej. 0.02 = 2%).
     #[serde(default)]
     pub recargo_extra: f64,
+    /// Reintegro/cashback (fracción, ej. 0.05 = 5%). Resta del total.
+    #[serde(default)]
+    pub cashback: f64,
 }
 
 /// Cotizaciones disponibles, por fuente (nombre -> ARS por USD).
@@ -118,6 +121,7 @@ pub struct Desglose {
     pub ganancias: f64,
     pub impuesto_pais: f64,
     pub recargo_extra: f64,
+    pub cashback: f64,
     pub total_ars: f64,
     /// Recargo efectivo sobre la base (`total/base − 1`).
     pub tasa_efectiva: f64,
@@ -255,8 +259,9 @@ pub fn calcular(entrada: &Entrada) -> Resultado {
     };
     let impuesto_pais = base_ars * p.impuesto_pais;
     let recargo_extra = base_ars * entrada.medio.recargo_extra;
+    let cashback = base_ars * entrada.medio.cashback;
 
-    let total_ars = base_ars + iva + iibb + ganancias + impuesto_pais + recargo_extra;
+    let total_ars = base_ars + iva + iibb + ganancias + impuesto_pais + recargo_extra - cashback;
     let tasa_efectiva = if base_ars > 0.0 {
         total_ars / base_ars - 1.0
     } else {
@@ -275,6 +280,7 @@ pub fn calcular(entrada: &Entrada) -> Resultado {
         ganancias,
         impuesto_pais,
         recargo_extra,
+        cashback,
         total_ars,
         tasa_efectiva,
     })
@@ -367,6 +373,7 @@ mod tests {
             tipo,
             fx: fx.into(),
             recargo_extra: 0.0,
+            cashback: 0.0,
         }
     }
 
@@ -490,6 +497,28 @@ mod tests {
                 fuente: "oficial".into()
             }
         );
+    }
+
+    #[test]
+    fn cashback_resta_del_total() {
+        let mut m = medio(TipoPago::TarjetaLocal, "oficial");
+        m.recargo_extra = 0.02;
+        m.cashback = 0.05;
+        let e = Entrada {
+            precio: Precio {
+                moneda: Moneda::Ars,
+                monto: 1000.0,
+            },
+            regimen: Regimen::Gaming,
+            parametros: parametros(0.21, 0.0, 0.02),
+            medio: m,
+            cotizaciones: Cotizaciones::nueva(),
+        };
+        let d = calcular(&e).unwrap();
+        aprox(d.recargo_extra, 20.0);
+        aprox(d.cashback, 50.0);
+        // 1000 + 210 + 20 + 20 - 50 = 1200
+        aprox(d.total_ars, 1200.0);
     }
 
     #[test]

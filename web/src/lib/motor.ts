@@ -12,7 +12,7 @@ export interface Entrada {
 	precio: { moneda: string; monto: number };
 	regimen: string;
 	parametros: ParametrosFiscales;
-	medio: { nombre: string; tipo: string; fx: string; recargo_extra?: number };
+	medio: { nombre: string; tipo: string; fx: string; recargo_extra?: number; cashback?: number };
 	cotizaciones: Record<string, number>;
 }
 
@@ -28,6 +28,7 @@ export interface Desglose {
 	ganancias: number;
 	impuesto_pais: number;
 	recargo_extra: number;
+	cashback: number;
 	total_ars: number;
 	tasa_efectiva: number;
 }

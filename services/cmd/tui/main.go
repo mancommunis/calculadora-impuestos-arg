@@ -120,15 +120,21 @@ func traerFx(ctx context.Context) (map[string]float64, error) {
 		}
 		return out.Venta, nil
 	}
-	of, err := venta("https://dolarapi.com/v1/dolares/oficial")
-	if err != nil {
-		return nil, err
+	fx := map[string]float64{}
+	for clave, url := range map[string]string{
+		"oficial": "https://dolarapi.com/v1/dolares/oficial",
+		"mep":     "https://dolarapi.com/v1/dolares/bolsa",
+		"cripto":  "https://dolarapi.com/v1/dolares/cripto",
+		"ccl":     "https://dolarapi.com/v1/dolares/contadoconliqui",
+	} {
+		if v, err := venta(url); err == nil {
+			fx[clave] = v
+		}
 	}
-	mep, err := venta("https://dolarapi.com/v1/dolares/bolsa")
-	if err != nil {
-		return map[string]float64{"oficial": of}, nil
+	if len(fx) == 0 {
+		return nil, fmt.Errorf("sin cotizaciones disponibles")
 	}
-	return map[string]float64{"oficial": of, "mep": mep}, nil
+	return fx, nil
 }
 
 // ---- bubble tea ----
@@ -278,14 +284,14 @@ func (m *modelo) recalcular() {
 		return
 	}
 	for _, medio := range m.cfg.Medios {
-		if !medio.AplicaA(m.seleccion.Tienda) {
+		if !medio.AplicaA(m.seleccion.Tienda, m.seleccion.Moneda) {
 			continue
 		}
 		entrada := configuracion.Entrada{
 			Precio:       configuracion.Precio{Moneda: strings.ToLower(m.seleccion.Moneda), Monto: m.monto},
 			Regimen:      m.seleccion.Regimen,
 			Parametros:   p,
-			Medio:        configuracion.MedioEntrada{Nombre: medio.ID, Tipo: medio.Tipo, Fx: medio.Fx, RecargoExtra: medio.RecargoExtra},
+			Medio:        configuracion.MedioEntrada{Nombre: medio.Nombre, Tipo: medio.Tipo, Fx: medio.Fx, RecargoExtra: medio.Comision, Cashback: medio.Cashback},
 			Cotizaciones: m.fx,
 		}
 		b, _ := json.Marshal(entrada)
@@ -369,9 +375,13 @@ func (m modelo) viewDetalle() string {
 		if i == 0 {
 			marca = estPuntito.Render("▸ ")
 		}
-		cab := marca + estTexto.Render(c.medio.ID) + "  " + estTenue.Render(c.medio.Tipo)
-		detalle := estTenue.Render(fmt.Sprintf("IVA %s · IIBB %s · Ganancias %s",
-			formatoNum(c.desglose.IVA), formatoNum(c.desglose.IIBB), formatoNum(c.desglose.Ganancias)))
+		cab := marca + estTexto.Render(nombreMedio(c.medio)) + "  " + estTenue.Render(c.medio.Tipo)
+		detalle := fmt.Sprintf("IVA %s · IIBB %s · Ganancias %s",
+			formatoNum(c.desglose.IVA), formatoNum(c.desglose.IIBB), formatoNum(c.desglose.Ganancias))
+		if c.desglose.Cashback > 0 {
+			detalle += fmt.Sprintf(" · cashback -%s", formatoNum(c.desglose.Cashback))
+		}
+		detalle = estTenue.Render(detalle)
 		total := estCian.Render(formatoPesos(c.desglose.TotalARS)) + estTenue.Render(fmt.Sprintf("  (+%.1f%%)", c.desglose.TasaEfectiva*100))
 		if i == 0 {
 			total = estTitulo.Render(formatoPesos(c.desglose.TotalARS)) + estTenue.Render(fmt.Sprintf("  (+%.1f%%)", c.desglose.TasaEfectiva*100))
@@ -380,7 +390,7 @@ func (m modelo) viewDetalle() string {
 	}
 
 	if len(m.calculos) > 0 {
-		b.WriteString(estTitulo.Render("mejor hoy: "+m.calculos[0].medio.ID) + "\n")
+		b.WriteString(estTitulo.Render("mejor hoy: "+nombreMedio(m.calculos[0].medio)) + "\n")
 	}
 	b.WriteString("\n" + estTenue.Render("p provincia · r refrescar dólar · +/- monto · esc volver · q salir") + "\n")
 	return estCaja.Render(strings.TrimRight(b.String(), "\n"))
@@ -422,4 +432,11 @@ func formatoNum(f float64) string {
 
 func formatoPesos(f float64) string {
 	return "$ " + formatoNum(float64(int64(f+0.5)))
+}
+
+func nombreMedio(md configuracion.Medio) string {
+	if md.Nombre != "" {
+		return md.Nombre
+	}
+	return md.ID
 }

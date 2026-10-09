@@ -2,12 +2,14 @@
 	import { onMount } from 'svelte';
 	import { cargarMotor, formatoArs, type Desglose, type Entrada } from '#lib/motor';
 	import {
+		aplicaMedio,
 		buscar,
+		cargarCatalogo,
 		cargarConfig,
 		cargarCotizaciones,
-		cargarCatalogo,
 		cargarMedios,
 		cargarServicios,
+		nombreMedio,
 		parametros,
 		provincias,
 		type Medio,
@@ -30,8 +32,7 @@
 	let query = $state('');
 	let seleccion: Servicio | null = $state(null);
 	let monto = $state(0);
-	let fxOficial = $state(1500);
-	let fxMep = $state(1540);
+	let tasas = $state<Record<string, number>>({ oficial: 1500, mep: 1540 });
 	let cotizadoEn = $state('');
 	let calculos: Calculo[] = $state([]);
 	let cargando = $state(true);
@@ -64,9 +65,8 @@
 	async function actualizarFx() {
 		try {
 			const c = await cargarCotizaciones();
-			fxOficial = c.oficial;
-			fxMep = c.mep;
-			cotizadoEn = new Date(c.actualizado).toLocaleString('es-AR');
+			if (Object.keys(c.tasas).length) tasas = c.tasas;
+			cotizadoEn = c.actualizado ? new Date(c.actualizado).toLocaleString('es-AR') : '';
 		} catch {
 			cotizadoEn = '';
 		}
@@ -92,9 +92,7 @@
 			return;
 		}
 		const p = parametros(cfg, seleccion.regimen, provincia);
-		const aplicables = medios.filter(
-			(m) => m.acepta_en.includes('*') || (seleccion?.tienda && m.acepta_en.includes(seleccion.tienda))
-		);
+		const aplicables = medios.filter((m) => aplicaMedio(m, seleccion?.tienda, seleccion!.moneda));
 		const out: Calculo[] = [];
 		for (const m of aplicables) {
 			try {
@@ -102,8 +100,14 @@
 					precio: { moneda: seleccion.moneda.toLowerCase(), monto },
 					regimen: seleccion.regimen,
 					parametros: p,
-					medio: { nombre: m.id, tipo: m.tipo, fx: m.fx, recargo_extra: m.recargo_extra ?? 0 },
-					cotizaciones: { oficial: fxOficial, mep: fxMep }
+					medio: {
+						nombre: nombreMedio(m),
+						tipo: m.tipo,
+						fx: m.fx,
+						recargo_extra: m.comision ?? 0,
+						cashback: m.cashback ?? 0
+					},
+					cotizaciones: tasas
 				});
 				out.push({ medio: m, desglose: d });
 			} catch {
@@ -137,11 +141,11 @@
 			</label>
 			<label>
 				Dólar oficial
-				<input type="number" bind:value={fxOficial} oninput={recalcular} />
+				<input type="number" bind:value={tasas.oficial} oninput={recalcular} />
 			</label>
 			<label>
 				Dólar MEP
-				<input type="number" bind:value={fxMep} oninput={recalcular} />
+				<input type="number" bind:value={tasas.mep} oninput={recalcular} />
 			</label>
 			<div class="fx-estado">
 				<button type="button" onclick={actualizarFx}>↻ actualizar</button>
@@ -152,7 +156,7 @@
 		<section class="buscador">
 			<input
 				type="text"
-				placeholder="Buscá un juego o servicio… (ej. WoW Forever, ChatGPT, Spotify)"
+				placeholder="Buscá un juego o servicio… (ej. WoW Forever, Cyberpunk, ChatGPT)"
 				bind:value={query}
 				oninput={() => (seleccion = null)}
 			/>
@@ -162,7 +166,7 @@
 						<li>
 							<button onclick={() => seleccionar(s)}>
 								<strong>{s.nombre}</strong>
-								<span class="meta">{s.regimen} · {s.moneda}</span>
+								<span class="meta">{s.tienda ?? s.regimen} · {s.moneda}</span>
 							</button>
 						</li>
 					{/each}
@@ -181,7 +185,7 @@
 						Precio de lista ({seleccion.moneda})
 						<input type="number" bind:value={monto} oninput={recalcular} />
 					</label>
-					<span class="regimen">régimen: {seleccion.regimen}</span>
+					<span class="regimen">{seleccion.regimen}{seleccion.tienda ? ` · ${seleccion.tienda}` : ''}</span>
 				</div>
 
 				<table>
@@ -192,6 +196,7 @@
 							<th class="num">IVA</th>
 							<th class="num">IIBB</th>
 							<th class="num">Ganancias</th>
+							<th class="num">Cashback</th>
 							<th class="num">Total</th>
 						</tr>
 					</thead>
@@ -199,13 +204,14 @@
 						{#each calculos as c, i (c.medio.id)}
 							<tr class:mejor={i === 0}>
 								<td>
-									{i === 0 ? '▸ ' : ''}{c.medio.id}
-									<span class="tipo">{c.medio.tipo}</span>
+									{i === 0 ? '▸ ' : ''}{nombreMedio(c.medio)}
+									<span class="tipo">{c.medio.origen ?? ''} {c.medio.tipo}{c.medio.suscripcion_usd ? ` · US$${c.medio.suscripcion_usd}/mes` : ''}</span>
 								</td>
 								<td class="num">{formatoArs(c.desglose.base_ars)}</td>
 								<td class="num">{formatoArs(c.desglose.iva)}</td>
 								<td class="num">{formatoArs(c.desglose.iibb)}</td>
 								<td class="num">{formatoArs(c.desglose.ganancias)}</td>
+								<td class="num">{c.desglose.cashback ? '-' + formatoArs(c.desglose.cashback) : '—'}</td>
 								<td class="num total">{formatoArs(c.desglose.total_ars)}</td>
 							</tr>
 						{/each}
@@ -214,7 +220,7 @@
 
 				{#if calculos.length}
 					<p class="ahorro">
-						Mejor hoy: <strong>{calculos[0].medio.id}</strong> — recargo efectivo
+						Mejor hoy: <strong>{nombreMedio(calculos[0].medio)}</strong> — recargo efectivo
 						{(calculos[0].desglose.tasa_efectiva * 100).toFixed(1)}%
 					</p>
 				{/if}
@@ -225,7 +231,7 @@
 
 <style>
 	main {
-		max-width: 900px;
+		max-width: 1000px;
 		margin: 0 auto;
 		padding: 2rem 1rem 4rem;
 	}
