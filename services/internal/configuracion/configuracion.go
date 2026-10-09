@@ -62,11 +62,12 @@ type Perfil struct {
 	AceptaEn       []string `json:"acepta_en"`
 }
 
-// Emisor hereda un perfil y puede pisar comision/cashback/suscripcion.
+// Emisor hereda un perfil y puede pisar fx/comision/cashback/suscripcion.
 type Emisor struct {
 	ID             string   `json:"id"`
 	Nombre         string   `json:"nombre"`
 	Perfil         string   `json:"perfil"`
+	Fx             string   `json:"fx,omitempty"`
 	Comision       *float64 `json:"comision,omitempty"`
 	Cashback       *float64 `json:"cashback,omitempty"`
 	SuscripcionUSD *float64 `json:"suscripcion_usd,omitempty"`
@@ -102,6 +103,9 @@ func (w Wallets) Expandir() []Medio {
 		}
 		if e.Comision != nil {
 			m.Comision = *e.Comision
+		}
+		if e.Fx != "" {
+			m.Fx = e.Fx
 		}
 		if e.Cashback != nil {
 			m.Cashback = *e.Cashback

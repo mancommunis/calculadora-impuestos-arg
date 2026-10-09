@@ -69,6 +69,7 @@ interface Emisor {
 	id: string;
 	nombre: string;
 	perfil: string;
+	fx?: string;
 	comision?: number;
 	cashback?: number;
 	suscripcion_usd?: number;
@@ -86,7 +87,7 @@ export async function cargarMedios(): Promise<Medio[]> {
 			emisor: e.nombre,
 			origen: p.origen ?? '',
 			tipo: p.tipo,
-			fx: p.fx,
+			fx: e.fx ?? p.fx,
 			comision: e.comision ?? p.comision ?? 0,
 			cashback: e.cashback ?? p.cashback ?? 0,
 			suscripcion_usd: e.suscripcion_usd ?? p.suscripcion_usd ?? 0,
@@ -133,27 +134,38 @@ export interface Cotizaciones {
 	actualizado: string;
 }
 
-const FUENTES_FX: Record<string, string> = {
+const FUENTES_DOLARAPI: Record<string, string> = {
 	oficial: 'https://dolarapi.com/v1/dolares/oficial',
 	mep: 'https://dolarapi.com/v1/dolares/bolsa',
 	cripto: 'https://dolarapi.com/v1/dolares/cripto',
 	ccl: 'https://dolarapi.com/v1/dolares/contadoconliqui'
 };
 
-/** Cotizaciones en vivo desde dolarapi.com (público, CORS abierto). */
+// Wallets que cotizan en CriptoYa (USDT/ARS): su tasa real, automática.
+const EXCHANGES_CRIPTOYA = ['ripio', 'belo', 'buenbit', 'lemon'];
+
+/** Cotizaciones en vivo: dolarapi (oficial/mep/cripto/ccl) + CriptoYa por wallet. */
 export async function cargarCotizaciones(): Promise<Cotizaciones> {
-	const claves = Object.keys(FUENTES_FX);
-	const respuestas = await Promise.allSettled(
-		claves.map((k) => json<{ venta: number; fechaActualizacion?: string }>(FUENTES_FX[k]))
-	);
 	const tasas: Record<string, number> = {};
 	let actualizado = '';
-	respuestas.forEach((r, i) => {
-		if (r.status === 'fulfilled') {
-			tasas[claves[i]] = r.value.venta;
-			if (!actualizado && r.value.fechaActualizacion) actualizado = r.value.fechaActualizacion;
-		}
-	});
+
+	await Promise.allSettled([
+		...Object.entries(FUENTES_DOLARAPI).map(async ([k, u]) => {
+			const d = await json<{ venta: number; fechaActualizacion?: string }>(u);
+			tasas[k] = d.venta;
+			if (k === 'oficial' && d.fechaActualizacion) actualizado = d.fechaActualizacion;
+		}),
+		...EXCHANGES_CRIPTOYA.map(async (ex) => {
+			const d = await json<{ ask: number }>(`https://criptoya.com/api/${ex}/usdt/ars/1`);
+			if (d.ask) tasas[ex] = d.ask;
+		})
+	]);
+
+	// Fallback: wallet sin tasa propia -> usa la cripto.
+	for (const ex of EXCHANGES_CRIPTOYA) {
+		if (!tasas[ex] && tasas.cripto) tasas[ex] = tasas.cripto;
+	}
+
 	return { tasas, actualizado };
 }
 

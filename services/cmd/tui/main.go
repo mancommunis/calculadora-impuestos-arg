@@ -101,7 +101,7 @@ func cargar() tea.Cmd {
 
 func traerFx(ctx context.Context) (map[string]float64, error) {
 	c := &http.Client{Timeout: 10 * time.Second}
-	venta := func(u string) (float64, error) {
+	campo := func(u, campo string) (float64, error) {
 		req, err := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
 		if err != nil {
 			return 0, err
@@ -112,14 +112,13 @@ func traerFx(ctx context.Context) (map[string]float64, error) {
 		}
 		defer func() { _ = resp.Body.Close() }()
 		b, _ := io.ReadAll(io.LimitReader(resp.Body, 1<<16))
-		var out struct {
-			Venta float64 `json:"venta"`
-		}
-		if err := json.Unmarshal(b, &out); err != nil {
+		var m map[string]float64
+		if err := json.Unmarshal(b, &m); err != nil {
 			return 0, err
 		}
-		return out.Venta, nil
+		return m[campo], nil
 	}
+
 	fx := map[string]float64{}
 	for clave, url := range map[string]string{
 		"oficial": "https://dolarapi.com/v1/dolares/oficial",
@@ -127,8 +126,23 @@ func traerFx(ctx context.Context) (map[string]float64, error) {
 		"cripto":  "https://dolarapi.com/v1/dolares/cripto",
 		"ccl":     "https://dolarapi.com/v1/dolares/contadoconliqui",
 	} {
-		if v, err := venta(url); err == nil {
+		if v, err := campo(url, "venta"); err == nil && v > 0 {
 			fx[clave] = v
+		}
+	}
+	// Wallets que cotizan en CriptoYa (USDT/ARS): su tasa real.
+	exchanges := []string{"ripio", "belo", "buenbit", "lemon"}
+	for _, ex := range exchanges {
+		if v, err := campo("https://criptoya.com/api/"+ex+"/usdt/ars/1", "ask"); err == nil && v > 0 {
+			fx[ex] = v
+		}
+	}
+	// Fallback: wallet sin tasa propia -> cripto.
+	for _, ex := range exchanges {
+		if _, ok := fx[ex]; !ok {
+			if cr, ok := fx["cripto"]; ok {
+				fx[ex] = cr
+			}
 		}
 	}
 	if len(fx) == 0 {

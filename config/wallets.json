@@ -61,7 +61,7 @@
     { "id": "wibond", "nombre": "Wibond", "perfil": "wallet_local" },
     { "id": "bna_mas", "nombre": "BNA+", "perfil": "wallet_local" },
 
-    { "id": "cocos", "nombre": "Cocos Capital (dolares)", "perfil": "wallet_dolares" },
+    { "id": "cocos", "nombre": "Cocos Capital (dolares)", "perfil": "wallet_dolares", "fx": "cripto", "comision": 0.05 },
 
     { "id": "arq_local", "nombre": "ARQ (tarjeta local)", "perfil": "wallet_local" },
     { "id": "arq_global", "nombre": "ARQ Global", "perfil": "global_cripto" },
@@ -70,10 +70,10 @@
     { "id": "wallbit", "nombre": "Wallbit", "perfil": "global_cripto" },
     { "id": "littio", "nombre": "Littio", "perfil": "global_cripto" },
     { "id": "global66", "nombre": "Global66", "perfil": "global_cripto" },
-    { "id": "belo", "nombre": "Belo", "perfil": "global_cripto" },
-    { "id": "lemon", "nombre": "Lemon Cash", "perfil": "global_cripto" },
-    { "id": "ripio", "nombre": "Ripio", "perfil": "global_cripto" },
-    { "id": "buenbit", "nombre": "Buenbit", "perfil": "global_cripto" },
+    { "id": "belo", "nombre": "Belo", "perfil": "global_cripto", "fx": "belo" },
+    { "id": "lemon", "nombre": "Lemon Cash", "perfil": "global_cripto", "fx": "lemon" },
+    { "id": "ripio", "nombre": "Ripio", "perfil": "global_cripto", "fx": "ripio" },
+    { "id": "buenbit", "nombre": "Buenbit", "perfil": "global_cripto", "fx": "buenbit" },
     { "id": "payoneer", "nombre": "Payoneer", "perfil": "global_cripto" },
     { "id": "wise", "nombre": "Wise", "perfil": "global_cripto" }
   ],
