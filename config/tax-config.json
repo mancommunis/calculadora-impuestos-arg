@@ -1,0 +1,25 @@
+{
+  "vigente_desde": "2026-01-01",
+  "vigente_hasta": null,
+  "impuesto_pais": 0.0,
+  "regimenes": {
+    "gaming": {
+      "iva": 0.21,
+      "ganancias": 0.0
+    },
+    "servicios_digitales": {
+      "iva": 0.21,
+      "ganancias": 0.30
+    }
+  },
+  "iibb": {
+    "CABA": 0.02,
+    "PBA": 0.02
+  },
+  "_notas": {
+    "impuesto_pais": "Derogado el 23-dic-2024",
+    "ganancias_gaming": "Percepcion de Ganancias en 0% desde abril 2025",
+    "ganancias_servicios": "Percepcion 30% a cuenta, recuperable",
+    "iibb": "Alicuota provincial; completar por provincia"
+  }
+}

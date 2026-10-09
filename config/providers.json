@@ -1,0 +1,14 @@
+{
+  "activo": "deepseek",
+  "proveedores": [
+    { "id": "deepseek", "base_url": "https://api.deepseek.com", "modelo": "deepseek-chat", "key_ref": "deepseek_api_key" },
+    { "id": "openai", "base_url": "https://api.openai.com/v1", "modelo": "gpt-5-mini", "key_ref": "openai_api_key" },
+    { "id": "openrouter", "base_url": "https://openrouter.ai/api/v1", "modelo": "deepseek/deepseek-chat", "key_ref": "openrouter_api_key" },
+    { "id": "ollama_local", "base_url": "http://localhost:11434/v1", "modelo": "llama3", "key_ref": null }
+  ],
+  "_notas": {
+    "key_ref": "nombre con el que la key vive en el keychain del SO; NUNCA la key aca",
+    "ollama_local": "proveedor local: sin key, sin costo, privado",
+    "compat": "todos son OpenAI-compatible"
+  }
+}

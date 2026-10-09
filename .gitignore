@@ -1,0 +1,30 @@
+# Rust
+core/target/
+**/*.rs.bk
+
+# Go
+services/bin/
+*.test
+*.out
+
+# Node / SvelteKit
+node_modules/
+web/.svelte-kit/
+web/build/
+web/dist/
+.npm/
+
+# Data artifacts (generated)
+data/*
+!data/.gitkeep
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.idea/

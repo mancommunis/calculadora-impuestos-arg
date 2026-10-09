@@ -1,0 +1,17 @@
+{
+  "vigente_desde": "2026-10-01",
+  "medios": [
+    { "id": "oficial_tarjeta", "tipo": "tarjeta_local", "fx": "oficial", "recargo_extra": 0.0, "acepta_en": ["*"] },
+    { "id": "dolares_propios", "tipo": "dolares_propios", "fx": "mep", "recargo_extra": 0.0, "acepta_en": ["*"] },
+    { "id": "arq_local", "tipo": "tarjeta_local", "fx": "arq", "recargo_extra": 0.0, "acepta_en": ["steam"] },
+    { "id": "arq_global", "tipo": "tarjeta_global", "fx": "arq", "recargo_extra": 0.0, "acepta_en": ["playstation", "epic", "gog", "battle_net"] }
+  ],
+  "_notas": {
+    "fx": "fuente de cotizacion: oficial (BNA), mep, ccl, cripto, o la propia de la billetera",
+    "tipos": {
+      "tarjeta_local": "suma IVA + IIBB",
+      "dolares_propios": "suma IVA + IIBB, pero cambia el FX",
+      "tarjeta_global": "no suma IVA/IIBB donde la aceptan"
+    }
+  }
+}
