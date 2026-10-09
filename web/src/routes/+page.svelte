@@ -40,6 +40,7 @@
 	let listaProvincias = $derived(cfg ? provincias(cfg) : []);
 	let tienePrecio = $derived(seleccion?.precio != null);
 	let onDemand = $derived(!!seleccion?.on_demand);
+	let ivaOrigen = $derived(seleccion?.iva_origen ?? 0);
 
 	onMount(async () => {
 		try {
@@ -100,7 +101,8 @@
 			regimen: seleccion.regimen,
 			tienda: seleccion.tienda,
 			provincia,
-			tasas
+			tasas,
+			ivaOrigen
 		});
 	}
 </script>
@@ -192,9 +194,14 @@
 				<div class="precio-entrada">
 					{#if onDemand}
 						<label>
-							Monto a cargar ({seleccion.moneda})
+							Monto neto ({seleccion.moneda})
 							<input type="number" bind:value={monto} oninput={recalcular} min="0" step="1" />
 						</label>
+						{#if ivaOrigen > 0}
+							<span class="vato">
+								+{(ivaOrigen * 100).toFixed(0)}% VAT → {(monto * (1 + ivaOrigen)).toFixed(2)} {seleccion.moneda}
+							</span>
+						{/if}
 					{:else if tienePrecio}
 						<span class="precio-dato">Precio de lista: <strong>{monto} {seleccion.moneda}</strong></span>
 					{:else}
@@ -415,6 +422,10 @@
 	}
 	.precio-dato strong {
 		color: var(--phosphor);
+	}
+	.vato {
+		color: var(--cyan);
+		font-size: 0.85rem;
 	}
 	.sin-dato {
 		color: var(--dim);

@@ -17,6 +17,8 @@ export interface OpcionesCalculo {
 	tienda?: string;
 	provincia: string;
 	tasas: Record<string, number>;
+	/** IVA/percepción que cobra el PROVEEDOR de origen (ej. DeepSeek 6%). */
+	ivaOrigen?: number;
 }
 
 export async function desgloses(
@@ -32,11 +34,13 @@ export async function desgloses(
 		return [];
 	}
 	const aplicables = medios.filter((m) => aplicaMedio(m, opts.tienda, opts.moneda));
+	// El monto que se cobra incluye el IVA/percepción de origen del proveedor.
+	const montoBase = opts.monto * (1 + (opts.ivaOrigen ?? 0));
 	const out: Calculo[] = [];
 	for (const m of aplicables) {
 		try {
 			const d = await motor({
-				precio: { moneda: opts.moneda.toLowerCase(), monto: opts.monto },
+				precio: { moneda: opts.moneda.toLowerCase(), monto: montoBase },
 				regimen: opts.regimen,
 				parametros: params,
 				medio: {
