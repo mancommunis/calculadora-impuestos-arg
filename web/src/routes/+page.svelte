@@ -30,7 +30,7 @@
 
 	let provincia = $state('CABA');
 	let query = $state('');
-	let seleccion: Servicio | null = $state(null);
+	let seleccion = $state<Servicio | null>(null);
 	let monto = $state(0);
 	let tasas = $state<Record<string, number>>({ oficial: 1500, mep: 1540 });
 	let cotizadoEn = $state('');
@@ -40,6 +40,7 @@
 
 	let resultados = $derived(query.trim() && !seleccion ? buscar(servicios, query) : []);
 	let listaProvincias = $derived(cfg ? provincias(cfg) : []);
+	let tienePrecio = $derived(seleccion?.precio != null);
 
 	onMount(async () => {
 		try {
@@ -76,7 +77,7 @@
 	async function seleccionar(s: Servicio) {
 		seleccion = s;
 		query = s.nombre;
-		monto = s.precio ?? (s.moneda === 'USD' ? 10 : 5000);
+		monto = s.precio ?? 0;
 		await recalcular();
 	}
 
@@ -87,7 +88,7 @@
 	}
 
 	async function recalcular() {
-		if (!motor || !cfg || !seleccion) {
+		if (!motor || !cfg || !seleccion || seleccion.precio == null) {
 			calculos = [];
 			return;
 		}
@@ -166,7 +167,7 @@
 						<li>
 							<button onclick={() => seleccionar(s)}>
 								<strong>{s.nombre}</strong>
-								<span class="meta">{s.tienda ?? s.regimen} · {s.moneda}</span>
+								<span class="meta">{s.tienda ?? s.regimen} · {s.precio != null ? `${s.precio} ${s.moneda}` : s.moneda}</span>
 							</button>
 						</li>
 					{/each}
@@ -181,14 +182,16 @@
 					<button class="limpiar" onclick={limpiar}>×</button>
 				</header>
 				<div class="precio-entrada">
-					<label>
-						Precio de lista ({seleccion.moneda})
-						<input type="number" bind:value={monto} oninput={recalcular} />
-					</label>
+					{#if tienePrecio}
+						<span class="precio-dato">Precio de lista: <strong>{monto} {seleccion.moneda}</strong></span>
+					{:else}
+						<span class="precio-dato sin-dato">Sin precio de lista todavía (falta el dato)</span>
+					{/if}
 					<span class="regimen">{seleccion.regimen}{seleccion.tienda ? ` · ${seleccion.tienda}` : ''}</span>
 				</div>
 
-				<table>
+				{#if tienePrecio}
+					<table>
 					<thead>
 						<tr>
 							<th>Medio de pago</th>
@@ -223,6 +226,7 @@
 						Mejor hoy: <strong>{nombreMedio(calculos[0].medio)}</strong> — recargo efectivo
 						{(calculos[0].desglose.tasa_efectiva * 100).toFixed(1)}%
 					</p>
+				{/if}
 				{/if}
 			</article>
 		{/if}
@@ -373,6 +377,16 @@
 	.regimen {
 		color: var(--cyan);
 		font-size: 0.8rem;
+	}
+	.precio-dato {
+		color: var(--texto);
+	}
+	.precio-dato strong {
+		color: var(--phosphor);
+	}
+	.sin-dato {
+		color: var(--dim);
+		font-style: italic;
 	}
 	table {
 		width: 100%;
