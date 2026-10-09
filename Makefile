@@ -10,10 +10,10 @@ help:
 	@echo "make dev-web       - dev server de SvelteKit"
 
 core:
-	@echo "[core] pendiente (Fase 1)"
+	cd core && cargo build --release --target wasm32-wasip1
 
 test-core:
-	@echo "[core] pendiente (Fase 1)"
+	cd core && cargo test
 
 services:
 	@echo "[services] pendiente (Fase 2)"
