@@ -13,6 +13,7 @@ import (
 	"log"
 	"math"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -115,11 +116,17 @@ func traerFx(ctx context.Context) (map[string]float64, error) {
 		}
 		defer func() { _ = resp.Body.Close() }()
 		b, _ := io.ReadAll(io.LimitReader(resp.Body, 1<<16))
-		var m map[string]float64
+		var m map[string]any
 		if err := json.Unmarshal(b, &m); err != nil {
 			return 0, err
 		}
-		return m[campo], nil
+		switch v := m[campo].(type) {
+		case float64:
+			return v, nil
+		case string:
+			return strconv.ParseFloat(strings.TrimSpace(v), 64)
+		}
+		return 0, fmt.Errorf("campo %q ausente en %s", campo, u)
 	}
 
 	fx := map[string]float64{}
@@ -363,10 +370,16 @@ func (m *modelo) recalcular() {
 		if err != nil {
 			continue
 		}
-		var d configuracion.Desglose
-		if json.Unmarshal([]byte(salida), &d) == nil {
-			m.calculos = append(m.calculos, calculo{medio: medio, desglose: d})
+		// El motor devuelve {"error": ...} ante problemas (ej. falta cotización):
+		// NO es un Desglose en cero, hay que descartarlo.
+		var r struct {
+			configuracion.Desglose
+			Error string `json:"error"`
 		}
+		if json.Unmarshal([]byte(salida), &r) != nil || r.Error != "" {
+			continue
+		}
+		m.calculos = append(m.calculos, calculo{medio: medio, desglose: r.Desglose})
 	}
 	for i := 1; i < len(m.calculos); i++ {
 		for j := i; j > 0 && m.calculos[j].desglose.TotalARS < m.calculos[j-1].desglose.TotalARS; j-- {
