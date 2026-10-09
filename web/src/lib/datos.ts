@@ -73,3 +73,18 @@ export function buscar(servicios: Servicio[], q: string): Servicio[] {
 		.sort((a, b) => b.score - a.score)
 		.map((x) => x.s);
 }
+
+export interface Cotizaciones {
+	oficial: number;
+	mep: number;
+	actualizado: string;
+}
+
+/** Cotizaciones en vivo desde dolarapi.com (público, CORS abierto). */
+export async function cargarCotizaciones(): Promise<Cotizaciones> {
+	const [oficial, mep] = await Promise.all([
+		json<{ venta: number; fechaActualizacion: string }>('https://dolarapi.com/v1/dolares/oficial'),
+		json<{ venta: number }>('https://dolarapi.com/v1/dolares/bolsa')
+	]);
+	return { oficial: oficial.venta, mep: mep.venta, actualizado: oficial.fechaActualizacion };
+}

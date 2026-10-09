@@ -4,6 +4,7 @@
 	import {
 		buscar,
 		cargarConfig,
+		cargarCotizaciones,
 		cargarMedios,
 		cargarServicios,
 		parametros,
@@ -30,6 +31,7 @@
 	let monto = $state(0);
 	let fxOficial = $state(1500);
 	let fxMep = $state(1540);
+	let cotizadoEn = $state('');
 	let calculos: Calculo[] = $state([]);
 	let cargando = $state(true);
 	let error = $state('');
@@ -50,7 +52,20 @@
 		} finally {
 			cargando = false;
 		}
+		await actualizarFx();
 	});
+
+	async function actualizarFx() {
+		try {
+			const c = await cargarCotizaciones();
+			fxOficial = c.oficial;
+			fxMep = c.mep;
+			cotizadoEn = new Date(c.actualizado).toLocaleString('es-AR');
+		} catch {
+			cotizadoEn = '';
+		}
+		if (seleccion) await recalcular();
+	}
 
 	async function seleccionar(s: Servicio) {
 		seleccion = s;
@@ -122,6 +137,10 @@
 				Dólar MEP
 				<input type="number" bind:value={fxMep} oninput={recalcular} />
 			</label>
+			<div class="fx-estado">
+				<button type="button" onclick={actualizarFx}>↻ actualizar</button>
+				<span>{cotizadoEn ? `auto · ${cotizadoEn}` : 'manual (sin conexión)'}</span>
+			</div>
 		</section>
 
 		<section class="buscador">
@@ -227,7 +246,29 @@
 		display: flex;
 		gap: 1.5rem;
 		flex-wrap: wrap;
+		align-items: flex-end;
 		margin-bottom: 1.5rem;
+	}
+	.fx-estado {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+	}
+	.fx-estado button {
+		background: var(--panel);
+		border: 1px solid var(--borde);
+		color: var(--cyan);
+		font: inherit;
+		padding: 0.5rem 0.7rem;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+	.fx-estado button:hover {
+		border-color: var(--cyan);
+	}
+	.fx-estado span {
+		color: var(--dim);
+		font-size: 0.72rem;
 	}
 	label {
 		display: flex;
