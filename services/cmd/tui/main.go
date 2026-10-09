@@ -57,7 +57,18 @@ type cargadoMsg struct {
 	cfg        configuracion.Config
 	fx         map[string]float64
 	provincias []string
+	provincia  string
 	err        error
+}
+
+// fila es una fila visible de la búsqueda (grupo o ítem, quizá anidado).
+type fila struct {
+	esGrupo bool
+	sub     bool
+	clave   string
+	nombre  string
+	n       int
+	item    configuracion.Servicio
 }
 
 type modelo struct {
@@ -72,7 +83,8 @@ type modelo struct {
 	provincia  string
 
 	input       textinput.Model
-	resultados  []configuracion.Servicio
+	filas       []fila
+	expandido   map[string]bool
 	cursor      int
 	scrollLista int
 
@@ -99,7 +111,7 @@ func cargar() tea.Cmd {
 			return cargadoMsg{err: err}
 		}
 		fx, _ := traerFx(ctx)
-		return cargadoMsg{m: m, cfg: cfg, fx: fx, provincias: cfg.Provincias()}
+		return cargadoMsg{m: m, cfg: cfg, fx: fx, provincias: cfg.Provincias(), provincia: detectarProvincia(ctx, cfg.Provincias())}
 	}
 }
 
@@ -166,7 +178,7 @@ func inicial() modelo {
 	in.Placeholder = "buscá un juego o servicio… (ej. wow, cyberpunk, deepseek)"
 	in.Focus()
 	in.CharLimit = 60
-	return modelo{ctx: context.Background(), input: in, provincia: "CABA", fx: map[string]float64{}, alto: 30, ancho: 80}
+	return modelo{ctx: context.Background(), input: in, provincia: "CABA", fx: map[string]float64{}, filas: []fila{}, expandido: map[string]bool{}, alto: 30, ancho: 80}
 }
 
 func (m modelo) Init() tea.Cmd { return tea.Batch(textinput.Blink, cargar()) }
@@ -187,7 +199,9 @@ func (m modelo) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.cfg = msg.cfg
 		m.fx = msg.fx
 		m.provincias = msg.provincias
-		if m.provincia == "" && len(m.provincias) > 0 {
+		if msg.provincia != "" {
+			m.provincia = msg.provincia
+		} else if m.provincia == "" && len(m.provincias) > 0 {
 			m.provincia = m.provincias[0]
 		}
 		m.listo = true
@@ -219,7 +233,7 @@ func (m *modelo) mover(delta int) {
 		m.scrollDet = clamp(m.scrollDet+delta, 0, max(0, len(m.calculos)-1))
 		return
 	}
-	m.cursor = clamp(m.cursor+delta, 0, max(0, len(m.resultados)-1))
+	m.cursor = clamp(m.cursor+delta, 0, max(0, len(m.filas)-1))
 	m.ajustarScrollLista()
 }
 
@@ -251,16 +265,26 @@ func (m modelo) updateBuscar(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		m.mover(1)
 		return m, nil
 	case "enter":
-		if len(m.resultados) > 0 {
-			return m.seleccionar(m.resultados[m.cursor])
+		if m.cursor >= 0 && m.cursor < len(m.filas) {
+			f := m.filas[m.cursor]
+			if f.esGrupo {
+				m.expandido[f.clave] = !m.expandido[f.clave]
+				m.actualizarFilas()
+				return m, nil
+			}
+			return m.seleccionar(f.item)
 		}
+		return m, nil
+	case "esc":
+		m.input.SetValue("")
+		m.cursor, m.scrollLista = 0, 0
+		m.actualizarFilas()
 		return m, nil
 	}
 	var cmd tea.Cmd
 	m.input, cmd = m.input.Update(msg)
-	m.resultados = configuracion.Buscar(m.cfg.Servicios, m.input.Value())
-	m.cursor = 0
-	m.scrollLista = 0
+	m.cursor, m.scrollLista = 0, 0
+	m.actualizarFilas()
 	return m, cmd
 }
 
@@ -437,28 +461,44 @@ func (m modelo) viewBuscar() string {
 	b.WriteString(estSub.Render("precio final de compras digitales, con impuestos") + "\n\n")
 	b.WriteString(m.input.View() + "\n\n")
 
-	if m.input.Value() != "" && len(m.resultados) == 0 {
+	if m.input.Value() != "" && len(m.filas) == 0 {
 		b.WriteString(estTenue.Render("sin resultados") + "\n")
 	}
 
 	vis := m.visibles()
-	fin := min(len(m.resultados), m.scrollLista+vis)
+	fin := min(len(m.filas), m.scrollLista+vis)
 	for i := m.scrollLista; i < fin; i++ {
-		s := m.resultados[i]
-		meta := estTenue.Render(s.Tienda + " · " + monedaPrecio(s))
-		if s.Tienda == "" {
-			meta = estTenue.Render(s.Regimen + " · " + monedaPrecio(s))
+		f := m.filas[i]
+		var nombre, meta string
+		if f.esGrupo {
+			fl := "▸"
+			if m.expandido[f.clave] {
+				fl = "▾"
+			}
+			nombre = fl + " " + f.nombre
+			meta = fmt.Sprintf("%d variantes", f.n)
+		} else {
+			if f.sub {
+				nombre = "    " + f.nombre
+			} else {
+				nombre = "  " + f.nombre
+			}
+			meta = f.item.Regimen
+			if f.item.Tienda != "" {
+				meta = f.item.Tienda
+			}
+			meta += " · " + monedaPrecio(f.item)
 		}
 		if i == m.cursor {
-			b.WriteString(estSel.Render("▸ "+s.Nombre) + "  " + meta + "\n")
+			b.WriteString(estSel.Render(nombre+"  "+meta) + "\n")
 		} else {
-			b.WriteString("  " + estTexto.Render(s.Nombre) + "  " + meta + "\n")
+			b.WriteString(estTexto.Render(nombre) + "  " + estTenue.Render(meta) + "\n")
 		}
 	}
-	if len(m.resultados) > vis {
-		b.WriteString(estTenue.Render(fmt.Sprintf("  (%d-%d de %d · ↑↓ scrollea)", m.scrollLista+1, fin, len(m.resultados))) + "\n")
+	if len(m.filas) > vis {
+		b.WriteString(estTenue.Render(fmt.Sprintf("  (%d-%d de %d · ↑↓ scrollea)", m.scrollLista+1, fin, len(m.filas))) + "\n")
 	}
-	b.WriteString("\n" + estTenue.Render("escribí · ↑↓ elegir · enter ver · q salir") + "\n")
+	b.WriteString("\n" + estTenue.Render("escribí · ↑↓ elegir · enter ver/abrir · q salir") + "\n")
 	return b.String()
 }
 
@@ -536,6 +576,84 @@ func monedaPrecio(s configuracion.Servicio) string {
 		return fmt.Sprintf("%s %s", formatoNum(*s.Precio), s.Moneda)
 	}
 	return s.Moneda
+}
+
+// actualizarFilas reconstruye la lista visible a partir de los grupos y el expandido.
+func (m *modelo) actualizarFilas() {
+	grupos := configuracion.BuscarGrupos(m.cfg.Servicios, m.input.Value())
+	m.filas = m.filas[:0]
+	for _, g := range grupos {
+		if len(g.Items) == 1 {
+			m.filas = append(m.filas, fila{clave: g.Clave, nombre: g.Items[0].Nombre, item: g.Items[0]})
+			continue
+		}
+		m.filas = append(m.filas, fila{esGrupo: true, clave: g.Clave, nombre: g.Nombre, n: len(g.Items)})
+		if m.expandido[g.Clave] {
+			for _, it := range g.Items {
+				m.filas = append(m.filas, fila{sub: true, clave: g.Clave, nombre: it.Nombre, item: it})
+			}
+		}
+	}
+	m.cursor = clamp(m.cursor, 0, max(0, len(m.filas)-1))
+	m.ajustarScrollLista()
+}
+
+// ---- geolocalización por IP (default de provincia) ----
+
+func detectarProvincia(ctx context.Context, provincias []string) string {
+	c := &http.Client{Timeout: 8 * time.Second}
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, "https://ipwho.is/", nil)
+	if err != nil {
+		return ""
+	}
+	resp, err := c.Do(req)
+	if err != nil {
+		return ""
+	}
+	defer func() { _ = resp.Body.Close() }()
+	b, _ := io.ReadAll(io.LimitReader(resp.Body, 1<<16))
+	var d struct {
+		CountryCode string `json:"country_code"`
+		Region      string `json:"region"`
+		City        string `json:"city"`
+	}
+	if json.Unmarshal(b, &d) != nil || d.CountryCode != "AR" {
+		return ""
+	}
+	region := d.Region
+	if region == "" {
+		region = d.City
+	}
+	return mapearProvincia(region, provincias)
+}
+
+var sinAcentos = strings.NewReplacer("á", "a", "é", "e", "í", "i", "ó", "o", "ú", "u", "ñ", "n")
+
+func normalizar(s string) string {
+	s = sinAcentos.Replace(strings.ToLower(s))
+	s = strings.TrimSuffix(strings.TrimSpace(s), " province")
+	s = strings.TrimSuffix(s, " provincia")
+	return strings.TrimSpace(s)
+}
+
+func mapearProvincia(region string, provincias []string) string {
+	n := normalizar(region)
+	if n == "" {
+		return ""
+	}
+	if strings.Contains(n, "capital federal") || strings.Contains(n, "federal district") ||
+		(strings.Contains(n, "ciudad") && strings.Contains(n, "buenos aires")) {
+		return "CABA"
+	}
+	if strings.Contains(n, "buenos aires") {
+		return "PBA"
+	}
+	for _, p := range provincias {
+		if normalizar(p) == n {
+			return p
+		}
+	}
+	return ""
 }
 
 func formatoNum(f float64) string {

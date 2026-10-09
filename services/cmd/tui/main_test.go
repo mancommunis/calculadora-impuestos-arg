@@ -8,6 +8,22 @@ import (
 	"github.com/mancommunis/calculadora-impuestos-arg/services/internal/motor"
 )
 
+func TestMapearProvincia(t *testing.T) {
+	provs := []string{"CABA", "PBA", "Cordoba", "Santa Fe"}
+	casos := map[string]string{
+		"Cordoba Province":                "Cordoba",
+		"Buenos Aires":                    "PBA",
+		"Ciudad Autónoma de Buenos Aires": "CABA",
+		"Santa Fe Province":               "Santa Fe",
+		"Marte":                           "",
+	}
+	for region, esperado := range casos {
+		if got := mapearProvincia(region, provs); got != esperado {
+			t.Fatalf("%q -> %q, esperaba %q", region, got, esperado)
+		}
+	}
+}
+
 // traerFx debe parsear el JSON de dolarapi, que mezcla números y strings
 // (nombre, casa, fechaActualizacion). Regresión del bug "todo en 0".
 func TestTraerFx(t *testing.T) {

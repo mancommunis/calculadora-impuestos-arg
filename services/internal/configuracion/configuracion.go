@@ -336,3 +336,32 @@ func Buscar(servicios []Servicio, q string) []Servicio {
 	}
 	return out
 }
+
+// Grupo anida variantes de una misma franquicia.
+type Grupo struct {
+	Clave  string
+	Nombre string
+	Items  []Servicio
+}
+
+// BuscarGrupos busca y anida por `grupo` (o por id si no tiene).
+func BuscarGrupos(servicios []Servicio, q string) []Grupo {
+	items := Buscar(servicios, q)
+	var out []Grupo
+	idx := map[string]int{}
+	for _, s := range items {
+		clave := s.Grupo
+		nombre := s.Grupo
+		if clave == "" {
+			clave = s.ID
+			nombre = s.Nombre
+		}
+		if i, ok := idx[clave]; ok {
+			out[i].Items = append(out[i].Items, s)
+		} else {
+			idx[clave] = len(out)
+			out = append(out, Grupo{Clave: clave, Nombre: nombre, Items: []Servicio{s}})
+		}
+	}
+	return out
+}
