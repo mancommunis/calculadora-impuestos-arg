@@ -41,8 +41,7 @@ var (
 	estMagenta = lipgloss.NewStyle().Foreground(magenta)
 	estTexto   = lipgloss.NewStyle().Foreground(texto)
 	estSel     = lipgloss.NewStyle().Foreground(fondo).Background(fosforo).Bold(true)
-	estPuntito = lipgloss.NewStyle().Foreground(fosforo)
-	estCaja    = lipgloss.NewStyle().Border(lipgloss.RoundedBorder()).BorderForeground(tenue).Padding(0, 1)
+	estPunto   = lipgloss.NewStyle().Foreground(fosforo)
 )
 
 // ---- modelo ----
@@ -71,14 +70,18 @@ type modelo struct {
 	fx         map[string]float64
 	provincia  string
 
-	input      textinput.Model
-	resultados []configuracion.Servicio
-	cursor     int
+	input       textinput.Model
+	resultados  []configuracion.Servicio
+	cursor      int
+	scrollLista int
 
 	seleccion *configuracion.Servicio
 	monto     float64
 	calculos  []calculo
-	ancho     int
+	scrollDet int
+
+	alto  int
+	ancho int
 }
 
 // ---- carga inicial ----
@@ -94,7 +97,7 @@ func cargar() tea.Cmd {
 		if err != nil {
 			return cargadoMsg{err: err}
 		}
-		fx, _ := traerFx(ctx) // best-effort; si falla, quedan vacíos
+		fx, _ := traerFx(ctx)
 		return cargadoMsg{m: m, cfg: cfg, fx: fx, provincias: cfg.Provincias()}
 	}
 }
@@ -130,14 +133,12 @@ func traerFx(ctx context.Context) (map[string]float64, error) {
 			fx[clave] = v
 		}
 	}
-	// Wallets que cotizan en CriptoYa (USDT/ARS): su tasa real.
 	exchanges := []string{"ripio", "belo", "buenbit", "lemon"}
 	for _, ex := range exchanges {
 		if v, err := campo("https://criptoya.com/api/"+ex+"/usdt/ars/1", "ask"); err == nil && v > 0 {
 			fx[ex] = v
 		}
 	}
-	// Fallback: wallet sin tasa propia -> cripto.
 	for _, ex := range exchanges {
 		if _, ok := fx[ex]; !ok {
 			if cr, ok := fx["cripto"]; ok {
@@ -155,10 +156,10 @@ func traerFx(ctx context.Context) (map[string]float64, error) {
 
 func inicial() modelo {
 	in := textinput.New()
-	in.Placeholder = "buscá un juego o servicio… (ej. WoW Forever, ChatGPT)"
+	in.Placeholder = "buscá un juego o servicio… (ej. wow, cyberpunk, deepseek)"
 	in.Focus()
 	in.CharLimit = 60
-	return modelo{ctx: context.Background(), input: in, provincia: "CABA", fx: map[string]float64{}}
+	return modelo{ctx: context.Background(), input: in, provincia: "CABA", fx: map[string]float64{}, alto: 30, ancho: 80}
 }
 
 func (m modelo) Init() tea.Cmd { return tea.Batch(textinput.Blink, cargar()) }
@@ -166,9 +167,9 @@ func (m modelo) Init() tea.Cmd { return tea.Batch(textinput.Blink, cargar()) }
 func (m modelo) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.WindowSizeMsg:
+		m.alto = msg.Height
 		m.ancho = msg.Width
 		return m, nil
-
 	case cargadoMsg:
 		if msg.err != nil {
 			m.err = msg.err
@@ -184,7 +185,9 @@ func (m modelo) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 		m.listo = true
 		return m, nil
-
+	case tea.MouseMsg:
+		m.scrollear(msg)
+		return m, nil
 	case tea.KeyMsg:
 		if m.seleccion != nil {
 			return m.updateDetalle(msg)
@@ -194,19 +197,51 @@ func (m modelo) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
+// scrollear maneja la rueda del mouse (scroll interno, no el de la terminal).
+func (m *modelo) scrollear(msg tea.MouseMsg) {
+	switch msg.Button {
+	case tea.MouseButtonWheelUp:
+		m.mover(-1)
+	case tea.MouseButtonWheelDown:
+		m.mover(1)
+	}
+}
+
+func (m *modelo) mover(delta int) {
+	if m.seleccion != nil {
+		m.scrollDet = clamp(m.scrollDet+delta, 0, max(0, len(m.calculos)-1))
+		return
+	}
+	m.cursor = clamp(m.cursor+delta, 0, max(0, len(m.resultados)-1))
+	m.ajustarScrollLista()
+}
+
+func (m *modelo) ajustarScrollLista() {
+	vis := m.visibles()
+	if m.cursor < m.scrollLista {
+		m.scrollLista = m.cursor
+	}
+	if m.cursor >= m.scrollLista+vis {
+		m.scrollLista = m.cursor - vis + 1
+	}
+}
+
+func (m modelo) visibles() int {
+	if m.alto > 14 {
+		return m.alto - 8
+	}
+	return 6
+}
+
 func (m modelo) updateBuscar(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	switch msg.String() {
 	case "ctrl+c", "q":
 		return m, tea.Quit
-	case "up", "shift+tab":
-		if m.cursor > 0 {
-			m.cursor--
-		}
+	case "up", "k":
+		m.mover(-1)
 		return m, nil
-	case "down", "tab":
-		if m.cursor < len(m.resultados)-1 {
-			m.cursor++
-		}
+	case "down", "j":
+		m.mover(1)
 		return m, nil
 	case "enter":
 		if len(m.resultados) > 0 {
@@ -217,9 +252,8 @@ func (m modelo) updateBuscar(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	var cmd tea.Cmd
 	m.input, cmd = m.input.Update(msg)
 	m.resultados = configuracion.Buscar(m.cfg.Servicios, m.input.Value())
-	if m.cursor >= len(m.resultados) {
-		m.cursor = 0
-	}
+	m.cursor = 0
+	m.scrollLista = 0
 	return m, cmd
 }
 
@@ -230,8 +264,9 @@ func (m modelo) updateDetalle(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	case "esc":
 		m.seleccion = nil
 		m.calculos = nil
+		m.scrollDet = 0
 		return m, nil
-	case "tab", "p":
+	case "p":
 		m.provincia = m.siguienteProvincia()
 		m.recalcular()
 		return m, nil
@@ -241,11 +276,23 @@ func (m modelo) updateDetalle(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		}
 		m.recalcular()
 		return m, nil
-	case "+", "up":
+	case "up", "k":
+		m.mover(-1)
+		return m, nil
+	case "down", "j":
+		m.mover(1)
+		return m, nil
+	case "pgup":
+		m.mover(-m.visibles())
+		return m, nil
+	case "pgdown":
+		m.mover(m.visibles())
+		return m, nil
+	case "+", "right":
 		m.monto += m.paso()
 		m.recalcular()
 		return m, nil
-	case "-", "down":
+	case "-", "left":
 		if m.monto > m.paso() {
 			m.monto -= m.paso()
 		}
@@ -283,6 +330,8 @@ func (m modelo) seleccionar(s configuracion.Servicio) (tea.Model, tea.Cmd) {
 	} else {
 		m.monto = 5000
 	}
+	m.scrollDet = 0
+	m.scrollLista = 0
 	m.recalcular()
 	return m, nil
 }
@@ -297,12 +346,13 @@ func (m *modelo) recalcular() {
 		m.err = err
 		return
 	}
+	monto := m.monto * (1 + m.seleccion.IVAOrigen)
 	for _, medio := range m.cfg.Medios {
 		if !medio.AplicaA(m.seleccion.Tienda, m.seleccion.Moneda) {
 			continue
 		}
 		entrada := configuracion.Entrada{
-			Precio:       configuracion.Precio{Moneda: strings.ToLower(m.seleccion.Moneda), Monto: m.monto},
+			Precio:       configuracion.Precio{Moneda: strings.ToLower(m.seleccion.Moneda), Monto: monto},
 			Regimen:      m.seleccion.Regimen,
 			Parametros:   p,
 			Medio:        configuracion.MedioEntrada{Nombre: medio.Nombre, Tipo: medio.Tipo, Fx: medio.Fx, RecargoExtra: medio.Comision, Cashback: medio.Cashback},
@@ -318,7 +368,6 @@ func (m *modelo) recalcular() {
 			m.calculos = append(m.calculos, calculo{medio: medio, desglose: d})
 		}
 	}
-	// ordenar por total ascendente (el más barato primero)
 	for i := 1; i < len(m.calculos); i++ {
 		for j := i; j > 0 && m.calculos[j].desglose.TotalARS < m.calculos[j-1].desglose.TotalARS; j-- {
 			m.calculos[j], m.calculos[j-1] = m.calculos[j-1], m.calculos[j]
@@ -350,75 +399,99 @@ func (m modelo) viewBuscar() string {
 	if m.input.Value() != "" && len(m.resultados) == 0 {
 		b.WriteString(estTenue.Render("sin resultados") + "\n")
 	}
-	for i, s := range m.resultados {
-		meta := estTenue.Render(s.Regimen + " · " + s.Moneda)
+
+	vis := m.visibles()
+	fin := min(len(m.resultados), m.scrollLista+vis)
+	for i := m.scrollLista; i < fin; i++ {
+		s := m.resultados[i]
+		meta := estTenue.Render(s.Tienda + " · " + monedaPrecio(s))
+		if s.Tienda == "" {
+			meta = estTenue.Render(s.Regimen + " · " + monedaPrecio(s))
+		}
 		if i == m.cursor {
 			b.WriteString(estSel.Render("▸ "+s.Nombre) + "  " + meta + "\n")
 		} else {
 			b.WriteString("  " + estTexto.Render(s.Nombre) + "  " + meta + "\n")
 		}
 	}
-	b.WriteString("\n" + estTenue.Render("↑↓ elegir · enter ver · q salir") + "\n")
+	if len(m.resultados) > vis {
+		b.WriteString(estTenue.Render(fmt.Sprintf("  (%d-%d de %d · ↑↓ scrollea)", m.scrollLista+1, fin, len(m.resultados))) + "\n")
+	}
+	b.WriteString("\n" + estTenue.Render("escribí · ↑↓ elegir · enter ver · q salir") + "\n")
 	return b.String()
 }
 
 func (m modelo) viewDetalle() string {
-	var b strings.Builder
 	s := m.seleccion
+	var b strings.Builder
 	b.WriteString(estTitulo.Render("▓ "+s.Nombre) + "  " + estCian.Render(s.Regimen) + "\n")
-	b.WriteString(estSub.Render(fmt.Sprintf("lista %s %s · monto %s · provincia %s",
-		formatoNum(m.monto), s.Moneda, formatoNum(m.monto), m.provincia)) + "\n\n")
 
-	// cotizaciones
+	precio := fmt.Sprintf("%s %s", formatoNum(m.monto), s.Moneda)
+	if s.IVAOrigen > 0 {
+		precio += fmt.Sprintf(" +%.0f%% VAT = %s", s.IVAOrigen*100, formatoNum((m.monto)*(1+s.IVAOrigen)))
+	}
+	b.WriteString(estSub.Render(fmt.Sprintf("%s · %s", precio, m.provincia)) + "\n")
+
 	var fxParts []string
-	for _, k := range []string{"oficial", "mep"} {
+	for _, k := range []string{"oficial", "mep", "cripto"} {
 		if v, ok := m.fx[k]; ok {
 			fxParts = append(fxParts, fmt.Sprintf("%s %s", k, formatoNum(v)))
 		}
 	}
 	if len(fxParts) > 0 {
-		b.WriteString(estTenue.Render("dólar: "+strings.Join(fxParts, " · ")) + "\n\n")
+		b.WriteString(estTenue.Render("dólar: "+strings.Join(fxParts, " · ")) + "\n")
 	}
+	b.WriteString("\n")
 
 	if len(m.calculos) == 0 {
 		b.WriteString(estTenue.Render("sin medios aplicables / falta cotización") + "\n")
 	}
 
-	for i, c := range m.calculos {
-		marca := "  "
-		if i == 0 {
-			marca = estPuntito.Render("▸ ")
-		}
-		cab := marca + estTexto.Render(nombreMedio(c.medio)) + "  " + estTenue.Render(c.medio.Tipo)
-		detalle := fmt.Sprintf("IVA %s · IIBB %s · Ganancias %s",
-			formatoNum(c.desglose.IVA), formatoNum(c.desglose.IIBB), formatoNum(c.desglose.Ganancias))
-		if c.desglose.Cashback > 0 {
-			detalle += fmt.Sprintf(" · cashback -%s", formatoNum(c.desglose.Cashback))
-		}
-		detalle = estTenue.Render(detalle)
-		total := estCian.Render(formatoPesos(c.desglose.TotalARS)) + estTenue.Render(fmt.Sprintf("  (+%.1f%%)", c.desglose.TasaEfectiva*100))
-		if i == 0 {
-			total = estTitulo.Render(formatoPesos(c.desglose.TotalARS)) + estTenue.Render(fmt.Sprintf("  (+%.1f%%)", c.desglose.TasaEfectiva*100))
-		}
-		b.WriteString(cab + "\n    " + detalle + "\n    " + total + "\n\n")
+	vis := m.visibles()
+	m.scrollDet = clamp(m.scrollDet, 0, max(0, len(m.calculos)-1))
+	fin := min(len(m.calculos), m.scrollDet+vis)
+	for i := m.scrollDet; i < fin; i++ {
+		b.WriteString(m.lineaMedio(i, i == 0) + "\n")
+	}
+	if len(m.calculos) > vis {
+		b.WriteString(estTenue.Render(fmt.Sprintf("  (%d-%d de %d · ↑↓ scrollea)", m.scrollDet+1, fin, len(m.calculos))) + "\n")
 	}
 
 	if len(m.calculos) > 0 {
-		b.WriteString(estTitulo.Render("mejor hoy: "+nombreMedio(m.calculos[0].medio)) + "\n")
+		b.WriteString("\n" + estTitulo.Render("mejor hoy: "+nombreMedio(m.calculos[0].medio)) + "\n")
 	}
-	b.WriteString("\n" + estTenue.Render("p provincia · r refrescar dólar · +/- monto · esc volver · q salir") + "\n")
-	return estCaja.Render(strings.TrimRight(b.String(), "\n"))
+	b.WriteString("\n" + estTenue.Render("↑↓ scrollear · p provincia · r dólar · +/- monto · esc volver · q salir") + "\n")
+	return b.String()
+}
+
+func (m modelo) lineaMedio(i int, mejor bool) string {
+	c := m.calculos[i]
+	nombre := truncar(nombreMedio(c.medio), 26)
+	pad := nombre + strings.Repeat(" ", max(0, 26-len([]rune(nombre))))
+	porc := fmt.Sprintf("%+.1f%%", c.desglose.TasaEfectiva*100)
+	total := formatoPesos(c.desglose.TotalARS)
+	if mejor {
+		return estPunto.Render("▸ "+pad) + " " + estCian.Render(fmt.Sprintf("%14s", total)) + " " + estTenue.Render(fmt.Sprintf("%8s", porc))
+	}
+	return estTexto.Render("  "+pad) + " " + estTexto.Render(fmt.Sprintf("%14s", total)) + " " + estTenue.Render(fmt.Sprintf("%8s", porc))
 }
 
 func main() {
 	flag.Parse()
-	p := tea.NewProgram(inicial(), tea.WithAltScreen())
+	p := tea.NewProgram(inicial(), tea.WithAltScreen(), tea.WithMouseCellMotion())
 	if _, err := p.Run(); err != nil {
 		log.Fatal(err)
 	}
 }
 
-// ---- formatos ----
+// ---- helpers ----
+
+func monedaPrecio(s configuracion.Servicio) string {
+	if s.Precio != nil {
+		return fmt.Sprintf("%s %s", formatoNum(*s.Precio), s.Moneda)
+	}
+	return s.Moneda
+}
 
 func formatoNum(f float64) string {
 	entero := int64(f)
@@ -453,4 +526,21 @@ func nombreMedio(md configuracion.Medio) string {
 		return md.Nombre
 	}
 	return md.ID
+}
+
+func truncar(s string, n int) string {
+	if len(s) <= n {
+		return s
+	}
+	return s[:n-1] + "…"
+}
+
+func clamp(v, lo, hi int) int {
+	if v < lo {
+		return lo
+	}
+	if v > hi {
+		return hi
+	}
+	return v
 }
