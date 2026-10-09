@@ -1,0 +1,68 @@
+name: config-refresh
+
+on:
+  schedule:
+    # Día 1 de cada mes, 12:00 UTC.
+    - cron: '0 12 1 * *'
+  workflow_dispatch: {}
+
+# El agente PROPONE; nunca aplica solo. El resultado es un PR para revisión humana.
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: config-refresh
+  cancel-in-progress: false
+
+jobs:
+  agente:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache-dependency-path: services/go.sum
+
+      - name: Correr agente
+        working-directory: services
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          go run ./cmd/agente \
+            -fuentes ../config/fuentes.json \
+            -estado ../agente/estado.json \
+            -out ../agente
+
+      # Commit del estado: sirve de delta para la próxima corrida y de latido
+      # (GitHub deshabilita los scheduled workflows públicos tras 60 días sin actividad).
+      - name: Latido (mantiene el cron despierto)
+        run: |
+          git config user.name "mancommunis-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add agente/estado.json
+          git commit -m "chore(agente): estado $(date -u +%Y-%m-%d)" || echo "estado sin cambios"
+          git push
+
+      - name: ¿Hay propuesta?
+        id: check
+        run: |
+          if [ -f agente/reporte.md ]; then
+            echo "hay=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "hay=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Requiere: Settings → Actions → "Allow GitHub Actions to create and approve pull requests" = ON.
+      - name: Abrir / actualizar PR con la propuesta
+        if: steps.check.outputs.hay == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: agente/config-refresh
+          title: 'chore(config): propuesta de actualización del agente'
+          commit-message: 'chore(config): propuesta del agente'
+          body-path: agente/reporte.md

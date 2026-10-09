@@ -1,0 +1,17 @@
+{
+  "_notas": "Fuentes que el agente monitorea mensualmente. Curar con fuentes oficiales en Fase 6/7. Cada fuente que cambia dispara una propuesta.",
+  "fuentes": [
+    {
+      "id": "arca_iva_servicios_digitales",
+      "url": "https://www.arca.gob.ar/iva/servicios-digitales/",
+      "informa": "config/tax-config.json",
+      "notas": "régimen de percepción de IVA a servicios digitales"
+    },
+    {
+      "id": "impuestito_impuestos_2026",
+      "url": "https://impuestito.org/blog/impuestos-2026-en-steam-playstation-xbox-y-nintendo-argentina",
+      "informa": "config/tax-config.json",
+      "notas": "referencia de alícuotas gaming vs servicios digitales (a reemplazar por fuentes oficiales)"
+    }
+  ]
+}
