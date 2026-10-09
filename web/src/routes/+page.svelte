@@ -39,6 +39,7 @@
 	);
 	let listaProvincias = $derived(cfg ? provincias(cfg) : []);
 	let tienePrecio = $derived(seleccion?.precio != null);
+	let onDemand = $derived(!!seleccion?.on_demand);
 
 	onMount(async () => {
 		try {
@@ -89,7 +90,7 @@
 	}
 
 	async function recalcular() {
-		if (!motor || !cfg || !seleccion || seleccion.precio == null) {
+		if (!motor || !cfg || !seleccion || (seleccion.precio == null && !seleccion.on_demand)) {
 			calculos = [];
 			return;
 		}
@@ -189,7 +190,12 @@
 					<button class="limpiar" onclick={limpiar}>×</button>
 				</header>
 				<div class="precio-entrada">
-					{#if tienePrecio}
+					{#if onDemand}
+						<label>
+							Monto a cargar ({seleccion.moneda})
+							<input type="number" bind:value={monto} oninput={recalcular} min="0" step="1" />
+						</label>
+					{:else if tienePrecio}
 						<span class="precio-dato">Precio de lista: <strong>{monto} {seleccion.moneda}</strong></span>
 					{:else}
 						<span class="precio-dato sin-dato">Sin precio de lista todavía (falta el dato)</span>
@@ -197,7 +203,7 @@
 					<span class="regimen">{seleccion.regimen}{seleccion.tienda ? ` · ${seleccion.tienda}` : ''}</span>
 				</div>
 
-				{#if tienePrecio}
+				{#if tienePrecio || onDemand}
 					{#if calculos.length}
 						<p class="ahorro">
 							Mejor hoy: <strong>{nombreMedio(calculos[0].medio)}</strong> — recargo efectivo

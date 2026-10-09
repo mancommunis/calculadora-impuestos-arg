@@ -10,7 +10,8 @@
       "aliases": ["DeepSeek", "recarga deepseek", "deepseek api", "tokens deepseek", "deepseek top up"],
       "regimen": "servicios_digitales",
       "moneda": "USD",
-      "precio": 2.12
+      "precio": 2.12,
+      "on_demand": true
     }
   ],
   "_notas": {

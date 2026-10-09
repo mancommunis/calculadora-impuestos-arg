@@ -14,6 +14,7 @@ export interface Servicio {
 	regimen: string;
 	moneda: string;
 	precio: number | null;
+	on_demand?: boolean;
 	tienda?: string;
 }
 

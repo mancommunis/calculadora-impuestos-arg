@@ -22,18 +22,19 @@ type TaxConfig struct {
 }
 
 type Servicio struct {
-	ID      string   `json:"id"`
-	Nombre  string   `json:"nombre"`
-	Grupo   string   `json:"grupo,omitempty"`
-	Aliases []string `json:"aliases"`
-	Regimen string   `json:"regimen"`
-	Moneda  string   `json:"moneda"`
-	Precio  *float64 `json:"precio"`
-	Tienda  string   `json:"tienda,omitempty"`
-	AppID   int      `json:"appid,omitempty"`
-	URL     string   `json:"url,omitempty"`
-	Edicion string   `json:"edicion,omitempty"`
-	Manual  bool     `json:"manual,omitempty"`
+	ID       string   `json:"id"`
+	Nombre   string   `json:"nombre"`
+	Grupo    string   `json:"grupo,omitempty"`
+	Aliases  []string `json:"aliases"`
+	Regimen  string   `json:"regimen"`
+	Moneda   string   `json:"moneda"`
+	Precio   *float64 `json:"precio"`
+	Tienda   string   `json:"tienda,omitempty"`
+	AppID    int      `json:"appid,omitempty"`
+	URL      string   `json:"url,omitempty"`
+	Edicion  string   `json:"edicion,omitempty"`
+	OnDemand bool     `json:"on_demand,omitempty"`
+	Manual   bool     `json:"manual,omitempty"`
 }
 
 type Medio struct {
