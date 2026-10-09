@@ -1,0 +1,212 @@
+// Package configuracion carga la config-as-code y expone los tipos que van al motor.
+package configuracion
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"path/filepath"
+	"sort"
+	"strings"
+)
+
+type RegimenParams struct {
+	IVA       float64 `json:"iva"`
+	Ganancias float64 `json:"ganancias"`
+}
+
+type TaxConfig struct {
+	ImpuestoPais float64                  `json:"impuesto_pais"`
+	Regimenes    map[string]RegimenParams `json:"regimenes"`
+	IIBB         map[string]float64       `json:"iibb"`
+}
+
+type Servicio struct {
+	ID      string   `json:"id"`
+	Nombre  string   `json:"nombre"`
+	Aliases []string `json:"aliases"`
+	Regimen string   `json:"regimen"`
+	Moneda  string   `json:"moneda"`
+	Precio  *float64 `json:"precio"`
+	Tienda  string   `json:"tienda"`
+}
+
+type Medio struct {
+	ID           string   `json:"id"`
+	Tipo         string   `json:"tipo"`
+	Fx           string   `json:"fx"`
+	RecargoExtra float64  `json:"recargo_extra"`
+	AceptaEn     []string `json:"acepta_en"`
+}
+
+// Config es el conjunto de la config-as-code que consume la app.
+type Config struct {
+	Fiscal    TaxConfig
+	Servicios []Servicio
+	Medios    []Medio
+}
+
+// Cargar lee tax-config.json, subscriptions.json y wallets.json del directorio.
+func Cargar(dir string) (Config, error) {
+	var c Config
+	if err := leer(filepath.Join(dir, "tax-config.json"), &c.Fiscal); err != nil {
+		return c, err
+	}
+	var subs struct {
+		Servicios []Servicio `json:"servicios"`
+	}
+	if err := leer(filepath.Join(dir, "subscriptions.json"), &subs); err != nil {
+		return c, err
+	}
+	c.Servicios = subs.Servicios
+	var wal struct {
+		Medios []Medio `json:"medios"`
+	}
+	if err := leer(filepath.Join(dir, "wallets.json"), &wal); err != nil {
+		return c, err
+	}
+	c.Medios = wal.Medios
+	return c, nil
+}
+
+// DirPorDefecto ubica el directorio config/ subiendo desde el cwd.
+func DirPorDefecto() string {
+	if p := os.Getenv("MANCOMMUNIS_CONFIG"); p != "" {
+		return p
+	}
+	dir, err := os.Getwd()
+	if err != nil {
+		return "config"
+	}
+	for i := 0; i < 8; i++ {
+		cand := filepath.Join(dir, "config")
+		if _, err := os.Stat(filepath.Join(cand, "tax-config.json")); err == nil {
+			return cand
+		}
+		padre := filepath.Dir(dir)
+		if padre == dir {
+			break
+		}
+		dir = padre
+	}
+	return "config"
+}
+
+func leer(path string, v any) error {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return err
+	}
+	return json.Unmarshal(b, v)
+}
+
+func (c Config) Provincias() []string {
+	out := make([]string, 0, len(c.Fiscal.IIBB))
+	for k := range c.Fiscal.IIBB {
+		out = append(out, k)
+	}
+	sort.Strings(out)
+	return out
+}
+
+// ParametrosFiscales es lo que se le pasa al motor (régimen + provincia ya resueltos).
+type ParametrosFiscales struct {
+	IVA          float64 `json:"iva"`
+	Ganancias    float64 `json:"ganancias"`
+	IIBB         float64 `json:"iibb"`
+	ImpuestoPais float64 `json:"impuesto_pais"`
+}
+
+func (c Config) Parametros(regimen, provincia string) (ParametrosFiscales, error) {
+	r, ok := c.Fiscal.Regimenes[regimen]
+	if !ok {
+		return ParametrosFiscales{}, fmt.Errorf("régimen desconocido: %s", regimen)
+	}
+	iibb, ok := c.Fiscal.IIBB[provincia]
+	if !ok {
+		return ParametrosFiscales{}, fmt.Errorf("provincia sin IIBB: %s", provincia)
+	}
+	return ParametrosFiscales{IVA: r.IVA, Ganancias: r.Ganancias, IIBB: iibb, ImpuestoPais: c.Fiscal.ImpuestoPais}, nil
+}
+
+func (m Medio) AplicaA(tienda string) bool {
+	for _, t := range m.AceptaEn {
+		if t == "*" || (tienda != "" && t == tienda) {
+			return true
+		}
+	}
+	return false
+}
+
+// Entrada es el JSON que se manda al motor.
+type Entrada struct {
+	Precio       Precio             `json:"precio"`
+	Regimen      string             `json:"regimen"`
+	Parametros   ParametrosFiscales `json:"parametros"`
+	Medio        MedioEntrada       `json:"medio"`
+	Cotizaciones map[string]float64 `json:"cotizaciones"`
+}
+
+type Precio struct {
+	Moneda string  `json:"moneda"`
+	Monto  float64 `json:"monto"`
+}
+
+type MedioEntrada struct {
+	Nombre       string  `json:"nombre"`
+	Tipo         string  `json:"tipo"`
+	Fx           string  `json:"fx"`
+	RecargoExtra float64 `json:"recargo_extra"`
+}
+
+// Desglose es lo que devuelve el motor.
+type Desglose struct {
+	Regimen      string  `json:"regimen"`
+	MonedaPrecio string  `json:"moneda_precio"`
+	MontoPrecio  float64 `json:"monto_precio"`
+	FxNombre     string  `json:"fx_nombre"`
+	FxValor      float64 `json:"fx_valor"`
+	BaseARS      float64 `json:"base_ars"`
+	IVA          float64 `json:"iva"`
+	IIBB         float64 `json:"iibb"`
+	Ganancias    float64 `json:"ganancias"`
+	TotalARS     float64 `json:"total_ars"`
+	TasaEfectiva float64 `json:"tasa_efectiva"`
+}
+
+// Buscar hace match por nombre + aliases (substring, case-insensitive).
+func Buscar(servicios []Servicio, q string) []Servicio {
+	t := strings.ToLower(strings.TrimSpace(q))
+	if t == "" {
+		return nil
+	}
+	type punt struct {
+		s     Servicio
+		score int
+	}
+	var ps []punt
+	for _, s := range servicios {
+		campos := append([]string{s.Nombre, s.ID}, s.Aliases...)
+		score := 0
+		for _, c := range campos {
+			cl := strings.ToLower(c)
+			switch {
+			case cl == t:
+				score = max(score, 100)
+			case strings.HasPrefix(cl, t):
+				score = max(score, 60)
+			case strings.Contains(cl, t):
+				score = max(score, 30)
+			}
+		}
+		if score > 0 {
+			ps = append(ps, punt{s, score})
+		}
+	}
+	sort.SliceStable(ps, func(i, j int) bool { return ps[i].score > ps[j].score })
+	out := make([]Servicio, len(ps))
+	for i, p := range ps {
+		out[i] = p.s
+	}
+	return out
+}
