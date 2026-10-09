@@ -46,6 +46,31 @@ func TestParametros(t *testing.T) {
 	}
 }
 
+func TestExpandirWallets(t *testing.T) {
+	w := Wallets{
+		Perfiles: map[string]Perfil{
+			"banco_local": {Tipo: "tarjeta_local", Origen: "local", Fx: "oficial", Monedas: []string{"USD", "ARS"}, AceptaEn: []string{"*"}},
+			"global":      {Tipo: "tarjeta_global", Origen: "global", Fx: "cripto", Monedas: []string{"USD"}, AceptaEn: []string{"*"}},
+		},
+		Emisores: []Emisor{
+			{ID: "santander", Nombre: "Santander", Perfil: "banco_local"},
+			{ID: "astropay", Nombre: "AstroPay", Perfil: "global", SuscripcionUSD: ptr(12.0)},
+		},
+	}
+	medios := w.Expandir()
+	if len(medios) != 2 {
+		t.Fatalf("esperaba 2 medios, obtuve %d", len(medios))
+	}
+	if medios[0].ID != "santander" || medios[0].Tipo != "tarjeta_local" || medios[0].Origen != "local" {
+		t.Fatalf("santander mal expandido: %+v", medios[0])
+	}
+	if medios[1].ID != "astropay" || medios[1].Tipo != "tarjeta_global" || medios[1].SuscripcionUSD != 12 {
+		t.Fatalf("astropay mal expandido: %+v", medios[1])
+	}
+}
+
+func ptr(f float64) *float64 { return &f }
+
 func TestMedioAplicaA(t *testing.T) {
 	todos := Medio{ID: "oficial", AceptaEn: []string{"*"}, Monedas: []string{"USD", "ARS"}}
 	if !todos.AplicaA("battle_net", "USD") {

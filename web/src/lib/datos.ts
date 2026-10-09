@@ -53,9 +53,46 @@ export async function cargarCatalogo(): Promise<Servicio[]> {
 	}
 }
 
+export interface Perfil {
+	tipo: string;
+	origen: string;
+	fx: string;
+	comision?: number;
+	cashback?: number;
+	suscripcion_usd?: number;
+	monedas?: string[];
+	acepta_en?: string[];
+}
+
+interface Emisor {
+	id: string;
+	nombre: string;
+	perfil: string;
+	comision?: number;
+	cashback?: number;
+	suscripcion_usd?: number;
+}
+
 export async function cargarMedios(): Promise<Medio[]> {
-	const data = await json<{ medios: Medio[] }>('/config/wallets.json');
-	return data.medios;
+	const data = await json<{ perfiles: Record<string, Perfil>; emisores: Emisor[] }>(
+		'/config/wallets.json'
+	);
+	return data.emisores.map((e) => {
+		const p = data.perfiles[e.perfil] ?? ({} as Perfil);
+		return {
+			id: e.id,
+			nombre: e.nombre,
+			emisor: e.nombre,
+			origen: p.origen ?? '',
+			tipo: p.tipo,
+			fx: p.fx,
+			comision: e.comision ?? p.comision ?? 0,
+			cashback: e.cashback ?? p.cashback ?? 0,
+			suscripcion_usd: e.suscripcion_usd ?? p.suscripcion_usd ?? 0,
+			acepta_en: p.acepta_en ?? ['*'],
+			monedas: p.monedas ?? []
+		};
+	});
 }
 
 export function provincias(cfg: TaxConfig): string[] {

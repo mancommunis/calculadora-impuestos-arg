@@ -47,6 +47,70 @@ type Medio struct {
 	Monedas        []string `json:"monedas"`
 }
 
+// Perfil es un comportamiento de medio reutilizable (banco local, global, etc.).
+type Perfil struct {
+	Tipo           string   `json:"tipo"`
+	Origen         string   `json:"origen"`
+	Fx             string   `json:"fx"`
+	Comision       float64  `json:"comision"`
+	Cashback       float64  `json:"cashback"`
+	SuscripcionUSD float64  `json:"suscripcion_usd"`
+	Monedas        []string `json:"monedas"`
+	AceptaEn       []string `json:"acepta_en"`
+}
+
+// Emisor hereda un perfil y puede pisar comision/cashback/suscripcion.
+type Emisor struct {
+	ID             string   `json:"id"`
+	Nombre         string   `json:"nombre"`
+	Perfil         string   `json:"perfil"`
+	Comision       *float64 `json:"comision,omitempty"`
+	Cashback       *float64 `json:"cashback,omitempty"`
+	SuscripcionUSD *float64 `json:"suscripcion_usd,omitempty"`
+}
+
+// Wallets es el archivo config/wallets.json (perfiles + emisores).
+type Wallets struct {
+	Perfiles map[string]Perfil `json:"perfiles"`
+	Emisores []Emisor          `json:"emisores"`
+}
+
+// Expandir combina cada emisor con su perfil (y overrides) en medios concretos.
+func (w Wallets) Expandir() []Medio {
+	out := make([]Medio, 0, len(w.Emisores))
+	for _, e := range w.Emisores {
+		p := w.Perfiles[e.Perfil]
+		origen := p.Origen
+		if origen == "" {
+			origen = p.Tipo
+		}
+		m := Medio{
+			ID:             e.ID,
+			Nombre:         e.Nombre,
+			Emisor:         e.Nombre,
+			Origen:         origen,
+			Tipo:           p.Tipo,
+			Fx:             p.Fx,
+			Comision:       p.Comision,
+			Cashback:       p.Cashback,
+			SuscripcionUSD: p.SuscripcionUSD,
+			Monedas:        p.Monedas,
+			AceptaEn:       p.AceptaEn,
+		}
+		if e.Comision != nil {
+			m.Comision = *e.Comision
+		}
+		if e.Cashback != nil {
+			m.Cashback = *e.Cashback
+		}
+		if e.SuscripcionUSD != nil {
+			m.SuscripcionUSD = *e.SuscripcionUSD
+		}
+		out = append(out, m)
+	}
+	return out
+}
+
 // Config es el conjunto de la config-as-code que consume la app.
 type Config struct {
 	Fiscal    TaxConfig
@@ -67,13 +131,11 @@ func Cargar(dir string) (Config, error) {
 		return c, err
 	}
 	c.Servicios = subs.Servicios
-	var wal struct {
-		Medios []Medio `json:"medios"`
-	}
+	var wal Wallets
 	if err := leer(filepath.Join(dir, "wallets.json"), &wal); err != nil {
 		return c, err
 	}
-	c.Medios = wal.Medios
+	c.Medios = wal.Expandir()
 
 	// Catálogo de juegos (dataset/catalogo.json), si existe: se suma a los servicios.
 	catalogoPath := filepath.Join(filepath.Dir(dir), "dataset", "catalogo.json")

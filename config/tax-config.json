@@ -3,23 +3,43 @@
   "vigente_hasta": null,
   "impuesto_pais": 0.0,
   "regimenes": {
-    "gaming": {
-      "iva": 0.21,
-      "ganancias": 0.0
-    },
-    "servicios_digitales": {
-      "iva": 0.21,
-      "ganancias": 0.30
-    }
+    "gaming": { "iva": 0.21, "ganancias": 0.0 },
+    "servicios_digitales": { "iva": 0.21, "ganancias": 0.30 }
   },
   "iibb": {
     "CABA": 0.02,
-    "PBA": 0.02
+    "PBA": 0.02,
+    "Catamarca": 0.03,
+    "Chaco": 0.055,
+    "Chubut": 0.03,
+    "Cordoba": 0.03,
+    "Corrientes": 0.03,
+    "Entre Rios": 0.03,
+    "Formosa": 0.03,
+    "Jujuy": 0.03,
+    "La Pampa": 0.03,
+    "La Rioja": 0.03,
+    "Mendoza": 0.03,
+    "Misiones": 0.01,
+    "Neuquen": 0.03,
+    "Rio Negro": 0.03,
+    "Salta": 0.03,
+    "San Juan": 0.03,
+    "San Luis": 0.03,
+    "Santa Cruz": 0.03,
+    "Santa Fe": 0.045,
+    "Santiago del Estero": 0.03,
+    "Tierra del Fuego": 0.03,
+    "Tucuman": 0.03
   },
   "_notas": {
     "impuesto_pais": "Derogado el 23-dic-2024",
     "ganancias_gaming": "Percepcion de Ganancias en 0% desde abril 2025",
     "ganancias_servicios": "Percepcion 30% a cuenta, recuperable",
-    "iibb": "Alicuota provincial; completar por provincia"
+    "iibb": "Alicuota de PERCEPCION de IIBB sobre consumos en el exterior, segun la jurisdiccion del comprador (no la del vendedor).",
+    "iibb_verificados": ["CABA", "PBA"],
+    "iibb_provisional": "Las jurisdicciones fuera de iibb_verificados usan un valor PROVISIONAL (3%, salvo datos puntuales de 2026). Curar con fuente por provincia; el agente mensual puede hacerlo.",
+    "iibb_datos_2026": "Santa Fe ~4,5% (3% audiovisual); San Juan 3%; Cordoba 3%; Chaco hasta 5,5%; Misiones ~1%.",
+    "moneda": "Aplica a precios en pesos; el regimen de servicios digitales del exterior se percibe sobre el consumo."
   }
 }
