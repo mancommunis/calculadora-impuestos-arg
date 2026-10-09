@@ -3,7 +3,7 @@
 	import { cargarMotor, formatoArs, type Desglose, type Entrada } from '#lib/motor';
 	import {
 		aplicaMedio,
-		buscar,
+		buscarGrupos,
 		cargarCatalogo,
 		cargarConfig,
 		cargarCotizaciones,
@@ -12,6 +12,7 @@
 		nombreMedio,
 		parametros,
 		provincias,
+		type Grupo,
 		type Medio,
 		type Servicio,
 		type TaxConfig
@@ -38,7 +39,10 @@
 	let cargando = $state(true);
 	let error = $state('');
 
-	let resultados = $derived(query.trim() && !seleccion ? buscar(servicios, query) : []);
+	let expandido = $state<string | null>(null);
+	let resultados: Grupo[] = $derived(
+		query.trim() && !seleccion ? buscarGrupos(servicios, query) : []
+	);
 	let listaProvincias = $derived(cfg ? provincias(cfg) : []);
 	let tienePrecio = $derived(seleccion?.precio != null);
 
@@ -78,6 +82,7 @@
 		seleccion = s;
 		query = s.nombre;
 		monto = s.precio ?? 0;
+		expandido = null;
 		await recalcular();
 	}
 
@@ -163,13 +168,35 @@
 			/>
 			{#if resultados.length}
 				<ul class="resultados">
-					{#each resultados as s (s.id)}
-						<li>
-							<button onclick={() => seleccionar(s)}>
-								<strong>{s.nombre}</strong>
-								<span class="meta">{s.tienda ?? s.regimen} · {s.precio != null ? `${s.precio} ${s.moneda}` : s.moneda}</span>
-							</button>
-						</li>
+					{#each resultados as g (g.clave)}
+						{#if g.items.length === 1}
+							{@const s = g.items[0]}
+							<li>
+								<button onclick={() => seleccionar(s)}>
+									<strong>{s.nombre}</strong>
+									<span class="meta">{s.tienda ?? s.regimen} · {s.precio != null ? `${s.precio} ${s.moneda}` : s.moneda}</span>
+								</button>
+							</li>
+						{:else}
+							<li>
+								<button class="grupo" onclick={() => (expandido = expandido === g.clave ? null : g.clave)}>
+									<strong>{expandido === g.clave ? '▾' : '▸'} {g.nombre}</strong>
+									<span class="meta">{g.items.length} variantes</span>
+								</button>
+								{#if expandido === g.clave}
+									<ul class="sublista">
+										{#each g.items as s (s.id)}
+											<li>
+												<button onclick={() => seleccionar(s)}>
+													<span>{s.nombre}</span>
+													<span class="meta">{s.precio != null ? `${s.precio} ${s.moneda}` : 'sin precio'}</span>
+												</button>
+											</li>
+										{/each}
+									</ul>
+								{/if}
+							</li>
+						{/if}
 					{/each}
 				</ul>
 			{/if}
@@ -191,6 +218,13 @@
 				</div>
 
 				{#if tienePrecio}
+					{#if calculos.length}
+						<p class="ahorro">
+							Mejor hoy: <strong>{nombreMedio(calculos[0].medio)}</strong> — recargo efectivo
+							{(calculos[0].desglose.tasa_efectiva * 100).toFixed(1)}%
+						</p>
+					{/if}
+
 					<table>
 					<thead>
 						<tr>
@@ -220,13 +254,6 @@
 						{/each}
 					</tbody>
 				</table>
-
-				{#if calculos.length}
-					<p class="ahorro">
-						Mejor hoy: <strong>{nombreMedio(calculos[0].medio)}</strong> — recargo efectivo
-						{(calculos[0].desglose.tasa_efectiva * 100).toFixed(1)}%
-					</p>
-				{/if}
 				{/if}
 			</article>
 		{/if}
@@ -335,6 +362,18 @@
 	}
 	.resultados button:hover {
 		background: #142b1d;
+	}
+	.resultados .grupo strong {
+		color: var(--cyan);
+	}
+	.sublista {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.sublista button {
+		padding-left: 1.8rem;
+		background: #0c140e;
 	}
 	.meta,
 	.tipo {

@@ -1,83 +1,89 @@
 {
+  "_notas": "Catalogo de juegos. Con 'appid' => Steam (se refresca por API via `make scrape`). Los de Battle.net (manual=true) tienen el precio a mano: el scraping directo esta bloqueado por anti-bot (401). 'grupo' anida variantes de una misma franquicia.",
   "productos": [
     {
       "id": "steam:1091500",
       "nombre": "Cyberpunk 2077",
-      "aliases": [
-        "Cyberpunk",
-        "CP2077"
-      ],
+      "aliases": ["Cyberpunk", "CP2077"],
       "regimen": "gaming",
       "moneda": "USD",
-      "precio": 44.99,
       "tienda": "steam",
-      "appid": 1091500
+      "appid": 1091500,
+      "precio": 44.99
     },
     {
       "id": "steam:1245620",
       "nombre": "Elden Ring",
-      "aliases": [
-        "Elden"
-      ],
+      "aliases": ["Elden"],
       "regimen": "gaming",
       "moneda": "USD",
-      "precio": 47.99,
       "tienda": "steam",
-      "appid": 1245620
+      "appid": 1245620,
+      "precio": 47.99
     },
     {
       "id": "steam:271590",
       "nombre": "Grand Theft Auto V",
-      "aliases": [
-        "GTA V",
-        "GTA 5",
-        "GTAV"
-      ],
+      "aliases": ["GTA V", "GTA 5", "GTAV"],
       "regimen": "gaming",
       "moneda": "USD",
-      "precio": null,
       "tienda": "steam",
-      "appid": 271590
+      "appid": 271590,
+      "precio": null
     },
     {
       "id": "battlenet:wow-sub",
-      "nombre": "World of Warcraft (suscripcion)",
-      "aliases": [
-        "WoW",
-        "WoW Forever",
-        "el wow",
-        "World of Warcraft"
-      ],
+      "nombre": "World of Warcraft - suscripcion mensual",
+      "grupo": "World of Warcraft",
+      "aliases": ["WoW", "WoW Forever", "el wow", "sub wow"],
       "regimen": "gaming",
       "moneda": "USD",
-      "precio": 14.99,
       "tienda": "battle_net",
+      "precio": 14.99,
+      "manual": true
+    },
+    {
+      "id": "battlenet:wow-base",
+      "nombre": "World of Warcraft - juego base",
+      "grupo": "World of Warcraft",
+      "aliases": ["WoW base", "wow juego"],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "tienda": "battle_net",
+      "precio": 49.99,
+      "manual": true
+    },
+    {
+      "id": "battlenet:wow-tww",
+      "nombre": "World of Warcraft: The War Within",
+      "grupo": "World of Warcraft",
+      "aliases": ["The War Within", "TWW", "wow expansion"],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "tienda": "battle_net",
+      "precio": 49.99,
       "manual": true
     },
     {
       "id": "battlenet:diablo-iv",
       "nombre": "Diablo IV",
-      "aliases": [
-        "Diablo 4",
-        "D4"
-      ],
+      "grupo": "Diablo",
+      "aliases": ["Diablo 4", "D4"],
       "regimen": "gaming",
       "moneda": "USD",
-      "precio": null,
       "tienda": "battle_net",
+      "precio": null,
       "manual": true
     },
     {
       "id": "battlenet:d2r",
       "nombre": "Diablo II: Resurrected",
-      "aliases": [
-        "Diablo 2",
-        "D2R"
-      ],
+      "grupo": "Diablo",
+      "aliases": ["Diablo 2", "D2R"],
       "regimen": "gaming",
       "moneda": "USD",
-      "precio": null,
       "tienda": "battle_net",
+      "precio": null,
       "manual": true
     }
   ]

@@ -24,6 +24,7 @@ type TaxConfig struct {
 type Servicio struct {
 	ID      string   `json:"id"`
 	Nombre  string   `json:"nombre"`
+	Grupo   string   `json:"grupo,omitempty"`
 	Aliases []string `json:"aliases"`
 	Regimen string   `json:"regimen"`
 	Moneda  string   `json:"moneda"`

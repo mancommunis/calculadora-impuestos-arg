@@ -9,6 +9,7 @@ export interface TaxConfig {
 export interface Servicio {
 	id: string;
 	nombre: string;
+	grupo?: string;
 	aliases?: string[];
 	regimen: string;
 	moneda: string;
@@ -154,6 +155,25 @@ export async function cargarCotizaciones(): Promise<Cotizaciones> {
 		}
 	});
 	return { tasas, actualizado };
+}
+
+export interface Grupo {
+	clave: string;
+	nombre: string;
+	items: Servicio[];
+}
+
+/** Busca y anida por franquicia: ítems con el mismo `grupo` van juntos. */
+export function buscarGrupos(servicios: Servicio[], q: string): Grupo[] {
+	const encontrados = buscar(servicios, q);
+	const mapa = new Map<string, Grupo>();
+	for (const s of encontrados) {
+		const clave = s.grupo ?? s.id;
+		const nombre = s.grupo ?? s.nombre;
+		if (!mapa.has(clave)) mapa.set(clave, { clave, nombre, items: [] });
+		mapa.get(clave)!.items.push(s);
+	}
+	return [...mapa.values()];
 }
 
 /** ¿El medio sirve para esta tienda y esta moneda del precio? */
