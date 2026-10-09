@@ -34,6 +34,7 @@ type Servicio struct {
 	URL       string   `json:"url,omitempty"`
 	Edicion   string   `json:"edicion,omitempty"`
 	OnDemand  bool     `json:"on_demand,omitempty"`
+	Minimo    float64  `json:"minimo,omitempty"`
 	IVAOrigen float64  `json:"iva_origen,omitempty"`
 	Manual    bool     `json:"manual,omitempty"`
 }

@@ -11,6 +11,7 @@
       "regimen": "servicios_digitales",
       "moneda": "USD",
       "precio": 2,
+      "minimo": 2,
       "iva_origen": 0.06,
       "on_demand": true
     }

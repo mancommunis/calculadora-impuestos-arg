@@ -80,6 +80,7 @@
 		seleccion = s;
 		query = s.nombre;
 		monto = s.precio ?? 0;
+		if (s.minimo && monto < s.minimo) monto = s.minimo;
 		expandido = null;
 		await recalcular();
 	}
@@ -195,7 +196,13 @@
 					{#if onDemand}
 						<label>
 							Monto neto ({seleccion.moneda})
-							<input type="number" bind:value={monto} oninput={recalcular} min="0" step="1" />
+							<input
+								type="number"
+								bind:value={monto}
+								oninput={recalcular}
+								min={seleccion.minimo ?? 0}
+								step="1"
+							/>
 						</label>
 						{#if ivaOrigen > 0}
 							<span class="vato">

@@ -296,14 +296,20 @@ func (m modelo) updateDetalle(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		m.mover(m.visibles())
 		return m, nil
 	case "+", "right":
-		m.monto += m.paso()
-		m.recalcular()
+		if m.esOnDemand() {
+			m.monto += m.paso()
+			m.recalcular()
+		}
 		return m, nil
 	case "-", "left":
-		if m.monto > m.paso() {
-			m.monto -= m.paso()
+		if m.esOnDemand() {
+			if m.monto-m.paso() >= m.piso() {
+				m.monto -= m.paso()
+			} else {
+				m.monto = m.piso()
+			}
+			m.recalcular()
 		}
-		m.recalcular()
 		return m, nil
 	}
 	return m, nil
@@ -328,6 +334,25 @@ func (m modelo) paso() float64 {
 	return 500
 }
 
+// esOnDemand: el medio es prepago variable (ej. DeepSeek) -> monto ajustable.
+func (m modelo) esOnDemand() bool {
+	return m.seleccion != nil && m.seleccion.OnDemand
+}
+
+// piso: monto mínimo permitido (ej. DeepSeek US$2).
+func (m modelo) piso() float64 {
+	if m.seleccion == nil {
+		return 0
+	}
+	if m.seleccion.Minimo > 0 {
+		return m.seleccion.Minimo
+	}
+	if m.seleccion.Precio != nil {
+		return *m.seleccion.Precio
+	}
+	return 0
+}
+
 func (m modelo) seleccionar(s configuracion.Servicio) (tea.Model, tea.Cmd) {
 	m.seleccion = &s
 	if s.Precio != nil {
@@ -339,6 +364,9 @@ func (m modelo) seleccionar(s configuracion.Servicio) (tea.Model, tea.Cmd) {
 	}
 	m.scrollDet = 0
 	m.scrollLista = 0
+	if p := m.piso(); m.monto < p {
+		m.monto = p
+	}
 	m.recalcular()
 	return m, nil
 }
@@ -473,7 +501,11 @@ func (m modelo) viewDetalle() string {
 	if len(m.calculos) > 0 {
 		b.WriteString("\n" + estTitulo.Render("mejor hoy: "+nombreMedio(m.calculos[0].medio)) + "\n")
 	}
-	b.WriteString("\n" + estTenue.Render("↑↓ scrollear · p provincia · r dólar · +/- monto · esc volver · q salir") + "\n")
+	teclas := "↑↓ scrollear · p provincia · r dólar · esc volver · q salir"
+	if m.esOnDemand() {
+		teclas = fmt.Sprintf("↑↓ scrollear · +/- monto (mín %s) · p provincia · r dólar · esc volver · q salir", formatoNum(m.piso()))
+	}
+	b.WriteString("\n" + estTenue.Render(teclas) + "\n")
 	return b.String()
 }
 
