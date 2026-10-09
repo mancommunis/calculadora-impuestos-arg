@@ -16,10 +16,10 @@ test-core:
 	cd core && cargo test
 
 services:
-	@echo "[services] pendiente (Fase 2)"
+	cd services && CGO_ENABLED=0 go build ./...
 
-test-services:
-	@echo "[services] pendiente (Fase 2)"
+test-services: core
+	cd services && CGO_ENABLED=0 go test ./...
 
 dev-web:
 	@echo "[web] pendiente (Fase 3)"
