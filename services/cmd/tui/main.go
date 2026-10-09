@@ -238,10 +238,12 @@ func (m *modelo) ajustarScrollLista() {
 }
 
 func (m modelo) visibles() int {
-	if m.alto > 14 {
-		return m.alto - 8
+	// Reserva líneas para el encabezado (4), el contador (1) y el pie (4),
+	// para que el frame SIEMPRE entre en la pantalla y no se pierda el monto arriba.
+	if m.alto > 16 {
+		return m.alto - 12
 	}
-	return 6
+	return 4
 }
 
 func (m modelo) updateBuscar(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
@@ -516,7 +518,7 @@ func (m modelo) viewBuscar() string {
 		b.WriteString(estTenue.Render(fmt.Sprintf("  (%d-%d de %d · ↑↓ scrollea)", m.scrollLista+1, fin, len(m.filas))) + "\n")
 	}
 	b.WriteString("\n" + estTenue.Render("escribí · ↑↓ elegir · enter ver/abrir · q salir") + "\n")
-	return b.String()
+	return strings.TrimRight(b.String(), "\n")
 }
 
 func (m modelo) viewDetalle() string {
@@ -563,12 +565,13 @@ func (m modelo) viewDetalle() string {
 	if len(m.calculos) > 0 {
 		b.WriteString("\n" + estTitulo.Render("mejor hoy: "+nombreMedio(m.calculos[0].medio)) + "\n")
 	}
-	teclas := "↑↓ scrollear · p provincia · r dólar · esc volver · q salir"
 	if m.esOnDemand() {
-		teclas = fmt.Sprintf("↑↓ scrollear · +/- monto (mín %s) · p provincia · r dólar · esc volver · q salir", formatoNum(m.piso()))
+		b.WriteString("\n" + estCian.Render(fmt.Sprintf("monto: %s %s", formatoNum(m.monto), s.Moneda)) +
+			estTenue.Render(fmt.Sprintf("   (= sumar · - restar · mín %s)", formatoNum(m.piso()))) + "\n")
 	}
-	b.WriteString("\n" + estTenue.Render(teclas) + "\n")
-	return b.String()
+	teclas := "↑↓ scrollear · p provincia · r dólar · esc volver · q salir"
+	b.WriteString(estTenue.Render(teclas) + "\n")
+	return strings.TrimRight(b.String(), "\n")
 }
 
 func (m modelo) lineaMedio(i int, mejor bool) string {
