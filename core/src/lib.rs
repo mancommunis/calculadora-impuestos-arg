@@ -287,10 +287,10 @@ pub fn calcular_json(input: &str) -> Result<String, String> {
     serde_json::to_string(&desglose).map_err(|e| e.to_string())
 }
 
-/// ABI plano para hosts que cargan WASM sin wasm-bindgen (ej.: Go con wazero).
-/// Convención: `cfg_calcular_json(ptr, len)` devuelve un buffer `[u32 LE len][bytes]`,
-/// que el host lee y luego libera con `cfg_free(ptr, 4 + len)`.
-#[cfg(target_os = "wasi")]
+/// ABI plano para hosts que cargan WASM sin glue: el browser (WebAssembly API)
+/// y Go (wazero). Convención: `cfg_calcular_json(ptr, len)` devuelve un buffer
+/// `[u32 LE len][bytes]`, que el host lee y luego libera con `cfg_free(ptr, 4 + len)`.
+#[cfg(target_arch = "wasm32")]
 pub mod abi {
     use std::alloc::{alloc, dealloc, Layout};
 
@@ -341,20 +341,6 @@ pub mod abi {
             Err(e) => serde_json::json!({ "error": e }).to_string(),
         };
         empaquetar(out.as_bytes())
-    }
-}
-
-#[cfg(all(target_arch = "wasm32", target_os = "unknown"))]
-mod wasm {
-    use wasm_bindgen::prelude::*;
-
-    /// Export para el browser (wasm-bindgen).
-    #[wasm_bindgen]
-    pub fn calcular_json(input: &str) -> String {
-        match crate::calcular_json(input) {
-            Ok(s) => s,
-            Err(e) => serde_json::json!({ "error": e }).to_string(),
-        }
     }
 }
 
