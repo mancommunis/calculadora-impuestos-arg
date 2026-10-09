@@ -3,10 +3,19 @@
   "servicios": [
     { "id": "netflix_estandar", "nombre": "Netflix Estandar", "regimen": "servicios_digitales", "moneda": "ARS", "precio": null },
     { "id": "spotify_premium", "nombre": "Spotify Premium", "regimen": "servicios_digitales", "moneda": "ARS", "precio": null },
-    { "id": "chatgpt_plus", "nombre": "ChatGPT Plus", "regimen": "servicios_digitales", "moneda": "USD", "precio": 20 }
+    { "id": "chatgpt_plus", "nombre": "ChatGPT Plus", "regimen": "servicios_digitales", "moneda": "USD", "precio": 20 },
+    {
+      "id": "deepseek_recarga",
+      "nombre": "DeepSeek - recarga API (minimo US$2)",
+      "aliases": ["DeepSeek", "recarga deepseek", "deepseek api", "tokens deepseek", "deepseek top up"],
+      "regimen": "servicios_digitales",
+      "moneda": "USD",
+      "precio": 2
+    }
   ],
   "_notas": {
     "precio_null": "se completa desde el dataset / scraping",
-    "juegos": "los juegos viven en dataset/catalogo.json"
+    "juegos": "los juegos viven en dataset/catalogo.json",
+    "deepseek": "la recarga minima es US$2; DeepSeek es prepago en USD"
   }
 }
