@@ -1,5 +1,7 @@
 # calculadora-impuestos-arg
 
+> ¿Sos nuevo en el proyecto? Leé **[`docs/ONBOARDING.md`](./docs/ONBOARDING.md)**.
+
 Precio final de compras digitales en Argentina — **juegos, suscripciones de streaming y servicios de IA/tokens** — con impuestos, cotizaciones y comparación de métodos de pago.
 
 No es un formulario: es un **agregador + dato real + local-first + CLI/TUI + MCP + BYOK**.
