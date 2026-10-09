@@ -43,10 +43,10 @@
       "manual": true
     },
     {
-      "id": "battlenet:wow-base",
-      "nombre": "World of Warcraft - juego base",
+      "id": "battlenet:wow-midnight-base",
+      "nombre": "World of Warcraft: Midnight - Base Edition",
       "grupo": "World of Warcraft",
-      "aliases": ["WoW base", "wow juego"],
+      "aliases": ["Midnight", "wow midnight", "wow expansion"],
       "regimen": "gaming",
       "moneda": "USD",
       "tienda": "battle_net",
@@ -54,14 +54,25 @@
       "manual": true
     },
     {
-      "id": "battlenet:wow-tww",
-      "nombre": "World of Warcraft: The War Within",
+      "id": "battlenet:wow-midnight-heroic",
+      "nombre": "World of Warcraft: Midnight - Heroic Edition",
       "grupo": "World of Warcraft",
-      "aliases": ["The War Within", "TWW", "wow expansion"],
+      "aliases": ["Midnight Heroic"],
       "regimen": "gaming",
       "moneda": "USD",
       "tienda": "battle_net",
-      "precio": 49.99,
+      "precio": 69.99,
+      "manual": true
+    },
+    {
+      "id": "battlenet:wow-midnight-epic",
+      "nombre": "World of Warcraft: Midnight - Epic Edition",
+      "grupo": "World of Warcraft",
+      "aliases": ["Midnight Epic"],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "tienda": "battle_net",
+      "precio": 89.99,
       "manual": true
     },
     {
