@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { cargarMotor, formatoArs } from '#lib/motor';
-	import { desgloses, type Calculo, type Calculadora } from '#lib/calculo';
+	import { desgloses, resumenMejores, type Calculo, type Calculadora } from '#lib/calculo';
 	import {
 		buscarGrupos,
 		cargarCatalogo,
@@ -41,6 +41,7 @@
 	let tienePrecio = $derived(seleccion?.precio != null);
 	let onDemand = $derived(!!seleccion?.on_demand);
 	let ivaOrigen = $derived(seleccion?.iva_origen ?? 0);
+	let resumen = $derived(resumenMejores(calculos));
 
 	onMount(async () => {
 		try {
@@ -220,8 +221,9 @@
 				{#if tienePrecio || onDemand}
 					{#if calculos.length}
 						<p class="ahorro">
-							Mejor hoy: <strong>{nombreMedio(calculos[0].medio)}</strong> — recargo efectivo
-							{(calculos[0].desglose.tasa_efectiva * 100).toFixed(1)}%
+							Los mejores hoy: <strong>{resumen}</strong> — costo
+							{formatoArs(calculos[0].desglose.total_ars)}
+							({(calculos[0].desglose.tasa_efectiva * 100).toFixed(1)}% sobre la base)
 						</p>
 					{/if}
 

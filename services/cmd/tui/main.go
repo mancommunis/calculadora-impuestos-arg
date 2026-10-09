@@ -563,7 +563,7 @@ func (m modelo) viewDetalle() string {
 	}
 
 	if len(m.calculos) > 0 {
-		b.WriteString("\n" + estTitulo.Render("mejor hoy: "+nombreMedio(m.calculos[0].medio)) + "\n")
+		b.WriteString("\n" + estTitulo.Render("los mejores hoy: "+mejoresNombres(m.calculos, 4)) + "\n")
 	}
 	if m.esOnDemand() {
 		b.WriteString("\n" + estCian.Render(fmt.Sprintf("monto: %s %s", formatoNum(m.monto), s.Moneda)) +
@@ -730,6 +730,25 @@ func nombreMedio(md configuracion.Medio) string {
 		return md.Nombre
 	}
 	return md.ID
+}
+
+// mejoresNombres lista los medios con el MEJOR total (incluye empates).
+func mejoresNombres(calculos []calculo, max int) string {
+	if len(calculos) == 0 {
+		return ""
+	}
+	mejor := calculos[0].desglose.TotalARS
+	limite := mejor + math.Max(0.5, mejor*0.001)
+	var nombres []string
+	for _, c := range calculos {
+		if c.desglose.TotalARS <= limite {
+			nombres = append(nombres, nombreMedio(c.medio))
+		}
+	}
+	if len(nombres) > max {
+		return strings.Join(nombres[:max], " · ") + fmt.Sprintf(" +%d más", len(nombres)-max)
+	}
+	return strings.Join(nombres, " · ")
 }
 
 func truncar(s string, n int) string {

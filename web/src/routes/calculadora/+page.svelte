@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { cargarMotor, formatoArs } from '#lib/motor';
-	import { desgloses, type Calculo, type Calculadora } from '#lib/calculo';
+	import { desgloses, resumenMejores, type Calculo, type Calculadora } from '#lib/calculo';
 	import {
 		cargarConfig,
 		cargarCotizaciones,
@@ -29,6 +29,7 @@
 	let error = $state('');
 
 	let listaProvincias = $derived(cfg ? provincias(cfg) : []);
+	let resumen = $derived(resumenMejores(calculos));
 
 	onMount(async () => {
 		try {
@@ -118,7 +119,7 @@
 
 		{#if calculos.length}
 			<p class="ahorro">
-				Mejor hoy: <strong>{nombreMedio(calculos[0].medio)}</strong> — costo
+				Los mejores hoy: <strong>{resumen}</strong> — costo
 				<strong>{formatoArs(calculos[0].desglose.total_ars)}</strong>
 				({((calculos[0].desglose.total_ars / calculos[0].desglose.base_ars - 1) * 100).toFixed(1)}% sobre la base)
 			</p>

@@ -60,3 +60,19 @@ export async function desgloses(
 	out.sort((a, b) => a.desglose.total_ars - b.desglose.total_ars);
 	return out;
 }
+
+/** Los medios con el MEJOR total (incluye empates dentro de una tolerancia). */
+export function mejoresCalculos(calculos: Calculo[], tol = 0.001): Calculo[] {
+	if (!calculos.length) return [];
+	const mejor = calculos[0].desglose.total_ars;
+	const limite = mejor + Math.max(0.5, mejor * tol);
+	return calculos.filter((c) => c.desglose.total_ars <= limite);
+}
+
+/** Resumen "A · B · C (+N más)" de los mejores. */
+export function resumenMejores(calculos: Calculo[], max = 4): string {
+	const nombres = mejoresCalculos(calculos).map((c) => nombreMedio(c.medio));
+	const mostrar = nombres.slice(0, max);
+	const resto = nombres.length - mostrar.length;
+	return mostrar.join(' · ') + (resto > 0 ? ` +${resto} más` : '');
+}
