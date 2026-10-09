@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"github.com/mancommunis/calculadora-impuestos-arg/services/internal/agente"
+	"github.com/mancommunis/calculadora-impuestos-arg/services/internal/llaves"
 )
 
 const maxContenido = 20000
@@ -61,7 +62,7 @@ func correr(fuentesPath, estadoPath, outDir string) error {
 		return nil
 	}
 
-	apiKey := os.Getenv("DEEPSEEK_API_KEY")
+	apiKey := resolverKey()
 	llmActivo := apiKey != ""
 
 	var prop *agente.Propuesta
@@ -173,4 +174,16 @@ func truncar(s string, max int) string {
 		return s
 	}
 	return s[:max] + "\n…[truncado]"
+}
+
+// resolverKey busca la API key: primero el env (CI/CI secrets), luego el
+// keychain del SO (desarrollo local). Nunca se hardcodea.
+func resolverKey() string {
+	if k := os.Getenv("DEEPSEEK_API_KEY"); k != "" {
+		return k
+	}
+	if k, err := llaves.Get("deepseek"); err == nil {
+		return k
+	}
+	return ""
 }
