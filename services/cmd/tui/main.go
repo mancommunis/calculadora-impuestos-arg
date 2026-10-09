@@ -128,17 +128,7 @@ func traerFx(ctx context.Context) (map[string]float64, error) {
 		}
 		defer func() { _ = resp.Body.Close() }()
 		b, _ := io.ReadAll(io.LimitReader(resp.Body, 1<<16))
-		var m map[string]any
-		if err := json.Unmarshal(b, &m); err != nil {
-			return 0, err
-		}
-		switch v := m[campo].(type) {
-		case float64:
-			return v, nil
-		case string:
-			return strconv.ParseFloat(strings.TrimSpace(v), 64)
-		}
-		return 0, fmt.Errorf("campo %q ausente en %s", campo, u)
+		return parsearCampo(b, campo)
 	}
 
 	fx := map[string]float64{}
@@ -289,6 +279,23 @@ func (m modelo) updateBuscar(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 }
 
 func (m modelo) updateDetalle(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
+	// Ajuste de monto (solo on-demand): acepta +/= y -/_, más flechas.
+	if m.esOnDemand() {
+		if teclaSuma(msg) {
+			m.monto += m.paso()
+			m.recalcular()
+			return m, nil
+		}
+		if teclaResta(msg) {
+			if m.monto-m.paso() >= m.piso() {
+				m.monto -= m.paso()
+			} else {
+				m.monto = m.piso()
+			}
+			m.recalcular()
+			return m, nil
+		}
+	}
 	switch msg.String() {
 	case "ctrl+c", "q":
 		return m, tea.Quit
@@ -318,22 +325,6 @@ func (m modelo) updateDetalle(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		return m, nil
 	case "pgdown":
 		m.mover(m.visibles())
-		return m, nil
-	case "+", "right":
-		if m.esOnDemand() {
-			m.monto += m.paso()
-			m.recalcular()
-		}
-		return m, nil
-	case "-", "left":
-		if m.esOnDemand() {
-			if m.monto-m.paso() >= m.piso() {
-				m.monto -= m.paso()
-			} else {
-				m.monto = m.piso()
-			}
-			m.recalcular()
-		}
 		return m, nil
 	}
 	return m, nil
@@ -375,6 +366,32 @@ func (m modelo) piso() float64 {
 		return *m.seleccion.Precio
 	}
 	return 0
+}
+
+// teclaSuma: + , = (Shift+= en Mac) o flecha derecha.
+func teclaSuma(msg tea.KeyMsg) bool {
+	if msg.Type == tea.KeyRight {
+		return true
+	}
+	for _, r := range msg.Runes {
+		if r == '+' || r == '=' {
+			return true
+		}
+	}
+	return false
+}
+
+// teclaResta: - o flecha izquierda.
+func teclaResta(msg tea.KeyMsg) bool {
+	if msg.Type == tea.KeyLeft {
+		return true
+	}
+	for _, r := range msg.Runes {
+		if r == '-' || r == '_' {
+			return true
+		}
+	}
+	return false
 }
 
 func (m modelo) seleccionar(s configuracion.Servicio) (tea.Model, tea.Cmd) {
@@ -576,6 +593,22 @@ func monedaPrecio(s configuracion.Servicio) string {
 		return fmt.Sprintf("%s %s", formatoNum(*s.Precio), s.Moneda)
 	}
 	return s.Moneda
+}
+
+// parsearCampo saca un número de un JSON que puede mezclar tipos
+// (dolarapi trae "nombre"/"casa"/"fecha..." como strings y el resto números).
+func parsearCampo(b []byte, campo string) (float64, error) {
+	var m map[string]any
+	if err := json.Unmarshal(b, &m); err != nil {
+		return 0, err
+	}
+	switch v := m[campo].(type) {
+	case float64:
+		return v, nil
+	case string:
+		return strconv.ParseFloat(strings.TrimSpace(v), 64)
+	}
+	return 0, fmt.Errorf("campo %q ausente", campo)
 }
 
 // actualizarFilas reconstruye la lista visible a partir de los grupos y el expandido.
