@@ -43,30 +43,35 @@ func TestSteamSinPrecio(t *testing.T) {
 	}
 }
 
-func TestBattleNetReportaBloqueo(t *testing.T) {
+func TestBattleNetParseOfertas(t *testing.T) {
+	html := `<html><head>
+	<script type="application/ld+json">{"@type":"Product","name":"Midnight","offers":[
+	{"@type":"Offer","name":"Midnight Epic Edition","price":"89.99","priceCurrency":"USD"},
+	{"@type":"Offer","name":"Midnight Base Edition","price":"49.99","priceCurrency":"USD"}]}</script>
+	</head></html>`
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusUnauthorized)
+		_, _ = w.Write([]byte(html))
 	}))
 	defer srv.Close()
 
-	_, err := BattleNet(context.Background(), srv.Client(), srv.URL)
-	if err == nil {
-		t.Fatal("esperaba error por anti-bot")
+	ofertas, err := BattleNet(context.Background(), srv.Client(), srv.URL)
+	if err != nil {
+		t.Fatal(err)
 	}
-	if !contains(err.Error(), "401") {
-		t.Fatalf("el error debería mencionar 401: %v", err)
+	if len(ofertas) != 2 {
+		t.Fatalf("esperaba 2 ofertas, obtuve %d", len(ofertas))
+	}
+	if ofertas[0].Nombre != "Midnight Epic Edition" || ofertas[0].Precio != 89.99 || ofertas[0].Moneda != "USD" {
+		t.Fatalf("oferta inesperada: %+v", ofertas[0])
 	}
 }
 
-func contains(s, sub string) bool {
-	return len(s) >= len(sub) && (s == sub || indexOf(s, sub) >= 0)
-}
-
-func indexOf(s, sub string) int {
-	for i := 0; i+len(sub) <= len(s); i++ {
-		if s[i:i+len(sub)] == sub {
-			return i
-		}
+func TestBattleNetSinOfertas(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte("<html>nada</html>"))
+	}))
+	defer srv.Close()
+	if _, err := BattleNet(context.Background(), srv.Client(), srv.URL); err == nil {
+		t.Fatal("esperaba error sin structured data")
 	}
-	return -1
 }

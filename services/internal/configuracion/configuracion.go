@@ -31,6 +31,8 @@ type Servicio struct {
 	Precio  *float64 `json:"precio"`
 	Tienda  string   `json:"tienda,omitempty"`
 	AppID   int      `json:"appid,omitempty"`
+	URL     string   `json:"url,omitempty"`
+	Edicion string   `json:"edicion,omitempty"`
 	Manual  bool     `json:"manual,omitempty"`
 }
 

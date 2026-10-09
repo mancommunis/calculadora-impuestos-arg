@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -91,21 +92,77 @@ func Steam(ctx context.Context, c *http.Client, baseURL string, appid int, cc st
 	}, nil
 }
 
-// BattleNet intenta traer el precio de una URL de shop.battle.net.
-// Hoy devuelve error: la tienda responde 401 (anti-bot) sin browser real.
-func BattleNet(ctx context.Context, c *http.Client, url string) (PrecioTienda, error) {
-	ua := "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " +
-		"(KHTML, like Gecko) Chrome/122.0 Safari/537.36"
-	resp, err := get(ctx, c, url, ua)
+// Oferta es una edición/variante de un producto en una tienda.
+type Oferta struct {
+	Nombre string  `json:"nombre"`
+	Precio float64 `json:"precio"`
+	Moneda string  `json:"moneda"`
+}
+
+// battleNetUA: Battle.net deja a los crawlers (SEO) ver el producto sin login.
+const battleNetUA = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+
+var reLDJSON = regexp.MustCompile(`(?is)<script[^>]*application/ld\+json[^>]*>(.*?)</script>`)
+
+// BattleNet trae las ofertas (ediciones) de una página de producto de Battle.net
+// leyendo el structured data (application/ld+json) que el sitio sirve a los crawlers.
+// No necesita sesión.
+func BattleNet(ctx context.Context, c *http.Client, url string) ([]Oferta, error) {
+	resp, err := get(ctx, c, url, battleNetUA)
 	if err != nil {
-		return PrecioTienda{}, err
+		return nil, err
 	}
 	defer func() { _ = resp.Body.Close() }()
 	if resp.StatusCode != http.StatusOK {
-		return PrecioTienda{}, fmt.Errorf("battle.net respondió %d (anti-bot) en %s", resp.StatusCode, url)
+		return nil, fmt.Errorf("battle.net respondió %d en %s", resp.StatusCode, url)
 	}
-	// Aunque diera 200, el precio se arma en JS del cliente: haría falta browser.
-	return PrecioTienda{}, fmt.Errorf("battle.net requiere browser headless (HTML sin precio embebido)")
+	html, err := io.ReadAll(io.LimitReader(resp.Body, 8<<20))
+	if err != nil {
+		return nil, err
+	}
+	return parsearOfertas(html)
+}
+
+func parsearOfertas(html []byte) ([]Oferta, error) {
+	var ofertas []Oferta
+	for _, b := range reLDJSON.FindAllStringSubmatch(string(html), -1) {
+		if len(b) < 2 {
+			continue
+		}
+		var obj struct {
+			Offers []struct {
+				Name          string `json:"name"`
+				Price         any    `json:"price"`
+				PriceCurrency string `json:"priceCurrency"`
+			} `json:"offers"`
+		}
+		if json.Unmarshal([]byte(b[1]), &obj) != nil {
+			continue
+		}
+		for _, o := range obj.Offers {
+			monto, ok := aNumero(o.Price)
+			if !ok {
+				continue
+			}
+			ofertas = append(ofertas, Oferta{Nombre: o.Name, Precio: monto, Moneda: NormalizaMoneda(o.PriceCurrency)})
+		}
+	}
+	if len(ofertas) == 0 {
+		return nil, fmt.Errorf("sin ofertas en el structured data de battle.net")
+	}
+	return ofertas, nil
+}
+
+// aNumero acepta price como string ("89.99") o número.
+func aNumero(v any) (float64, bool) {
+	switch x := v.(type) {
+	case string:
+		f, err := strconv.ParseFloat(strings.TrimSpace(x), 64)
+		return f, err == nil
+	case float64:
+		return x, true
+	}
+	return 0, false
 }
 
 // NormalizaMoneda deja la moneda en mayúsculas y con "USD"/"ARS".

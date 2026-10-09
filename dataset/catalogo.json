@@ -1,101 +1,175 @@
 {
-  "_notas": "Catalogo de juegos. Con 'appid' => Steam (se refresca por API via `make scrape`). Los de Battle.net (manual=true) tienen el precio a mano: el scraping directo esta bloqueado por anti-bot (401). 'grupo' anida variantes de una misma franquicia.",
   "productos": [
     {
       "id": "steam:1091500",
       "nombre": "Cyberpunk 2077",
-      "aliases": ["Cyberpunk", "CP2077"],
+      "aliases": [
+        "Cyberpunk",
+        "CP2077"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
+      "precio": 44.99,
       "tienda": "steam",
-      "appid": 1091500,
-      "precio": 44.99
+      "appid": 1091500
     },
     {
       "id": "steam:1245620",
       "nombre": "Elden Ring",
-      "aliases": ["Elden"],
+      "aliases": [
+        "Elden"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
+      "precio": 47.99,
       "tienda": "steam",
-      "appid": 1245620,
-      "precio": 47.99
+      "appid": 1245620
     },
     {
       "id": "steam:271590",
       "nombre": "Grand Theft Auto V",
-      "aliases": ["GTA V", "GTA 5", "GTAV"],
+      "aliases": [
+        "GTA V",
+        "GTA 5",
+        "GTAV"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
+      "precio": null,
       "tienda": "steam",
-      "appid": 271590,
-      "precio": null
+      "appid": 271590
     },
     {
       "id": "battlenet:wow-sub",
       "nombre": "World of Warcraft - suscripcion mensual",
       "grupo": "World of Warcraft",
-      "aliases": ["WoW", "WoW Forever", "el wow", "sub wow"],
+      "aliases": [
+        "WoW",
+        "WoW Forever",
+        "el wow",
+        "sub wow"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
-      "tienda": "battle_net",
       "precio": 14.99,
+      "tienda": "battle_net",
       "manual": true
+    },
+    {
+      "id": "battlenet:wow-forever",
+      "nombre": "World of Warcraft - Warcraft Forever Collection",
+      "grupo": "World of Warcraft",
+      "aliases": [
+        "Warcraft Forever"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": 79.99,
+      "tienda": "battle_net",
+      "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-forever",
+      "edicion": "Warcraft Forever Collection"
+    },
+    {
+      "id": "battlenet:wow-skyborne-epic",
+      "nombre": "World of Warcraft - Skyborne Epic Pack",
+      "grupo": "World of Warcraft",
+      "aliases": [
+        "Skyborne Epic"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": 59.99,
+      "tienda": "battle_net",
+      "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-forever",
+      "edicion": "Skyborne Epic Pack"
+    },
+    {
+      "id": "battlenet:wow-skyborne-heroic",
+      "nombre": "World of Warcraft - Skyborne Heroic Pack",
+      "grupo": "World of Warcraft",
+      "aliases": [
+        "Skyborne Heroic"
+      ],
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": 29.99,
+      "tienda": "battle_net",
+      "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-forever",
+      "edicion": "Skyborne Heroic Pack"
     },
     {
       "id": "battlenet:wow-midnight-base",
       "nombre": "World of Warcraft: Midnight - Base Edition",
       "grupo": "World of Warcraft",
-      "aliases": ["Midnight", "wow midnight", "wow expansion"],
+      "aliases": [
+        "Midnight",
+        "wow midnight",
+        "wow expansion"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
-      "tienda": "battle_net",
       "precio": 49.99,
-      "manual": true
+      "tienda": "battle_net",
+      "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-midnight",
+      "edicion": "Base Edition"
     },
     {
       "id": "battlenet:wow-midnight-heroic",
       "nombre": "World of Warcraft: Midnight - Heroic Edition",
       "grupo": "World of Warcraft",
-      "aliases": ["Midnight Heroic"],
+      "aliases": [
+        "Midnight Heroic"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
-      "tienda": "battle_net",
       "precio": 69.99,
-      "manual": true
+      "tienda": "battle_net",
+      "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-midnight",
+      "edicion": "Heroic Edition"
     },
     {
       "id": "battlenet:wow-midnight-epic",
       "nombre": "World of Warcraft: Midnight - Epic Edition",
       "grupo": "World of Warcraft",
-      "aliases": ["Midnight Epic"],
+      "aliases": [
+        "Midnight Epic"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
-      "tienda": "battle_net",
       "precio": 89.99,
-      "manual": true
+      "tienda": "battle_net",
+      "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-midnight",
+      "edicion": "Epic Edition"
     },
     {
-      "id": "battlenet:diablo-iv",
-      "nombre": "Diablo IV",
+      "id": "battlenet:diablo-iv-standard",
+      "nombre": "Diablo IV - Standard Edition",
       "grupo": "Diablo",
-      "aliases": ["Diablo 4", "D4"],
+      "aliases": [
+        "Diablo 4",
+        "D4"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
+      "precio": 49.99,
       "tienda": "battle_net",
-      "precio": null,
-      "manual": true
+      "url": "https://us.shop.battle.net/en-us/product/diablo-iv",
+      "edicion": "Standard Edition"
     },
     {
-      "id": "battlenet:d2r",
-      "nombre": "Diablo II: Resurrected",
+      "id": "battlenet:diablo-iv-aoh",
+      "nombre": "Diablo IV - Age of Hatred Collection",
       "grupo": "Diablo",
-      "aliases": ["Diablo 2", "D2R"],
+      "aliases": [
+        "Diablo 4 Age of Hatred",
+        "D4 expansion"
+      ],
       "regimen": "gaming",
       "moneda": "USD",
+      "precio": 69.99,
       "tienda": "battle_net",
-      "precio": null,
-      "manual": true
+      "url": "https://us.shop.battle.net/en-us/product/diablo-iv",
+      "edicion": "Age of Hatred"
     }
   ]
 }

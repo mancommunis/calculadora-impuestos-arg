@@ -28,7 +28,7 @@ jobs:
         working-directory: services
         run: go run ./cmd/scraper -dataset ../dataset/catalogo.json
 
-      # Battle.net hoy está bloqueado (401): sus precios quedan manuales.
+      # Battle.net se lee del structured data (ld+json) con UA de crawler (sin login).
       - name: Commit del dataset
         run: |
           git config user.name "mancommunis-bot"

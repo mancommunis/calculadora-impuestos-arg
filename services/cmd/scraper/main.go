@@ -9,6 +9,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/mancommunis/calculadora-impuestos-arg/services/internal/configuracion"
@@ -57,10 +58,27 @@ func correr(datasetPath, cc string) error {
 			log.Printf("steam %s: %s %.2f (desc %d%%)", p.ID, moneda, monto, pt.Descuento)
 
 		case "battle_net":
-			if _, err := tiendas.BattleNet(ctx, cliente, "https://us.shop.battle.net/en-us/product/"+p.ID); err != nil {
-				log.Printf("battle_net %s: %v (queda precio manual)", p.ID, err)
+			if p.URL == "" {
+				manuales++
+				continue
 			}
-			manuales++
+			ofertas, err := tiendas.BattleNet(ctx, cliente, p.URL)
+			if err != nil {
+				log.Printf("battle_net %s: %v (queda precio manual)", p.ID, err)
+				fallaron++
+				continue
+			}
+			o := elegirOferta(ofertas, p.Edicion)
+			if o == nil {
+				log.Printf("battle_net %s: sin oferta que matchee %q", p.ID, p.Edicion)
+				fallaron++
+				continue
+			}
+			monto := o.Precio
+			p.Precio = &monto
+			p.Moneda = o.Moneda
+			actualizados++
+			log.Printf("battle_net %s: %s %.2f (%s)", p.ID, o.Moneda, o.Precio, o.Nombre)
 
 		default:
 			if p.Manual {
@@ -74,5 +92,22 @@ func correr(datasetPath, cc string) error {
 	}
 	log.Printf("dataset escrito: %s (actualizados=%d manuales=%d fallaron=%d)", datasetPath, actualizados, manuales, fallaron)
 	fmt.Printf("ok: %d actualizados, %d manuales, %d fallaron\n", actualizados, manuales, fallaron)
+	return nil
+}
+
+// elegirOferta elige, entre las ofertas de una página, la que matchea la edición.
+func elegirOferta(ofertas []tiendas.Oferta, edicion string) *tiendas.Oferta {
+	if edicion == "" {
+		if len(ofertas) == 1 {
+			return &ofertas[0]
+		}
+		return nil
+	}
+	e := strings.ToLower(edicion)
+	for i := range ofertas {
+		if strings.Contains(strings.ToLower(ofertas[i].Nombre), e) {
+			return &ofertas[i]
+		}
+	}
 	return nil
 }
