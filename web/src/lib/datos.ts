@@ -188,6 +188,70 @@ export function buscarGrupos(servicios: Servicio[], q: string): Grupo[] {
 	return [...mapa.values()];
 }
 
+// --- geolocalización por IP (default de provincia) ---
+
+const CLAVES_PROVINCIA = [
+	'CABA',
+	'PBA',
+	'Catamarca',
+	'Chaco',
+	'Chubut',
+	'Cordoba',
+	'Corrientes',
+	'Entre Rios',
+	'Formosa',
+	'Jujuy',
+	'La Pampa',
+	'La Rioja',
+	'Mendoza',
+	'Misiones',
+	'Neuquen',
+	'Rio Negro',
+	'Salta',
+	'San Juan',
+	'San Luis',
+	'Santa Cruz',
+	'Santa Fe',
+	'Santiago del Estero',
+	'Tierra del Fuego',
+	'Tucuman'
+];
+
+function normalizar(s: string): string {
+	return s
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.replace(/\s+(province|provincia)$/, '')
+		.trim();
+}
+
+/** Mapea el nombre de región de un geo-IP a nuestras claves de provincia. */
+export function mapearProvincia(region: string): string | null {
+	const n = normalizar(region);
+	if (!n) return null;
+	if (n.includes('capital federal') || (n.includes('ciudad') && n.includes('buenos aires')))
+		return 'CABA';
+	if (n.includes('buenos aires')) return 'PBA';
+	for (const clave of CLAVES_PROVINCIA) {
+		if (normalizar(clave) === n) return clave;
+	}
+	return null;
+}
+
+/** Detecta la provincia del visitante por IP (ipwho.is, sin pedir permisos). */
+export async function detectarProvincia(): Promise<string | null> {
+	try {
+		const r = await fetch('https://ipwho.is/');
+		if (!r.ok) return null;
+		const d = (await r.json()) as { country_code?: string; region?: string; city?: string };
+		if (d.country_code !== 'AR') return null;
+		return mapearProvincia(d.region ?? d.city ?? '');
+	} catch {
+		return null;
+	}
+}
+
 /** ¿El medio sirve para esta tienda y esta moneda del precio? */
 export function aplicaMedio(m: Medio, tienda: string | undefined, moneda: string): boolean {
 	const tiendaOK =

@@ -6,6 +6,7 @@
 		cargarConfig,
 		cargarCotizaciones,
 		cargarMedios,
+		detectarProvincia,
 		nombreMedio,
 		provincias,
 		type Medio,
@@ -40,6 +41,8 @@
 		} finally {
 			cargando = false;
 		}
+		const detectada = await detectarProvincia();
+		if (cfg && detectada && listaProvincias.includes(detectada)) provincia = detectada;
 		await actualizarFx();
 	});
 
