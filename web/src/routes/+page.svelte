@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { cargarMotor, formatoArs, type Desglose, type Entrada } from '#lib/motor';
+	import { cargarMotor, formatoArs } from '#lib/motor';
+	import { desgloses, type Calculo, type Calculadora } from '#lib/calculo';
 	import {
-		aplicaMedio,
 		buscarGrupos,
 		cargarCatalogo,
 		cargarConfig,
@@ -10,19 +10,12 @@
 		cargarMedios,
 		cargarServicios,
 		nombreMedio,
-		parametros,
 		provincias,
 		type Grupo,
 		type Medio,
 		type Servicio,
 		type TaxConfig
 	} from '#lib/datos';
-
-	type Calculadora = (e: Entrada) => Promise<Desglose>;
-	interface Calculo {
-		medio: Medio;
-		desglose: Desglose;
-	}
 
 	let motor: Calculadora | null = $state(null);
 	let cfg: TaxConfig | null = $state(null);
@@ -97,31 +90,14 @@
 			calculos = [];
 			return;
 		}
-		const p = parametros(cfg, seleccion.regimen, provincia);
-		const aplicables = medios.filter((m) => aplicaMedio(m, seleccion?.tienda, seleccion!.moneda));
-		const out: Calculo[] = [];
-		for (const m of aplicables) {
-			try {
-				const d = await motor({
-					precio: { moneda: seleccion.moneda.toLowerCase(), monto },
-					regimen: seleccion.regimen,
-					parametros: p,
-					medio: {
-						nombre: nombreMedio(m),
-						tipo: m.tipo,
-						fx: m.fx,
-						recargo_extra: m.comision ?? 0,
-						cashback: m.cashback ?? 0
-					},
-					cotizaciones: tasas
-				});
-				out.push({ medio: m, desglose: d });
-			} catch {
-				// medio que no aplica (ej.: falta cotización) → se omite
-			}
-		}
-		out.sort((a, b) => a.desglose.total_ars - b.desglose.total_ars);
-		calculos = out;
+		calculos = await desgloses(motor, cfg, medios, {
+			monto,
+			moneda: seleccion.moneda,
+			regimen: seleccion.regimen,
+			tienda: seleccion.tienda,
+			provincia,
+			tasas
+		});
 	}
 </script>
 
@@ -129,6 +105,7 @@
 	<header>
 		<h1>calculadora<span>.</span>impuestos<span>.</span>arg</h1>
 		<p class="sub">Precio final de compras digitales, con impuestos y medios de pago. Argentina.</p>
+		<p class="nav"><a href="/calculadora">→ calculadora custom (poné tu monto, ej. DeepSeek)</a></p>
 	</header>
 
 	{#if cargando}
@@ -278,6 +255,13 @@
 	.sub {
 		color: var(--dim);
 		margin: 0.25rem 0 2rem;
+	}
+	.nav {
+		margin: -1.5rem 0 2rem;
+		font-size: 0.85rem;
+	}
+	.nav a {
+		color: var(--cyan);
 	}
 	.estado {
 		color: var(--dim);
