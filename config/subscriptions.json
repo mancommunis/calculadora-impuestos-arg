@@ -6,16 +6,16 @@
     { "id": "chatgpt_plus", "nombre": "ChatGPT Plus", "regimen": "servicios_digitales", "moneda": "USD", "precio": 20 },
     {
       "id": "deepseek_recarga",
-      "nombre": "DeepSeek - recarga API (minimo US$2)",
+      "nombre": "DeepSeek - recarga API (min US$2 + 6% VAT = US$2.12)",
       "aliases": ["DeepSeek", "recarga deepseek", "deepseek api", "tokens deepseek", "deepseek top up"],
       "regimen": "servicios_digitales",
       "moneda": "USD",
-      "precio": 2
+      "precio": 2.12
     }
   ],
   "_notas": {
     "precio_null": "se completa desde el dataset / scraping",
     "juegos": "los juegos viven en dataset/catalogo.json",
-    "deepseek": "la recarga minima es US$2; DeepSeek es prepago en USD"
+    "deepseek": "el precio 2.12 = US$2.00 + 6% VAT que cobra el proveedor (China); ENCIMA se suman los impuestos argentinos (IVA/IIBB/Ganancias segun el medio). La facturacion de tokens tiene tarifa peak/off-peak (conviene correr el agente off-peak)."
   }
 }
