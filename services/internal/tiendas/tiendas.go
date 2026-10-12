@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
@@ -90,6 +91,39 @@ func Steam(ctx context.Context, c *http.Client, baseURL string, appid int, cc st
 		Descuento: po.DiscountPercent,
 		Fuente:    url,
 	}, nil
+}
+
+// AppSteam es un resultado del buscador de Steam.
+type AppSteam struct {
+	AppID int    `json:"id"`
+	Name  string `json:"name"`
+}
+
+// SteamBuscar busca apps por nombre (storesearch), para enlazar cross-store.
+func SteamBuscar(ctx context.Context, c *http.Client, term, cc string) ([]AppSteam, error) {
+	if cc == "" {
+		cc = "ar"
+	}
+	url := fmt.Sprintf("%s/api/storesearch/?term=%s&cc=%s&l=spanish", SteamBase, url.QueryEscape(term), cc)
+	resp, err := get(ctx, c, url, "mancommunis/0.1")
+	if err != nil {
+		return nil, err
+	}
+	defer func() { _ = resp.Body.Close() }()
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("steam storesearch status %d", resp.StatusCode)
+	}
+	b, err := io.ReadAll(io.LimitReader(resp.Body, 1<<20))
+	if err != nil {
+		return nil, err
+	}
+	var out struct {
+		Items []AppSteam `json:"items"`
+	}
+	if err := json.Unmarshal(b, &out); err != nil {
+		return nil, err
+	}
+	return out.Items, nil
 }
 
 // Oferta es una edición/variante de un producto en una tienda.

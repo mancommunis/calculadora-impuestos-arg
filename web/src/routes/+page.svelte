@@ -181,8 +181,8 @@
 			{#if resultados.length}
 				<ul class="resultados">
 					{#each resultados as g (g.clave)}
-						{#if g.total === 1 && g.subgrupos[0]?.items.length === 1}
-							{@const s = g.subgrupos[0].items[0]}
+						{#if g.total === 1 && g.subgrupos[0]?.juegos[0]?.items.length === 1}
+							{@const s = g.subgrupos[0].juegos[0].items[0]}
 							<li>
 								<button onclick={() => seleccionar(s)}>
 									<strong>{s.nombre}</strong>
@@ -199,8 +199,8 @@
 									<ul class="sublista">
 										{#each g.subgrupos as sg (sg.nombre)}
 											<li>
-												{#if sg.items.length === 1}
-													{@const s = sg.items[0]}
+												{#if sg.count === 1 && sg.juegos[0]?.items.length === 1}
+													{@const s = sg.juegos[0].items[0]}
 													<button onclick={() => seleccionar(s)}>
 														<span>{sg.nombre ? sg.nombre + ' · ' : ''}{s.nombre}</span>
 														<span class="meta">{metaServicio(s)}</span>
@@ -208,17 +208,30 @@
 												{:else}
 													<button class="subgrupo" onclick={() => toggleSub(g.clave, sg.nombre)}>
 														<span>{subsAbiertos.has(`${g.clave}|${sg.nombre}`) ? '▾' : '▸'} {sg.nombre || 'Otros'}</span>
-														<span class="meta">{sg.items.length}</span>
+														<span class="meta">{sg.count}</span>
 													</button>
 													{#if subsAbiertos.has(`${g.clave}|${sg.nombre}`)}
 														<ul class="sublista2">
-															{#each sg.items as s (s.id)}
-																<li>
-																	<button onclick={() => seleccionar(s)}>
-																		<span>{s.nombre}</span>
-																		<span class="meta">{metaServicio(s)}</span>
-																	</button>
-																</li>
+															{#each sg.juegos as j (j.clave)}
+																{#if j.items.length === 1}
+																	{@const s = j.items[0]}
+																	<li>
+																		<button onclick={() => seleccionar(s)}>
+																			<span>{j.nombre}</span>
+																			<span class="meta">{nombreTienda(s.tienda)} · {s.precio != null ? `${s.precio} ${s.moneda}` : s.moneda}</span>
+																		</button>
+																	</li>
+																{:else}
+																	<li class="juego-label">{j.nombre}</li>
+																	{#each j.items as s (s.id)}
+																		<li>
+																			<button onclick={() => seleccionar(s)}>
+																				<span>{nombreTienda(s.tienda)} → {j.nombre}</span>
+																				<span class="meta">{s.precio != null ? `${s.precio} ${s.moneda}` : s.moneda}</span>
+																			</button>
+																		</li>
+																	{/each}
+																{/if}
 															{/each}
 														</ul>
 													{/if}
@@ -444,6 +457,11 @@
 	.sublista2 button {
 		padding-left: 3rem;
 		background: #0a120c;
+	}
+	.juego-label {
+		padding: 0.3rem 0 0.1rem 2.2rem;
+		color: var(--cyan);
+		font-size: 0.8rem;
 	}
 	.meta,
 	.tipo {

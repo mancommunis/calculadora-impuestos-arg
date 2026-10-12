@@ -54,6 +54,7 @@ func correr(out string, ov map[string]string, delay time.Duration) error {
 			productos = append(productos, configuracion.Servicio{
 				ID: id, Nombre: nm, Grupo: franchiseDe(slug, nm),
 				Subgrupo: override(ov, id, slug, categoriaDe(slug, nm)),
+				Canonica: slug,
 				Regimen:  "gaming", Moneda: moneda, Tienda: "battle_net",
 				URL: u, Edicion: edicion, Precio: &precio,
 			})

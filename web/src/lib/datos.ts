@@ -19,6 +19,7 @@ export interface Servicio {
 	minimo?: number;
 	iva_origen?: number;
 	tienda?: string;
+	canonica?: string;
 }
 
 export interface Medio {
@@ -51,7 +52,7 @@ export async function cargarServicios(): Promise<Servicio[]> {
 /** Catálogo de juegos (dataset): catalogo.json + battlenet.json. */
 export async function cargarCatalogo(): Promise<Servicio[]> {
 	let out: Servicio[] = [];
-	for (const f of ['/dataset/catalogo.json', '/dataset/battlenet.json']) {
+	for (const f of ['/dataset/catalogo.json', '/dataset/battlenet.json', '/dataset/steam.json']) {
 		try {
 			const data = await json<{ productos: Servicio[] }>(f);
 			out = out.concat(data.productos ?? []);
@@ -197,9 +198,15 @@ export async function cargarCotizaciones(): Promise<Cotizaciones> {
 	return { tasas, actualizado };
 }
 
-export interface Subgrupo {
+export interface Juego {
+	clave: string;
 	nombre: string;
 	items: Servicio[];
+}
+export interface Subgrupo {
+	nombre: string;
+	count: number;
+	juegos: Juego[];
 }
 export interface Grupo {
 	clave: string;
@@ -208,25 +215,40 @@ export interface Grupo {
 	subgrupos: Subgrupo[];
 }
 
-/** Busca y arma el árbol grupo → subgrupo → items. */
+function nombreJuego(items: Servicio[]): string {
+	// el nombre más corto (suele ser el juego base, sin "Edition")
+	return [...items.map((s) => s.nombre)].sort((a, b) => a.length - b.length)[0] ?? '';
+}
+
+/** Busca y arma el árbol grupo → subgrupo → juego (canónica) → filas por tienda. */
 export function buscarArbol(servicios: Servicio[], q: string): Grupo[] {
 	const encontrados = buscar(servicios, q);
-	const gmap = new Map<string, { nombre: string; sub: Map<string, Servicio[]> }>();
+	const gmap = new Map<string, { nombre: string; sub: Map<string, Map<string, Servicio[]>> }>();
 	for (const s of encontrados) {
 		const gc = s.grupo ?? s.id;
 		const gn = s.grupo ?? s.nombre;
 		if (!gmap.has(gc)) gmap.set(gc, { nombre: gn, sub: new Map() });
-		const sub = gmap.get(gc)!.sub;
+		const subs = gmap.get(gc)!.sub;
 		const sc = s.subgrupo ?? '';
-		if (!sub.has(sc)) sub.set(sc, []);
-		sub.get(sc)!.push(s);
+		if (!subs.has(sc)) subs.set(sc, new Map());
+		const juegos = subs.get(sc)!;
+		const jc = s.canonica ?? s.id;
+		if (!juegos.has(jc)) juegos.set(jc, []);
+		juegos.get(jc)!.push(s);
 	}
 	return [...gmap.entries()].map(([clave, v]) => {
-		const subgrupos = [...v.sub.entries()].map(([nombre, items]) => ({ nombre, items }));
+		const subgrupos = [...v.sub.entries()].map(([snombre, jmap]) => {
+			const juegos = [...jmap.entries()].map(([jclave, items]) => ({
+				clave: jclave,
+				nombre: nombreJuego(items),
+				items
+			}));
+			return { nombre: snombre, count: juegos.reduce((a, j) => a + j.items.length, 0), juegos };
+		});
 		return {
 			clave,
 			nombre: v.nombre,
-			total: subgrupos.reduce((a, b) => a + b.items.length, 0),
+			total: subgrupos.reduce((a, b) => a + b.count, 0),
 			subgrupos
 		};
 	});

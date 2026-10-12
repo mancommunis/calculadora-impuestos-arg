@@ -38,6 +38,7 @@ type Servicio struct {
 	IVAOrigen float64  `json:"iva_origen,omitempty"`
 	Manual    bool     `json:"manual,omitempty"`
 	Subgrupo  string   `json:"subgrupo,omitempty"`
+	Canonica  string   `json:"canonica,omitempty"`
 }
 
 type Medio struct {
@@ -149,7 +150,7 @@ func Cargar(dir string) (Config, error) {
 	c.Medios = wal.Expandir()
 
 	// Catálogos (dataset/*.json), si existen: se suman a los servicios.
-	for _, f := range []string{"catalogo.json", "battlenet.json"} {
+	for _, f := range []string{"catalogo.json", "battlenet.json", "steam.json"} {
 		p := filepath.Join(filepath.Dir(dir), "dataset", f)
 		if cat, err := CargarCatalogo(p); err == nil {
 			c.Servicios = append(c.Servicios, cat.Productos...)
