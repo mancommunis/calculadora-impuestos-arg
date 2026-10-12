@@ -859,18 +859,6 @@
       "subgrupo": "Packs y bundles"
     },
     {
-      "id": "battlenet:call-of-duty-mwii-wz2-dune-stalker-starter-pack",
-      "nombre": "Call of Duty: Modern Warfare II - Dune Stalker: Starter Pack - Call of Duty",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 9.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-mwii-wz2-dune-stalker-starter-pack",
-      "subgrupo": "Packs y bundles"
-    },
-    {
       "id": "battlenet:call-of-duty-mwii-wz2-graffiti-tactical-pro-pack",
       "nombre": "Call of Duty: Modern Warfare II - Graffiti Tactical: Pro Pack - Call of Duty",
       "grupo": "Call of Duty",
@@ -1963,19 +1951,6 @@
     },
     {
       "id": "battlenet:hearthstone-battlegrounds-season-pass:hearthstone-battlegrounds-season-pass",
-      "nombre": "Hearthstone: Battlegrounds Season Pass +",
-      "grupo": "Hearthstone",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 19.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/hearthstone-battlegrounds-season-pass",
-      "edicion": "Hearthstone: Battlegrounds Season Pass +",
-      "subgrupo": "Pases"
-    },
-    {
-      "id": "battlenet:hearthstone-battlegrounds-season-pass:hearthstone-battlegrounds-season-pass",
       "nombre": "Hearthstone: Battlegrounds Season Pass",
       "grupo": "Hearthstone",
       "aliases": null,
@@ -1985,6 +1960,19 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-battlegrounds-season-pass",
       "edicion": "Hearthstone: Battlegrounds Season Pass",
+      "subgrupo": "Pases"
+    },
+    {
+      "id": "battlenet:hearthstone-battlegrounds-season-pass:hearthstone-battlegrounds-season-pass",
+      "nombre": "Hearthstone: Battlegrounds Season Pass +",
+      "grupo": "Hearthstone",
+      "aliases": null,
+      "regimen": "gaming",
+      "moneda": "USD",
+      "precio": 19.99,
+      "tienda": "battle_net",
+      "url": "https://us.shop.battle.net/en-us/product/hearthstone-battlegrounds-season-pass",
+      "edicion": "Hearthstone: Battlegrounds Season Pass +",
       "subgrupo": "Pases"
     },
     {
@@ -7705,7 +7693,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-cozy-kobold-collection",
       "edicion": "Blue Candlelight Kobold Romper",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-cozy-kobold-collection:brown-candlelight-kobold-romper",
@@ -7718,7 +7706,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-cozy-kobold-collection",
       "edicion": "Brown Candlelight Kobold Romper",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-cozy-kobold-collection:cozy-kobold-collection",
@@ -7744,7 +7732,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-cozy-kobold-collection",
       "edicion": "Pink Candlelight Kobold Romper",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-cozy-kobold-collection:tan-candlelight-kobold-romper",
@@ -7757,7 +7745,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-cozy-kobold-collection",
       "edicion": "Tan Candlelight Kobold Romper",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-dreadlords-regalia-pack",
@@ -7857,7 +7845,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hearthsteel",
       "edicion": "100 Hearthsteel",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:world-of-warcraft-hearthsteel:1000-hearthsteel",
@@ -7870,7 +7858,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hearthsteel",
       "edicion": "1000 Hearthsteel",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:world-of-warcraft-hearthsteel:10000-hearthsteel",
@@ -7883,7 +7871,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hearthsteel",
       "edicion": "10000 Hearthsteel",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:world-of-warcraft-hearthsteel:2500-hearthsteel",
@@ -7896,7 +7884,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hearthsteel",
       "edicion": "2500 Hearthsteel",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:world-of-warcraft-hearthsteel:500-hearthsteel",
@@ -7909,7 +7897,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hearthsteel",
       "edicion": "500 Hearthsteel",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:world-of-warcraft-hearthsteel:5000-hearthsteel",
@@ -7922,7 +7910,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hearthsteel",
       "edicion": "5000 Hearthsteel",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:world-of-warcraft-heavenly-regalia-pack",
@@ -7947,7 +7935,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Autumnal Witchwick Pack",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-hexed-witchwick-collection:blushing-witchwick-pack",
@@ -7960,7 +7948,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Blushing Witchwick Pack",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-hexed-witchwick-collection:hexed-witchwick-collection",
@@ -7986,7 +7974,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Moonlit Witchwick Pack",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-hexed-witchwick-collection:wintry-witchwick-pack",
@@ -7999,7 +7987,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Wintry Witchwick Pack",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-marvelous-meeksi-collection:meeksi-brewthief",
@@ -8012,7 +8000,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-marvelous-meeksi-collection",
       "edicion": "Meeksi Brewthief",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-marvelous-meeksi-collection:meeksi-rollingpaw",
@@ -8025,7 +8013,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-marvelous-meeksi-collection",
       "edicion": "Meeksi Rollingpaw",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-marvelous-meeksi-collection:meeksi-rufflefur",
@@ -8038,7 +8026,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-marvelous-meeksi-collection",
       "edicion": "Meeksi Rufflefur",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-marvelous-meeksi-collection:meeksi-softpaw",
@@ -8051,7 +8039,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-marvelous-meeksi-collection",
       "edicion": "Meeksi Softpaw",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-marvelous-meeksi-collection:meeksi-teatuft",
@@ -8064,7 +8052,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-marvelous-meeksi-collection",
       "edicion": "Meeksi Teatuft",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-midnight:midnight-base-edition",
@@ -8518,18 +8506,6 @@
       "subgrupo": "Monturas"
     },
     {
-      "id": "battlenet:world-of-warcraft-mount-vulpine-familiar",
-      "nombre": "Vulpine Familiar - World of Warcraft",
-      "grupo": "World of Warcraft",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 25,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-mount-vulpine-familiar",
-      "subgrupo": "Monturas"
-    },
-    {
       "id": "battlenet:world-of-warcraft-mount-wen-lo",
       "nombre": "Wen Lo, The River's Edge - World of Warcraft",
       "grupo": "World of Warcraft",
@@ -8876,7 +8852,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-scurrywind-groveglider-collection",
       "edicion": "Blossombranch Groveglider",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-scurrywind-groveglider-collection:cindertuft-groveglider",
@@ -8889,7 +8865,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-scurrywind-groveglider-collection",
       "edicion": "Cindertuft Groveglider",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-scurrywind-groveglider-collection:frostfall-groveglider",
@@ -8902,7 +8878,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-scurrywind-groveglider-collection",
       "edicion": "Frostfall Groveglider",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-scurrywind-groveglider-collection:gloombough-groveglider",
@@ -8915,7 +8891,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-scurrywind-groveglider-collection",
       "edicion": "Gloombough Groveglider",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-scurrywind-groveglider-collection:scurrywind-groveglider-collection",
@@ -9416,7 +9392,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-majestic-meeksi-collection",
       "edicion": "Meeksi Brewrobber (Classic Progression)",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-majestic-meeksi-collection:meeksi-gentlepaw-classic-progression",
@@ -9429,7 +9405,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-majestic-meeksi-collection",
       "edicion": "Meeksi Gentlepaw (Classic Progression)",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-majestic-meeksi-collection:meeksi-rufflemane-classic-progression",
@@ -9442,7 +9418,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-majestic-meeksi-collection",
       "edicion": "Meeksi Rufflemane (Classic Progression)",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-majestic-meeksi-collection:meeksi-teapuff-classic-progression",
@@ -9455,7 +9431,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-majestic-meeksi-collection",
       "edicion": "Meeksi Teapuff (Classic Progression)",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-majestic-meeksi-collection:meeksi-wanderpaw-classic-progression",
@@ -9468,7 +9444,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-majestic-meeksi-collection",
       "edicion": "Meeksi Wanderpaw (Classic Progression)",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-mount-auspicious-arborwyrm",
@@ -9685,7 +9661,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-scurrysoar-groveglider-collection",
       "edicion": "Embertuft Groveglider",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-scurrysoar-groveglider-collection:petalbranch-groveglider",
@@ -9698,7 +9674,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-scurrysoar-groveglider-collection",
       "edicion": "Petalbranch Groveglider",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-scurrysoar-groveglider-collection:scurrysoar-groveglider-collection",
@@ -9724,7 +9700,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-scurrysoar-groveglider-collection",
       "edicion": "Shadowbough Groveglider",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-scurrysoar-groveglider-collection:snowfall-groveglider",
@@ -9737,7 +9713,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-scurrysoar-groveglider-collection",
       "edicion": "Snowfall Groveglider",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-service-boost-bcc-anniversary",

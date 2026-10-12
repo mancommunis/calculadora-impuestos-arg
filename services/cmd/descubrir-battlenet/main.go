@@ -184,7 +184,7 @@ func limpiarNombre(s string) string {
 // ---- categoría ----
 
 var (
-	reMonedas    = regexp.MustCompile(`\b(platinum|gold|tokens?|coins?)\b`)
+	reMonedas    = regexp.MustCompile(`\b(platinum|gold|tokens?|coins?|hearthsteel)\b`)
 	rePases      = regexp.MustCompile(`\b(season pass|battle pass|pass)\b`)
 	reServicios  = regexp.MustCompile(`\b(services?|boosts?|transfers?|faction|race change|character|name change)\b`)
 	reCosmeticos = regexp.MustCompile(`\b(transmogs?|announcers?|ensembles?|raiment|crown|cosmetics?|appearances?|skins?)\b`)
@@ -212,7 +212,7 @@ func categoriaDe(slug, nombre string) string {
 		return "Monedas"
 	case reServicios.MatchString(s):
 		return "Servicios"
-	case reCosmeticos.MatchString(n) || reCosmeticos.MatchString(s) || reColeccion.MatchString(n):
+	case reCosmeticos.MatchString(n) || reCosmeticos.MatchString(s) || reColeccion.MatchString(n) || reColeccion.MatchString(s):
 		return "Cosméticos y colecciones"
 	case rePacks.MatchString(n) || rePacks.MatchString(s):
 		return "Packs y bundles"
