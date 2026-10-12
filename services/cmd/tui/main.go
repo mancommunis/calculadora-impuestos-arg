@@ -220,7 +220,7 @@ func (m *modelo) scrollear(msg tea.MouseMsg) {
 
 func (m *modelo) mover(delta int) {
 	if m.seleccion != nil {
-		m.scrollDet = clamp(m.scrollDet+delta, 0, max(0, len(m.calculos)-1))
+		m.scrollDet = clamp(m.scrollDet+delta, 0, max(0, len(m.calculos)-m.visibles()))
 		return
 	}
 	m.cursor = clamp(m.cursor+delta, 0, max(0, len(m.filas)-1))
@@ -238,8 +238,8 @@ func (m *modelo) ajustarScrollLista() {
 }
 
 func (m modelo) visibles() int {
-	// Reserva líneas para el encabezado (4), el contador (1) y el pie (4),
-	// para que el frame SIEMPRE entre en la pantalla y no se pierda el monto arriba.
+	// Frame = header (4) + vista (N) + footer (hasta 6). Reservamos 12 para que
+	// SIEMPRE entre en la pantalla: header y footer quedan fijos.
 	if m.alto > 16 {
 		return m.alto - 12
 	}
@@ -475,68 +475,81 @@ func (m modelo) View() string {
 }
 
 func (m modelo) viewBuscar() string {
-	var b strings.Builder
-	b.WriteString(estTitulo.Render("calculadora") + estMagenta.Render(".") + estTitulo.Render("impuestos") + estMagenta.Render(".") + estTitulo.Render("arg") + "\n")
-	b.WriteString(estSub.Render("precio final de compras digitales, con impuestos") + "\n\n")
-	b.WriteString(m.input.View() + "\n\n")
-
-	if m.input.Value() != "" && len(m.filas) == 0 {
-		b.WriteString(estTenue.Render("sin resultados") + "\n")
-	}
-
 	vis := m.visibles()
-	fin := min(len(m.filas), m.scrollLista+vis)
-	for i := m.scrollLista; i < fin; i++ {
-		f := m.filas[i]
-		var nombre, meta string
-		if f.esGrupo {
-			fl := "▸"
-			if m.expandido[f.clave] {
-				fl = "▾"
-			}
-			nombre = fl + " " + f.nombre
-			meta = fmt.Sprintf("%d variantes", f.n)
-		} else {
-			if f.sub {
-				nombre = "    " + f.nombre
-			} else {
-				nombre = "  " + f.nombre
-			}
-			meta = f.item.Regimen
-			if f.item.Tienda != "" {
-				meta = f.item.Tienda
-			}
-			meta += " · " + monedaPrecio(f.item)
-		}
-		if i == m.cursor {
-			b.WriteString(estSel.Render(nombre+"  "+meta) + "\n")
-		} else {
-			b.WriteString(estTexto.Render(nombre) + "  " + estTenue.Render(meta) + "\n")
+	m.scrollLista = clamp(m.scrollLista, 0, max(0, len(m.filas)-vis))
+
+	var b strings.Builder
+	// header fijo (4 líneas)
+	b.WriteString(estTitulo.Render("calculadora") + estMagenta.Render(".") + estTitulo.Render("impuestos") + estMagenta.Render(".") + estTitulo.Render("arg") + "\n")
+	b.WriteString(estSub.Render("precio final de compras digitales, con impuestos") + "\n")
+	b.WriteString(m.input.View() + "\n")
+	b.WriteString("\n")
+
+	// viewport: exactamente 'vis' líneas
+	for k := 0; k < vis; k++ {
+		i := m.scrollLista + k
+		switch {
+		case i < len(m.filas):
+			b.WriteString(m.lineaFila(i) + "\n")
+		case k == 0 && m.input.Value() != "":
+			b.WriteString(estTenue.Render("  sin resultados") + "\n")
+		default:
+			b.WriteString("\n")
 		}
 	}
+
+	// footer fijo (3 líneas)
+	b.WriteString("\n")
 	if len(m.filas) > vis {
-		b.WriteString(estTenue.Render(fmt.Sprintf("  (%d-%d de %d · ↑↓ scrollea)", m.scrollLista+1, fin, len(m.filas))) + "\n")
+		b.WriteString(estTenue.Render(fmt.Sprintf("  %d-%d de %d", m.scrollLista+1, min(len(m.filas), m.scrollLista+vis), len(m.filas))) + "\n")
+	} else {
+		b.WriteString("\n")
 	}
-	b.WriteString("\n" + estTenue.Render("escribí · ↑↓ elegir · enter ver/abrir · q salir") + "\n")
+	b.WriteString(estTenue.Render("escribí · ↑↓ elegir · enter ver/abrir · q salir") + "\n")
 	return strings.TrimRight(b.String(), "\n")
+}
+
+func (m modelo) lineaFila(i int) string {
+	f := m.filas[i]
+	var nombre, meta string
+	if f.esGrupo {
+		fl := "▸"
+		if m.expandido[f.clave] {
+			fl = "▾"
+		}
+		nombre = fl + " " + f.nombre
+		meta = fmt.Sprintf("%d variantes", f.n)
+	} else {
+		if f.sub {
+			nombre = "    " + f.nombre
+		} else {
+			nombre = "  " + f.nombre
+		}
+		meta = f.item.Regimen
+		if f.item.Tienda != "" {
+			meta = f.item.Tienda
+		}
+		meta += " · " + monedaPrecio(f.item)
+	}
+	if i == m.cursor {
+		return estSel.Render(nombre + "  " + meta)
+	}
+	return estTexto.Render(nombre) + "  " + estTenue.Render(meta)
 }
 
 func (m modelo) viewDetalle() string {
 	s := m.seleccion
-	var b strings.Builder
-	b.WriteString(estTitulo.Render("▓ "+s.Nombre) + "  " + estCian.Render(s.Regimen) + "\n")
+	vis := m.visibles()
+	m.scrollDet = clamp(m.scrollDet, 0, max(0, len(m.calculos)-vis))
 
-	// Monto bien visible: input neto y, si aplica, el bruto con el VAT de origen.
+	var b strings.Builder
+	// header fijo (4 líneas)
+	b.WriteString(estTitulo.Render("▓ "+s.Nombre) + "  " + estCian.Render(s.Regimen) + "\n")
 	montoStr := fmt.Sprintf("%s %s", formatoNum(m.monto), s.Moneda)
 	if s.IVAOrigen > 0 {
 		montoStr += fmt.Sprintf("   +%.0f%% VAT → %s %s", s.IVAOrigen*100, formatoNum(m.monto*(1+s.IVAOrigen)), s.Moneda)
 	}
-	lineaMonto := estCian.Render("monto: ") + estTitulo.Render(montoStr)
-	if m.esOnDemand() {
-		lineaMonto += estTenue.Render("   (ajustá con = / -)")
-	}
-	b.WriteString(lineaMonto + estSub.Render("  ·  "+m.provincia) + "\n")
-
+	b.WriteString(estCian.Render("monto: ") + estTitulo.Render(montoStr) + estSub.Render("  ·  "+m.provincia) + "\n")
 	var fxParts []string
 	for _, k := range []string{"oficial", "mep", "cripto"} {
 		if v, ok := m.fx[k]; ok {
@@ -545,32 +558,45 @@ func (m modelo) viewDetalle() string {
 	}
 	if len(fxParts) > 0 {
 		b.WriteString(estTenue.Render("dólar: "+strings.Join(fxParts, " · ")) + "\n")
+	} else {
+		b.WriteString("\n")
 	}
 	b.WriteString("\n")
 
-	if len(m.calculos) == 0 {
-		b.WriteString(estTenue.Render("sin medios aplicables / falta cotización") + "\n")
+	// viewport: exactamente 'vis' líneas (el ▸ marca TODOS los empatados en el mejor)
+	best := mejoresIDs(m.calculos)
+	for k := 0; k < vis; k++ {
+		i := m.scrollDet + k
+		switch {
+		case i < len(m.calculos):
+			b.WriteString(m.lineaMedio(i, best[m.calculos[i].medio.ID]) + "\n")
+		case k == 0 && len(m.calculos) == 0:
+			b.WriteString(estTenue.Render("  sin medios aplicables / falta cotización") + "\n")
+		default:
+			b.WriteString("\n")
+		}
 	}
 
-	vis := m.visibles()
-	m.scrollDet = clamp(m.scrollDet, 0, max(0, len(m.calculos)-1))
-	fin := min(len(m.calculos), m.scrollDet+vis)
-	for i := m.scrollDet; i < fin; i++ {
-		b.WriteString(m.lineaMedio(i, i == 0) + "\n")
-	}
+	// footer fijo (6 líneas): contador, blank, mejores, blank, monto(on-demand), teclas
 	if len(m.calculos) > vis {
-		b.WriteString(estTenue.Render(fmt.Sprintf("  (%d-%d de %d · ↑↓ scrollea)", m.scrollDet+1, fin, len(m.calculos))) + "\n")
+		b.WriteString(estTenue.Render(fmt.Sprintf("  %d-%d de %d", m.scrollDet+1, min(len(m.calculos), m.scrollDet+vis), len(m.calculos))) + "\n")
+	} else {
+		b.WriteString("\n")
 	}
-
+	b.WriteString("\n")
 	if len(m.calculos) > 0 {
-		b.WriteString("\n" + estTitulo.Render("los mejores hoy: "+mejoresNombres(m.calculos, 4)) + "\n")
+		b.WriteString(estTitulo.Render("los mejores hoy: "+mejoresNombres(m.calculos, 4)) + "\n")
+	} else {
+		b.WriteString("\n")
 	}
+	b.WriteString("\n")
 	if m.esOnDemand() {
-		b.WriteString("\n" + estCian.Render(fmt.Sprintf("monto: %s %s", formatoNum(m.monto), s.Moneda)) +
+		b.WriteString(estCian.Render(fmt.Sprintf("monto: %s %s", formatoNum(m.monto), s.Moneda)) +
 			estTenue.Render(fmt.Sprintf("   (= sumar · - restar · mín %s)", formatoNum(m.piso()))) + "\n")
+	} else {
+		b.WriteString("\n")
 	}
-	teclas := "↑↓ scrollear · p provincia · r dólar · esc volver · q salir"
-	b.WriteString(estTenue.Render(teclas) + "\n")
+	b.WriteString(estTenue.Render("↑↓ scrollear · p provincia · r dólar · esc volver · q salir") + "\n")
 	return strings.TrimRight(b.String(), "\n")
 }
 
@@ -730,6 +756,22 @@ func nombreMedio(md configuracion.Medio) string {
 		return md.Nombre
 	}
 	return md.ID
+}
+
+// mejoresIDs devuelve el set de ids de los medios empatados en el mejor total.
+func mejoresIDs(calculos []calculo) map[string]bool {
+	ids := map[string]bool{}
+	if len(calculos) == 0 {
+		return ids
+	}
+	mejor := calculos[0].desglose.TotalARS
+	limite := mejor + math.Max(0.5, mejor*0.001)
+	for _, c := range calculos {
+		if c.desglose.TotalARS <= limite {
+			ids[c.medio.ID] = true
+		}
+	}
+	return ids
 }
 
 // mejoresNombres lista los medios con el MEJOR total (incluye empates).

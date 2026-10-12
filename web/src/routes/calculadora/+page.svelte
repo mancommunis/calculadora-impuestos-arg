@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { cargarMotor, formatoArs } from '#lib/motor';
-	import { desgloses, resumenMejores, type Calculo, type Calculadora } from '#lib/calculo';
+	import { desgloses, mejoresCalculos, resumenMejores, type Calculo, type Calculadora } from '#lib/calculo';
 	import {
 		cargarConfig,
 		cargarCotizaciones,
@@ -30,6 +30,7 @@
 
 	let listaProvincias = $derived(cfg ? provincias(cfg) : []);
 	let resumen = $derived(resumenMejores(calculos));
+	let idsMejores = $derived(new Set(mejoresCalculos(calculos).map((c) => c.medio.id)));
 
 	onMount(async () => {
 		try {
@@ -138,10 +139,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each calculos as c, i (c.medio.id)}
-					<tr class:mejor={i === 0}>
+				{#each calculos as c (c.medio.id)}
+					<tr class:mejor={idsMejores.has(c.medio.id)}>
 						<td>
-							{i === 0 ? '▸ ' : ''}{nombreMedio(c.medio)}
+							{idsMejores.has(c.medio.id) ? '▸ ' : ''}{nombreMedio(c.medio)}
 							<span class="tipo">{c.medio.origen ?? ''} {c.medio.tipo}</span>
 						</td>
 						<td class="num">{formatoArs(c.desglose.base_ars)}</td>
