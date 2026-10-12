@@ -48,6 +48,7 @@ func correr(out string, delay time.Duration) error {
 		}
 		slug := slugDe(u)
 		grupo := franchiseDe(slug)
+		subgrupo := categoriaDe(slug)
 		if len(ofertas) == 1 {
 			nm := nombre
 			if nm == "" {
@@ -55,7 +56,7 @@ func correr(out string, delay time.Duration) error {
 			}
 			precio := ofertas[0].Precio
 			productos = append(productos, configuracion.Servicio{
-				ID: "battlenet:" + slug, Nombre: nm, Grupo: grupo,
+				ID: "battlenet:" + slug, Nombre: limpiarNombre(nm), Grupo: grupo, Subgrupo: subgrupo,
 				Regimen: "gaming", Moneda: ofertas[0].Moneda, Tienda: "battle_net",
 				URL: u, Precio: &precio,
 			})
@@ -63,9 +64,9 @@ func correr(out string, delay time.Duration) error {
 			for _, o := range ofertas {
 				precio := o.Precio
 				productos = append(productos, configuracion.Servicio{
-					ID: "battlenet:" + slug + ":" + slugDe(o.Nombre), Nombre: o.Nombre, Grupo: grupo,
+					ID: "battlenet:" + slug + ":" + slugDe(o.Nombre), Nombre: limpiarNombre(o.Nombre), Grupo: grupo, Subgrupo: subgrupo,
 					Regimen: "gaming", Moneda: o.Moneda, Tienda: "battle_net",
-					URL: u, Edicion: o.Nombre, Precio: &precio,
+					URL: u, Edicion: limpiarNombre(o.Nombre), Precio: &precio,
 				})
 			}
 		}
@@ -128,4 +129,45 @@ func franchiseDe(slug string) string {
 		}
 	}
 	return ""
+}
+
+var reMarcas = regexp.MustCompile(`[®™©]`)
+
+// limpiarNombre saca ®/™/© y espacios dobles (ej. "Warcraft® III").
+func limpiarNombre(s string) string {
+	s = reMarcas.ReplaceAllString(s, "")
+	s = strings.Join(strings.Fields(s), " ")
+	return strings.TrimSpace(s)
+}
+
+// categoriaDe infiere el subgrupo (categoría) a partir del slug.
+func categoriaDe(slug string) string {
+	tiene := func(subs ...string) bool {
+		for _, s := range subs {
+			if strings.Contains(slug, s) {
+				return true
+			}
+		}
+		return false
+	}
+	switch {
+	case tiene("-mount-", "mount-"):
+		return "Monturas"
+	case tiene("-pet-", "pet-"):
+		return "Mascotas"
+	case tiene("platinum", "gold", "token", "coins"):
+		return "Monedas"
+	case tiene("service", "name-change", "boost", "transfer", "faction", "race-change", "character"):
+		return "Servicios"
+	case tiene("announcer", "transmog", "cosmetic"):
+		return "Cosméticos"
+	case tiene("pack", "bundle"):
+		return "Packs y bundles"
+	case tiene("game-time", "forever", "subscription", "suscripcion"):
+		return "Suscripción"
+	case tiene("base-edition", "heroic-edition", "epic-edition", "standard-edition", "premium-edition", "ultimate-edition", "deluxe"):
+		return "Ediciones"
+	default:
+		return "Juegos y expansiones"
+	}
 }

@@ -71,21 +71,24 @@ func TestExpandirWallets(t *testing.T) {
 
 func ptr(f float64) *float64 { return &f }
 
-func TestBuscarGruposAnida(t *testing.T) {
+func TestBuscarArbol(t *testing.T) {
 	servs := []Servicio{
-		{ID: "wow-sub", Nombre: "WoW sub", Grupo: "World of Warcraft", Aliases: []string{"wow"}},
-		{ID: "wow-midnight", Nombre: "Midnight", Grupo: "World of Warcraft", Aliases: []string{"wow"}},
+		{ID: "wow-sub", Nombre: "WoW sub", Grupo: "World of Warcraft", Subgrupo: "Suscripción", Aliases: []string{"wow"}},
+		{ID: "wow-mount", Nombre: "Mount X", Grupo: "World of Warcraft", Subgrupo: "Monturas", Aliases: []string{"wow"}},
 		{ID: "cyberpunk", Nombre: "Cyberpunk 2077", Aliases: []string{"cyberpunk"}},
 	}
-	grupos := BuscarGrupos(servs, "wow")
+	grupos := BuscarArbol(servs, "wow")
 	if len(grupos) != 1 {
 		t.Fatalf("esperaba 1 grupo, obtuve %d", len(grupos))
 	}
-	if grupos[0].Clave != "World of Warcraft" || len(grupos[0].Items) != 2 {
-		t.Fatalf("grupo mal armado: %+v", grupos[0])
+	if grupos[0].Clave != "World of Warcraft" || grupos[0].Total != 2 || len(grupos[0].Subgrupos) != 2 {
+		t.Fatalf("árbol mal armado: %+v", grupos[0])
 	}
-	if g := BuscarGrupos(servs, "cyberpunk"); len(g) != 1 || g[0].Clave != "cyberpunk" {
+	if g := BuscarArbol(servs, "cyberpunk"); len(g) != 1 || g[0].Clave != "cyberpunk" {
 		t.Fatalf("sin grupo, la clave debe ser el id: %+v", g)
+	}
+	if g := BuscarArbol(servs, "cyberpuk"); len(g) != 1 {
+		t.Fatalf("fuzzy (typo) falló: %+v", g)
 	}
 }
 

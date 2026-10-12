@@ -10,6 +10,7 @@ export interface Servicio {
 	id: string;
 	nombre: string;
 	grupo?: string;
+	subgrupo?: string;
 	aliases?: string[];
 	regimen: string;
 	moneda: string;
@@ -116,18 +117,38 @@ export function parametros(cfg: TaxConfig, regimen: string, provincia: string) {
 	return { iva: r.iva, ganancias: r.ganancias, iibb, impuesto_pais: cfg.impuesto_pais ?? 0 };
 }
 
-/** Búsqueda simple por nombre + aliases (substring, case-insensitive). */
+function puntajeCampo(campo: string, t: string): number {
+	const c = campo.toLowerCase();
+	if (c === t) return 100;
+	if (c.startsWith(t)) return 70;
+	if (c.includes(t)) return 45;
+	if (t.length >= 3 && subsecuencia(t, c)) return 20;
+	return 0;
+}
+
+function subsecuencia(q: string, c: string): boolean {
+	let i = 0;
+	let last = -1;
+	let gaps = 0;
+	for (let j = 0; j < c.length && i < q.length; j++) {
+		if (c[j] === q[i]) {
+			if (last >= 0) gaps += j - last - 1;
+			last = j;
+			i++;
+		}
+	}
+	return i === q.length && gaps <= 4;
+}
+
+/** Búsqueda por nombre + aliases (substring + fuzzy, tolera typos). */
 export function buscar(servicios: Servicio[], q: string): Servicio[] {
 	const t = q.trim().toLowerCase();
 	if (!t) return [];
 	return servicios
 		.map((s) => {
-			const campos = [s.nombre, s.id, ...(s.aliases ?? [])].map((x) => x.toLowerCase());
 			let score = 0;
-			for (const c of campos) {
-				if (c === t) score = Math.max(score, 100);
-				else if (c.startsWith(t)) score = Math.max(score, 60);
-				else if (c.includes(t)) score = Math.max(score, 30);
+			for (const campo of [s.nombre, s.id, ...(s.aliases ?? [])]) {
+				score = Math.max(score, puntajeCampo(campo, t));
 			}
 			return { s, score };
 		})
@@ -176,23 +197,39 @@ export async function cargarCotizaciones(): Promise<Cotizaciones> {
 	return { tasas, actualizado };
 }
 
-export interface Grupo {
-	clave: string;
+export interface Subgrupo {
 	nombre: string;
 	items: Servicio[];
 }
+export interface Grupo {
+	clave: string;
+	nombre: string;
+	total: number;
+	subgrupos: Subgrupo[];
+}
 
-/** Busca y anida por franquicia: ítems con el mismo `grupo` van juntos. */
-export function buscarGrupos(servicios: Servicio[], q: string): Grupo[] {
+/** Busca y arma el árbol grupo → subgrupo → items. */
+export function buscarArbol(servicios: Servicio[], q: string): Grupo[] {
 	const encontrados = buscar(servicios, q);
-	const mapa = new Map<string, Grupo>();
+	const gmap = new Map<string, { nombre: string; sub: Map<string, Servicio[]> }>();
 	for (const s of encontrados) {
-		const clave = s.grupo ?? s.id;
-		const nombre = s.grupo ?? s.nombre;
-		if (!mapa.has(clave)) mapa.set(clave, { clave, nombre, items: [] });
-		mapa.get(clave)!.items.push(s);
+		const gc = s.grupo ?? s.id;
+		const gn = s.grupo ?? s.nombre;
+		if (!gmap.has(gc)) gmap.set(gc, { nombre: gn, sub: new Map() });
+		const sub = gmap.get(gc)!.sub;
+		const sc = s.subgrupo ?? '';
+		if (!sub.has(sc)) sub.set(sc, []);
+		sub.get(sc)!.push(s);
 	}
-	return [...mapa.values()];
+	return [...gmap.entries()].map(([clave, v]) => {
+		const subgrupos = [...v.sub.entries()].map(([nombre, items]) => ({ nombre, items }));
+		return {
+			clave,
+			nombre: v.nombre,
+			total: subgrupos.reduce((a, b) => a + b.items.length, 0),
+			subgrupos
+		};
+	});
 }
 
 // --- geolocalización por IP (default de provincia) ---

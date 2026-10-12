@@ -61,14 +61,14 @@ type cargadoMsg struct {
 	err        error
 }
 
-// fila es una fila visible de la búsqueda (grupo o ítem, quizá anidado).
+// fila es una fila visible de la búsqueda (grupo / subgrupo / ítem).
 type fila struct {
-	esGrupo bool
-	sub     bool
-	clave   string
-	nombre  string
-	n       int
-	item    configuracion.Servicio
+	tipo   int // 0 = grupo, 1 = subgrupo, 2 = ítem
+	clave  string
+	sub    string
+	nombre string
+	n      int
+	item   configuracion.Servicio
 }
 
 type modelo struct {
@@ -259,12 +259,19 @@ func (m modelo) updateBuscar(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	case "enter":
 		if m.cursor >= 0 && m.cursor < len(m.filas) {
 			f := m.filas[m.cursor]
-			if f.esGrupo {
-				m.expandido[f.clave] = !m.expandido[f.clave]
+			switch f.tipo {
+			case 0:
+				m.expandido["g:"+f.clave] = !m.expandido["g:"+f.clave]
 				m.actualizarFilas()
 				return m, nil
+			case 1:
+				k := "s:" + f.clave + "|" + f.sub
+				m.expandido[k] = !m.expandido[k]
+				m.actualizarFilas()
+				return m, nil
+			default:
+				return m.seleccionar(f.item)
 			}
-			return m.seleccionar(f.item)
 		}
 		return m, nil
 	case "esc":
@@ -512,22 +519,30 @@ func (m modelo) viewBuscar() string {
 func (m modelo) lineaFila(i int) string {
 	f := m.filas[i]
 	var nombre, meta string
-	if f.esGrupo {
+	switch f.tipo {
+	case 0:
 		fl := "▸"
-		if m.expandido[f.clave] {
+		if m.expandido["g:"+f.clave] {
 			fl = "▾"
 		}
 		nombre = fl + " " + f.nombre
-		meta = fmt.Sprintf("%d variantes", f.n)
-	} else {
-		if f.sub {
-			nombre = "    " + f.nombre
-		} else {
-			nombre = "  " + f.nombre
+		meta = fmt.Sprintf("%d items", f.n)
+	case 1:
+		fl := "▸"
+		if m.expandido["s:"+f.clave+"|"+f.sub] {
+			fl = "▾"
 		}
-		meta = f.item.Regimen
-		if f.item.Tienda != "" {
-			meta = f.item.Tienda
+		sub := f.nombre
+		if sub == "" {
+			sub = "Otros"
+		}
+		nombre = "  " + fl + " " + sub
+		meta = fmt.Sprintf("%d", f.n)
+	default:
+		nombre = "    " + f.nombre
+		meta = nombreTienda(f.item.Tienda)
+		if meta == "" {
+			meta = f.item.Regimen
 		}
 		meta += " · " + monedaPrecio(f.item)
 	}
@@ -535,6 +550,16 @@ func (m modelo) lineaFila(i int) string {
 		return estSel.Render(nombre + "  " + meta)
 	}
 	return estTexto.Render(nombre) + "  " + estTenue.Render(meta)
+}
+
+func nombreTienda(t string) string {
+	switch t {
+	case "battle_net":
+		return "Battle.net"
+	case "steam":
+		return "Steam"
+	}
+	return t
 }
 
 func (m modelo) viewDetalle() string {
@@ -645,19 +670,31 @@ func parsearCampo(b []byte, campo string) (float64, error) {
 	return 0, fmt.Errorf("campo %q ausente", campo)
 }
 
-// actualizarFilas reconstruye la lista visible a partir de los grupos y el expandido.
+// actualizarFilas reconstruye la lista visible (grupo → subgrupo → ítem).
 func (m *modelo) actualizarFilas() {
-	grupos := configuracion.BuscarGrupos(m.cfg.Servicios, m.input.Value())
+	grupos := configuracion.BuscarArbol(m.cfg.Servicios, m.input.Value())
 	m.filas = m.filas[:0]
 	for _, g := range grupos {
-		if len(g.Items) == 1 {
-			m.filas = append(m.filas, fila{clave: g.Clave, nombre: g.Items[0].Nombre, item: g.Items[0]})
+		if g.Total == 1 && len(g.Subgrupos) == 1 && len(g.Subgrupos[0].Items) == 1 {
+			it := g.Subgrupos[0].Items[0]
+			m.filas = append(m.filas, fila{tipo: 2, clave: g.Clave, nombre: it.Nombre, item: it})
 			continue
 		}
-		m.filas = append(m.filas, fila{esGrupo: true, clave: g.Clave, nombre: g.Nombre, n: len(g.Items)})
-		if m.expandido[g.Clave] {
-			for _, it := range g.Items {
-				m.filas = append(m.filas, fila{sub: true, clave: g.Clave, nombre: it.Nombre, item: it})
+		m.filas = append(m.filas, fila{tipo: 0, clave: g.Clave, nombre: g.Nombre, n: g.Total})
+		if !m.expandido["g:"+g.Clave] {
+			continue
+		}
+		for _, sg := range g.Subgrupos {
+			if len(sg.Items) == 1 {
+				it := sg.Items[0]
+				m.filas = append(m.filas, fila{tipo: 2, sub: sg.Nombre, clave: g.Clave, nombre: it.Nombre, item: it})
+				continue
+			}
+			m.filas = append(m.filas, fila{tipo: 1, clave: g.Clave, sub: sg.Nombre, nombre: sg.Nombre, n: len(sg.Items)})
+			if m.expandido["s:"+g.Clave+"|"+sg.Nombre] {
+				for _, it := range sg.Items {
+					m.filas = append(m.filas, fila{tipo: 2, sub: sg.Nombre, clave: g.Clave, nombre: it.Nombre, item: it})
+				}
 			}
 		}
 	}

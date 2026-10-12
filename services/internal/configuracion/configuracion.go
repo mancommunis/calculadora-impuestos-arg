@@ -37,6 +37,7 @@ type Servicio struct {
 	Minimo    float64  `json:"minimo,omitempty"`
 	IVAOrigen float64  `json:"iva_origen,omitempty"`
 	Manual    bool     `json:"manual,omitempty"`
+	Subgrupo  string   `json:"subgrupo,omitempty"`
 }
 
 type Medio struct {
@@ -302,7 +303,7 @@ type Desglose struct {
 	TasaEfectiva float64 `json:"tasa_efectiva"`
 }
 
-// Buscar hace match por nombre + aliases (substring, case-insensitive).
+// Buscar hace match por nombre + aliases (substring + fuzzy, case-insensitive).
 func Buscar(servicios []Servicio, q string) []Servicio {
 	t := strings.ToLower(strings.TrimSpace(q))
 	if t == "" {
@@ -317,15 +318,7 @@ func Buscar(servicios []Servicio, q string) []Servicio {
 		campos := append([]string{s.Nombre, s.ID}, s.Aliases...)
 		score := 0
 		for _, c := range campos {
-			cl := strings.ToLower(c)
-			switch {
-			case cl == t:
-				score = max(score, 100)
-			case strings.HasPrefix(cl, t):
-				score = max(score, 60)
-			case strings.Contains(cl, t):
-				score = max(score, 30)
-			}
+			score = max(score, puntajeCampo(c, t))
 		}
 		if score > 0 {
 			ps = append(ps, punt{s, score})
@@ -339,31 +332,78 @@ func Buscar(servicios []Servicio, q string) []Servicio {
 	return out
 }
 
-// Grupo anida variantes de una misma franquicia.
-type Grupo struct {
-	Clave  string
+// puntajeCampo: exacto > prefijo > contiene > fuzzy (subsecuencia).
+func puntajeCampo(campo, t string) int {
+	cl := strings.ToLower(campo)
+	switch {
+	case cl == t:
+		return 100
+	case strings.HasPrefix(cl, t):
+		return 70
+	case strings.Contains(cl, t):
+		return 45
+	}
+	if len(t) >= 3 && subsecuencia(t, cl) {
+		return 20
+	}
+	return 0
+}
+
+func subsecuencia(q, c string) bool {
+	i, last, gaps := 0, -1, 0
+	for j := 0; j < len(c) && i < len(q); j++ {
+		if c[j] == q[i] {
+			if last >= 0 {
+				gaps += j - last - 1
+			}
+			last = j
+			i++
+		}
+	}
+	return i == len(q) && gaps <= 4
+}
+
+// Subgrupo agrupa items dentro de un grupo (categoría).
+type Subgrupo struct {
 	Nombre string
 	Items  []Servicio
 }
 
-// BuscarGrupos busca y anida por `grupo` (o por id si no tiene).
-func BuscarGrupos(servicios []Servicio, q string) []Grupo {
+// Grupo anida categorías (subgrupos) y sus items.
+type Grupo struct {
+	Clave     string
+	Nombre    string
+	Total     int
+	Subgrupos []Subgrupo
+}
+
+// BuscarArbol busca y arma el árbol grupo → subgrupo → items.
+func BuscarArbol(servicios []Servicio, q string) []Grupo {
 	items := Buscar(servicios, q)
-	var out []Grupo
-	idx := map[string]int{}
+	var grupos []Grupo
+	gi := map[string]int{}
+	si := map[string]map[string]int{}
 	for _, s := range items {
-		clave := s.Grupo
-		nombre := s.Grupo
-		if clave == "" {
-			clave = s.ID
-			nombre = s.Nombre
+		gc, gn := s.Grupo, s.Grupo
+		if gc == "" {
+			gc, gn = s.ID, s.Nombre
 		}
-		if i, ok := idx[clave]; ok {
-			out[i].Items = append(out[i].Items, s)
-		} else {
-			idx[clave] = len(out)
-			out = append(out, Grupo{Clave: clave, Nombre: nombre, Items: []Servicio{s}})
+		gidx, ok := gi[gc]
+		if !ok {
+			gidx = len(grupos)
+			gi[gc] = gidx
+			si[gc] = map[string]int{}
+			grupos = append(grupos, Grupo{Clave: gc, Nombre: gn})
 		}
+		sc := s.Subgrupo
+		sidx, ok := si[gc][sc]
+		if !ok {
+			sidx = len(grupos[gidx].Subgrupos)
+			si[gc][sc] = sidx
+			grupos[gidx].Subgrupos = append(grupos[gidx].Subgrupos, Subgrupo{Nombre: sc})
+		}
+		grupos[gidx].Subgrupos[sidx].Items = append(grupos[gidx].Subgrupos[sidx].Items, s)
+		grupos[gidx].Total++
 	}
-	return out
+	return grupos
 }

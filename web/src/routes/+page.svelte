@@ -3,7 +3,7 @@
 	import { cargarMotor, formatoArs } from '#lib/motor';
 	import { desgloses, mejoresCalculos, resumenMejores, type Calculo, type Calculadora } from '#lib/calculo';
 	import {
-		buscarGrupos,
+		buscarArbol,
 		cargarCatalogo,
 		cargarConfig,
 		cargarCotizaciones,
@@ -33,10 +33,35 @@
 	let cargando = $state(true);
 	let error = $state('');
 
-	let expandido = $state<string | null>(null);
+	let gruposAbiertos = $state(new Set<string>());
+	let subsAbiertos = $state(new Set<string>());
 	let resultados: Grupo[] = $derived(
-		query.trim() && !seleccion ? buscarGrupos(servicios, query) : []
+		query.trim() && !seleccion ? buscarArbol(servicios, query) : []
 	);
+
+	function toggleGrupo(clave: string) {
+		const s = new Set(gruposAbiertos);
+		if (s.has(clave)) s.delete(clave);
+		else s.add(clave);
+		gruposAbiertos = s;
+	}
+	function toggleSub(gc: string, sub: string) {
+		const k = `${gc}|${sub}`;
+		const s = new Set(subsAbiertos);
+		if (s.has(k)) s.delete(k);
+		else s.add(k);
+		subsAbiertos = s;
+	}
+	function nombreTienda(t?: string): string {
+		if (t === 'battle_net') return 'Battle.net';
+		if (t === 'steam') return 'Steam';
+		return t ?? '';
+	}
+	function metaServicio(s: Servicio): string {
+		const donde = nombreTienda(s.tienda) || s.regimen;
+		const precio = s.precio != null ? `${s.precio} ${s.moneda}` : s.moneda;
+		return `${donde} · ${precio}`;
+	}
 	let listaProvincias = $derived(cfg ? provincias(cfg) : []);
 	let tienePrecio = $derived(seleccion?.precio != null);
 	let onDemand = $derived(!!seleccion?.on_demand);
@@ -83,7 +108,8 @@
 		query = s.nombre;
 		monto = s.precio ?? 0;
 		if (s.minimo && monto < s.minimo) monto = s.minimo;
-		expandido = null;
+		gruposAbiertos = new Set();
+		subsAbiertos = new Set();
 		await recalcular();
 	}
 
@@ -155,28 +181,48 @@
 			{#if resultados.length}
 				<ul class="resultados">
 					{#each resultados as g (g.clave)}
-						{#if g.items.length === 1}
-							{@const s = g.items[0]}
+						{#if g.total === 1 && g.subgrupos[0]?.items.length === 1}
+							{@const s = g.subgrupos[0].items[0]}
 							<li>
 								<button onclick={() => seleccionar(s)}>
 									<strong>{s.nombre}</strong>
-									<span class="meta">{s.tienda ?? s.regimen} · {s.precio != null ? `${s.precio} ${s.moneda}` : s.moneda}</span>
+									<span class="meta">{metaServicio(s)}</span>
 								</button>
 							</li>
 						{:else}
 							<li>
-								<button class="grupo" onclick={() => (expandido = expandido === g.clave ? null : g.clave)}>
-									<strong>{expandido === g.clave ? '▾' : '▸'} {g.nombre}</strong>
-									<span class="meta">{g.items.length} variantes</span>
+								<button class="grupo" onclick={() => toggleGrupo(g.clave)}>
+									<strong>{gruposAbiertos.has(g.clave) ? '▾' : '▸'} {g.nombre}</strong>
+									<span class="meta">{g.total} items</span>
 								</button>
-								{#if expandido === g.clave}
+								{#if gruposAbiertos.has(g.clave)}
 									<ul class="sublista">
-										{#each g.items as s (s.id)}
+										{#each g.subgrupos as sg (sg.nombre)}
 											<li>
-												<button onclick={() => seleccionar(s)}>
-													<span>{s.nombre}</span>
-													<span class="meta">{s.precio != null ? `${s.precio} ${s.moneda}` : 'sin precio'}</span>
-												</button>
+												{#if sg.items.length === 1}
+													{@const s = sg.items[0]}
+													<button onclick={() => seleccionar(s)}>
+														<span>{sg.nombre ? sg.nombre + ' · ' : ''}{s.nombre}</span>
+														<span class="meta">{metaServicio(s)}</span>
+													</button>
+												{:else}
+													<button class="subgrupo" onclick={() => toggleSub(g.clave, sg.nombre)}>
+														<span>{subsAbiertos.has(`${g.clave}|${sg.nombre}`) ? '▾' : '▸'} {sg.nombre || 'Otros'}</span>
+														<span class="meta">{sg.items.length}</span>
+													</button>
+													{#if subsAbiertos.has(`${g.clave}|${sg.nombre}`)}
+														<ul class="sublista2">
+															{#each sg.items as s (s.id)}
+																<li>
+																	<button onclick={() => seleccionar(s)}>
+																		<span>{s.nombre}</span>
+																		<span class="meta">{metaServicio(s)}</span>
+																	</button>
+																</li>
+															{/each}
+														</ul>
+													{/if}
+												{/if}
 											</li>
 										{/each}
 									</ul>
@@ -378,6 +424,9 @@
 	.resultados .grupo strong {
 		color: var(--cyan);
 	}
+	.resultados .subgrupo {
+		color: var(--texto);
+	}
 	.sublista {
 		list-style: none;
 		margin: 0;
@@ -386,6 +435,15 @@
 	.sublista button {
 		padding-left: 1.8rem;
 		background: #0c140e;
+	}
+	.sublista2 {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.sublista2 button {
+		padding-left: 3rem;
+		background: #0a120c;
 	}
 	.meta,
 	.tipo {
