@@ -1,4 +1,4 @@
-.PHONY: all help core test-core services test-services agente scrape descubrir tui web dev-web
+.PHONY: all help core test-core services test-services agente scrape descubrir enlazar tui web dev-web
 
 all: core services web
 
@@ -10,6 +10,7 @@ help:
 	@echo "make agente        - corre el agente de config en local"
 	@echo "make scrape        - actualiza precios del catálogo (Steam)"
 	@echo "make descubrir     - enumera TODOS los productos de Battle.net (sitemap)"
+	@echo "make enlazar       - linkea los juegos de Battle.net con Steam (cross-store)"
 	@echo "make tui           - abre la TUI (Go + Bubble Tea)"
 	@echo "make web           - build de la web (SvelteKit)"
 	@echo "make dev-web       - dev server de SvelteKit"
@@ -35,6 +36,9 @@ scrape:
 
 descubrir:
 	cd services && go run ./cmd/descubrir-battlenet -out ../dataset/battlenet.json
+
+enlazar:
+	cd services && go run ./cmd/enlazar-steam -battlenet ../dataset/battlenet.json -out ../dataset/steam.json
 
 tui:
 	cd services && go run ./cmd/tui

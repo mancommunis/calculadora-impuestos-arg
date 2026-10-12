@@ -1,0 +1,43 @@
+name: enlazar-steam
+
+on:
+  schedule:
+    # Todos los lunes, 06:30 UTC (después del descubrimiento, 06:00).
+    - cron: '30 6 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: enlazar-steam
+  cancel-in-progress: false
+
+jobs:
+  enlazar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache-dependency-path: services/go.sum
+
+      # Enlaza cada juego de Battle.net con su appid de Steam (misma canónica)
+      # para poder comparar el mismo juego entre tiendas.
+      - name: Enlazar con Steam
+        working-directory: services
+        run: go run ./cmd/enlazar-steam -battlenet ../dataset/battlenet.json -out ../dataset/steam.json
+
+      - name: Commit del enlace
+        run: |
+          git config user.name "mancommunis-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- dataset/steam.json; then
+            git add dataset/steam.json
+            git commit -m "chore(steam): enlace cross-store $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "enlace sin cambios"
+          fi
