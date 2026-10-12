@@ -147,10 +147,12 @@ func Cargar(dir string) (Config, error) {
 	}
 	c.Medios = wal.Expandir()
 
-	// Catálogo de juegos (dataset/catalogo.json), si existe: se suma a los servicios.
-	catalogoPath := filepath.Join(filepath.Dir(dir), "dataset", "catalogo.json")
-	if cat, err := CargarCatalogo(catalogoPath); err == nil {
-		c.Servicios = append(c.Servicios, cat.Productos...)
+	// Catálogos (dataset/*.json), si existen: se suman a los servicios.
+	for _, f := range []string{"catalogo.json", "battlenet.json"} {
+		p := filepath.Join(filepath.Dir(dir), "dataset", f)
+		if cat, err := CargarCatalogo(p); err == nil {
+			c.Servicios = append(c.Servicios, cat.Productos...)
+		}
 	}
 	return c, nil
 }

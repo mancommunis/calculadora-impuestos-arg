@@ -1,0 +1,43 @@
+name: descubrir-battlenet
+
+on:
+  schedule:
+    # Todos los lunes, 06:00 UTC.
+    - cron: '0 6 * * 1'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: descubrir-battlenet
+  cancel-in-progress: false
+
+jobs:
+  descubrir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25'
+          cache-dependency-path: services/go.sum
+
+      # Enumera TODOS los productos de Battle.net (sitemap) y baja sus precios
+      # del structured data (ld+json) con UA de crawler. Sin login.
+      - name: Descubrir catálogo de Battle.net
+        working-directory: services
+        run: go run ./cmd/descubrir-battlenet -out ../dataset/battlenet.json -delay 100ms
+
+      - name: Commit del catálogo
+        run: |
+          git config user.name "mancommunis-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- dataset/battlenet.json; then
+            git add dataset/battlenet.json
+            git commit -m "chore(battlenet): catalogo $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "catálogo sin cambios"
+          fi

@@ -47,14 +47,18 @@ export async function cargarServicios(): Promise<Servicio[]> {
 	return data.servicios;
 }
 
-/** Catálogo de juegos (dataset). Si no existe, devuelve vacío. */
+/** Catálogo de juegos (dataset): catalogo.json + battlenet.json. */
 export async function cargarCatalogo(): Promise<Servicio[]> {
-	try {
-		const data = await json<{ productos: Servicio[] }>('/dataset/catalogo.json');
-		return data.productos ?? [];
-	} catch {
-		return [];
+	let out: Servicio[] = [];
+	for (const f of ['/dataset/catalogo.json', '/dataset/battlenet.json']) {
+		try {
+			const data = await json<{ productos: Servicio[] }>(f);
+			out = out.concat(data.productos ?? []);
+		} catch {
+			// archivo ausente → seguimos
+		}
 	}
+	return out;
 }
 
 export interface Perfil {

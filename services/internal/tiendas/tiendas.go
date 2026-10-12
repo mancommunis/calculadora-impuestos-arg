@@ -103,33 +103,79 @@ type Oferta struct {
 const battleNetUA = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 
 var reLDJSON = regexp.MustCompile(`(?is)<script[^>]*application/ld\+json[^>]*>(.*?)</script>`)
+var reSitemap = regexp.MustCompile(`<loc>(https://[^<]*sitemap_en-us\.xml)</loc>`)
+var reLoc = regexp.MustCompile(`<loc>([^<]+)</loc>`)
 
 // BattleNet trae las ofertas (ediciones) de una página de producto de Battle.net
 // leyendo el structured data (application/ld+json) que el sitio sirve a los crawlers.
 // No necesita sesión.
 func BattleNet(ctx context.Context, c *http.Client, url string) ([]Oferta, error) {
+	_, ofertas, err := BattleNetProducto(ctx, c, url)
+	return ofertas, err
+}
+
+// BattleNetProducto trae el nombre del producto y sus ofertas.
+func BattleNetProducto(ctx context.Context, c *http.Client, url string) (string, []Oferta, error) {
+	html, err := leerCrawler(ctx, c, url)
+	if err != nil {
+		return "", nil, err
+	}
+	return parsearProducto(html)
+}
+
+// BattleNetSitemapProductos enumera las URLs /product/ del sitemap en-us.
+func BattleNetSitemapProductos(ctx context.Context, c *http.Client, indexURL string) ([]string, error) {
+	idx, err := leerCrawler(ctx, c, indexURL)
+	if err != nil {
+		return nil, err
+	}
+	m := reSitemap.FindStringSubmatch(string(idx))
+	if m == nil {
+		return nil, fmt.Errorf("no encontré sitemap en-us en %s", indexURL)
+	}
+	sm, err := leerCrawler(ctx, c, m[1])
+	if err != nil {
+		return nil, err
+	}
+	var urls []string
+	for _, l := range reLoc.FindAllStringSubmatch(string(sm), -1) {
+		if strings.Contains(l[1], "/product/") {
+			urls = append(urls, l[1])
+		}
+	}
+	return urls, nil
+}
+
+func leerCrawler(ctx context.Context, c *http.Client, url string) ([]byte, error) {
 	resp, err := get(ctx, c, url, battleNetUA)
 	if err != nil {
 		return nil, err
 	}
 	defer func() { _ = resp.Body.Close() }()
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("battle.net respondió %d en %s", resp.StatusCode, url)
+		return nil, fmt.Errorf("status %d en %s", resp.StatusCode, url)
 	}
-	html, err := io.ReadAll(io.LimitReader(resp.Body, 8<<20))
-	if err != nil {
-		return nil, err
-	}
-	return parsearOfertas(html)
+	return io.ReadAll(io.LimitReader(resp.Body, 8<<20))
 }
 
-func parsearOfertas(html []byte) ([]Oferta, error) {
+// parsearProducto devuelve el nombre del producto y sus ofertas (del ld+json).
+func parsearProducto(html []byte) (string, []Oferta, error) {
+	n, ofertas, err := parsear(html)
+	if err != nil {
+		return "", nil, err
+	}
+	return n, ofertas, nil
+}
+
+func parsear(html []byte) (string, []Oferta, error) {
+	var nombre string
 	var ofertas []Oferta
 	for _, b := range reLDJSON.FindAllStringSubmatch(string(html), -1) {
 		if len(b) < 2 {
 			continue
 		}
 		var obj struct {
+			Name   string `json:"name"`
 			Offers []struct {
 				Name          string `json:"name"`
 				Price         any    `json:"price"`
@@ -139,18 +185,28 @@ func parsearOfertas(html []byte) ([]Oferta, error) {
 		if json.Unmarshal([]byte(b[1]), &obj) != nil {
 			continue
 		}
-		for _, o := range obj.Offers {
-			monto, ok := aNumero(o.Price)
-			if !ok {
-				continue
+		if len(obj.Offers) > 0 {
+			if nombre == "" {
+				nombre = strings.TrimSuffix(obj.Name, " | Battle.net")
 			}
-			ofertas = append(ofertas, Oferta{Nombre: o.Name, Precio: monto, Moneda: NormalizaMoneda(o.PriceCurrency)})
+			for _, o := range obj.Offers {
+				monto, ok := aNumero(o.Price)
+				if !ok {
+					continue
+				}
+				ofertas = append(ofertas, Oferta{Nombre: o.Name, Precio: monto, Moneda: NormalizaMoneda(o.PriceCurrency)})
+			}
 		}
 	}
 	if len(ofertas) == 0 {
-		return nil, fmt.Errorf("sin ofertas en el structured data de battle.net")
+		return "", nil, fmt.Errorf("sin ofertas en el structured data")
 	}
-	return ofertas, nil
+	return nombre, ofertas, nil
+}
+
+func parsearOfertas(html []byte) ([]Oferta, error) {
+	_, ofertas, err := parsear(html)
+	return ofertas, err
 }
 
 // aNumero acepta price como string ("89.99") o número.
