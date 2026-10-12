@@ -364,13 +364,21 @@ func subsecuencia(q, c string) bool {
 	return i == len(q) && gaps <= 4
 }
 
-// Subgrupo agrupa items dentro de un grupo (categoría).
-type Subgrupo struct {
+// Juego es una canónica: el mismo juego, con sus filas por tienda.
+type Juego struct {
+	Clave  string
 	Nombre string
 	Items  []Servicio
 }
 
-// Grupo anida categorías (subgrupos) y sus items.
+// Subgrupo agrupa juegos dentro de un grupo (categoría).
+type Subgrupo struct {
+	Nombre string
+	Count  int
+	Juegos []Juego
+}
+
+// Grupo anida categorías (subgrupos) → juegos → items.
 type Grupo struct {
 	Clave     string
 	Nombre    string
@@ -378,33 +386,64 @@ type Grupo struct {
 	Subgrupos []Subgrupo
 }
 
-// BuscarArbol busca y arma el árbol grupo → subgrupo → items.
+// BuscarArbol busca y arma el árbol grupo → subgrupo → juego (canónica) → items.
 func BuscarArbol(servicios []Servicio, q string) []Grupo {
 	items := Buscar(servicios, q)
-	var grupos []Grupo
-	gi := map[string]int{}
-	si := map[string]map[string]int{}
+	gm := map[string]map[string]map[string][]Servicio{}
+	gNom := map[string]string{}
+	var gOrder []string
+	subOrder := map[string][]string{}
+	jOrder := map[string][]string{}
 	for _, s := range items {
 		gc, gn := s.Grupo, s.Grupo
 		if gc == "" {
 			gc, gn = s.ID, s.Nombre
 		}
-		gidx, ok := gi[gc]
-		if !ok {
-			gidx = len(grupos)
-			gi[gc] = gidx
-			si[gc] = map[string]int{}
-			grupos = append(grupos, Grupo{Clave: gc, Nombre: gn})
+		if _, ok := gm[gc]; !ok {
+			gm[gc] = map[string]map[string][]Servicio{}
+			gNom[gc] = gn
+			gOrder = append(gOrder, gc)
 		}
 		sc := s.Subgrupo
-		sidx, ok := si[gc][sc]
-		if !ok {
-			sidx = len(grupos[gidx].Subgrupos)
-			si[gc][sc] = sidx
-			grupos[gidx].Subgrupos = append(grupos[gidx].Subgrupos, Subgrupo{Nombre: sc})
+		if _, ok := gm[gc][sc]; !ok {
+			gm[gc][sc] = map[string][]Servicio{}
+			subOrder[gc] = append(subOrder[gc], sc)
 		}
-		grupos[gidx].Subgrupos[sidx].Items = append(grupos[gidx].Subgrupos[sidx].Items, s)
-		grupos[gidx].Total++
+		jc := s.Canonica
+		if jc == "" {
+			jc = s.ID
+		}
+		key := gc + "\x00" + sc
+		if _, ok := gm[gc][sc][jc]; !ok {
+			jOrder[key] = append(jOrder[key], jc)
+		}
+		gm[gc][sc][jc] = append(gm[gc][sc][jc], s)
+	}
+	var grupos []Grupo
+	for _, gc := range gOrder {
+		g := Grupo{Clave: gc, Nombre: gNom[gc]}
+		for _, sc := range subOrder[gc] {
+			sg := Subgrupo{Nombre: sc}
+			for _, jc := range jOrder[gc+"\x00"+sc] {
+				its := gm[gc][sc][jc]
+				sg.Juegos = append(sg.Juegos, Juego{Clave: jc, Nombre: nombreJuego(its), Items: its})
+				sg.Count += len(its)
+			}
+			g.Subgrupos = append(g.Subgrupos, sg)
+			g.Total += sg.Count
+		}
+		grupos = append(grupos, g)
 	}
 	return grupos
+}
+
+// nombreJuego: el nombre más corto del grupo (suele ser el juego base, sin "Edition").
+func nombreJuego(items []Servicio) string {
+	mejor := ""
+	for _, s := range items {
+		if mejor == "" || len(s.Nombre) < len(mejor) {
+			mejor = s.Nombre
+		}
+	}
+	return mejor
 }
