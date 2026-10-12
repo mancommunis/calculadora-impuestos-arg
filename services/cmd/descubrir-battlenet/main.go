@@ -5,9 +5,11 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
+	"os"
 	"regexp"
 	"sort"
 	"strings"
@@ -21,14 +23,15 @@ const sitemapIndex = "https://us.shop.battle.net/sitemap_index.xml"
 
 func main() {
 	out := flag.String("out", "dataset/battlenet.json", "archivo de salida")
+	categorias := flag.String("categorias", "config/categorias.json", "overrides de categoría")
 	delay := flag.Duration("delay", 120*time.Millisecond, "pausa entre requests")
 	flag.Parse()
-	if err := correr(*out, *delay); err != nil {
+	if err := correr(*out, cargarOverrides(*categorias), *delay); err != nil {
 		log.Fatalf("descubrir-battlenet: %v", err)
 	}
 }
 
-func correr(out string, delay time.Duration) error {
+func correr(out string, ov map[string]string, delay time.Duration) error {
 	ctx := context.Background()
 	cliente := tiendas.Cliente()
 
@@ -47,27 +50,24 @@ func correr(out string, delay time.Duration) error {
 			continue
 		}
 		slug := slugDe(u)
-		grupo := franchiseDe(slug)
-		subgrupo := categoriaDe(slug)
-		if len(ofertas) == 1 {
-			nm := nombre
-			if nm == "" {
-				nm = ofertas[0].Nombre
-			}
-			precio := ofertas[0].Precio
+		agrega := func(id, nm string, moneda string, precio float64, edicion string) {
 			productos = append(productos, configuracion.Servicio{
-				ID: "battlenet:" + slug, Nombre: limpiarNombre(nm), Grupo: grupo, Subgrupo: subgrupo,
-				Regimen: "gaming", Moneda: ofertas[0].Moneda, Tienda: "battle_net",
-				URL: u, Precio: &precio,
+				ID: id, Nombre: nm, Grupo: franchiseDe(slug, nm),
+				Subgrupo: override(ov, id, slug, categoriaDe(slug, nm)),
+				Regimen:  "gaming", Moneda: moneda, Tienda: "battle_net",
+				URL: u, Edicion: edicion, Precio: &precio,
 			})
+		}
+		if len(ofertas) == 1 {
+			nm := limpiarNombre(nombre)
+			if nm == "" {
+				nm = limpiarNombre(ofertas[0].Nombre)
+			}
+			agrega("battlenet:"+slug, nm, ofertas[0].Moneda, ofertas[0].Precio, "")
 		} else {
 			for _, o := range ofertas {
-				precio := o.Precio
-				productos = append(productos, configuracion.Servicio{
-					ID: "battlenet:" + slug + ":" + slugDe(o.Nombre), Nombre: limpiarNombre(o.Nombre), Grupo: grupo, Subgrupo: subgrupo,
-					Regimen: "gaming", Moneda: o.Moneda, Tienda: "battle_net",
-					URL: u, Edicion: limpiarNombre(o.Nombre), Precio: &precio,
-				})
+				nn := limpiarNombre(o.Nombre)
+				agrega("battlenet:"+slug+":"+slugDe(o.Nombre), nn, o.Moneda, o.Precio, nn)
 			}
 		}
 		conPrecio++
@@ -79,14 +79,29 @@ func correr(out string, delay time.Duration) error {
 		}
 	}
 
+	// Dedup por grupo+nombre (el mismo producto aparece en dos páginas).
+	vistos := map[string]bool{}
+	unicos := productos[:0]
+	for _, p := range productos {
+		k := p.Grupo + "|" + p.Nombre
+		if vistos[k] {
+			continue
+		}
+		vistos[k] = true
+		unicos = append(unicos, p)
+	}
+	productos = unicos
+
 	sort.Slice(productos, func(i, j int) bool { return productos[i].ID < productos[j].ID })
 	if err := configuracion.GuardarCatalogo(out, configuracion.Catalogo{Productos: productos}); err != nil {
 		return err
 	}
-	log.Printf("escrito %s: %d entradas (%d productos con precio, %d sin)", out, len(productos), conPrecio, sinPrecio)
+	log.Printf("escrito %s: %d entradas (%d con precio, %d sin)", out, len(productos), conPrecio, sinPrecio)
 	fmt.Printf("ok: %d entradas\n", len(productos))
 	return nil
 }
+
+// ---- slug / franquicia ----
 
 var reSlug = regexp.MustCompile(`[^a-z0-9]+`)
 
@@ -98,18 +113,20 @@ func slugDe(s string) string {
 	return strings.Trim(reSlug.ReplaceAllString(s, "-"), "-")
 }
 
-var franquicias = []struct{ prefijo, nombre string }{
+var franquiciasSlug = []struct{ prefijo, nombre string }{
 	{"world-of-warcraft", "World of Warcraft"},
 	{"wow-", "World of Warcraft"},
 	{"diablo-iv", "Diablo IV"},
 	{"diablo-iii", "Diablo III"},
 	{"diablo-ii", "Diablo II"},
-	{"diablo-", "Diablo"},
+	{"eternal-orbs", "Diablo Immortal"},
+	{"diablo", "Diablo"},
 	{"call-of-duty", "Call of Duty"},
 	{"hearthstone", "Hearthstone"},
 	{"starcraft", "StarCraft"},
 	{"heroes-of-the-storm", "Heroes of the Storm"},
 	{"overwatch", "Overwatch"},
+	{"warcraft-rumble", "Warcraft Rumble"},
 	{"warcraft", "Warcraft"},
 	{"blizzard-arcade", "Blizzard Arcade"},
 	{"crash-bandicoot", "Crash Bandicoot"},
@@ -122,9 +139,34 @@ var franquicias = []struct{ prefijo, nombre string }{
 	{"bulletstorm", "Bulletstorm"},
 }
 
-func franchiseDe(slug string) string {
-	for _, f := range franquicias {
+// Por nombre de oferta (para slugs que no arrancan con la franquicia: announcers, commanders...).
+var franquiciasNombre = []struct{ kw, nombre string }{
+	{"starcraft", "StarCraft"},
+	{"world of warcraft", "World of Warcraft"},
+	{"warcraft", "Warcraft"},
+	{"diablo", "Diablo"},
+	{"overwatch", "Overwatch"},
+	{"hearthstone", "Hearthstone"},
+	{"call of duty", "Call of Duty"},
+	{"heroes of the storm", "Heroes of the Storm"},
+	{"sea of thieves", "Sea of Thieves"},
+	{"doom", "DOOM"},
+	{"avowed", "Avowed"},
+	{"the outer worlds", "The Outer Worlds"},
+	{"tony hawk", "Tony Hawk's Pro Skater"},
+	{"crash bandicoot", "Crash Bandicoot"},
+	{"blizzard arcade", "Blizzard Arcade"},
+}
+
+func franchiseDe(slug, nombre string) string {
+	for _, f := range franquiciasSlug {
 		if strings.HasPrefix(slug, f.prefijo) {
+			return f.nombre
+		}
+	}
+	n := strings.ToLower(nombre)
+	for _, f := range franquiciasNombre {
+		if strings.Contains(n, f.kw) {
 			return f.nombre
 		}
 	}
@@ -136,38 +178,74 @@ var reMarcas = regexp.MustCompile(`[®™©]`)
 // limpiarNombre saca ®/™/© y espacios dobles (ej. "Warcraft® III").
 func limpiarNombre(s string) string {
 	s = reMarcas.ReplaceAllString(s, "")
-	s = strings.Join(strings.Fields(s), " ")
-	return strings.TrimSpace(s)
+	return strings.Join(strings.Fields(s), " ")
 }
 
-// categoriaDe infiere el subgrupo (categoría) a partir del slug.
-func categoriaDe(slug string) string {
-	tiene := func(subs ...string) bool {
-		for _, s := range subs {
-			if strings.Contains(slug, s) {
-				return true
-			}
-		}
-		return false
-	}
+// ---- categoría ----
+
+var (
+	reMonedas    = regexp.MustCompile(`\b(platinum|gold|tokens?|coins?)\b`)
+	rePases      = regexp.MustCompile(`\b(season pass|battle pass|pass)\b`)
+	reServicios  = regexp.MustCompile(`\b(services?|boosts?|transfers?|faction|race change|character|name change)\b`)
+	reCosmeticos = regexp.MustCompile(`\b(transmogs?|announcers?|ensembles?|raiment|crown|cosmetics?|appearances?|skins?)\b`)
+	reColeccion  = regexp.MustCompile(`\b(collections?)\b`)
+	rePacks      = regexp.MustCompile(`\b(packs?|bundles?|mini[- ]?sets?|class sets?)\b`)
+	reEdiciones  = regexp.MustCompile(`\b(editions?|deluxe|ultimate|premium)\b`)
+)
+
+// categoriaDe infiere el subgrupo (categoría) del NOMBRE de la oferta (con el slug de respaldo).
+func categoriaDe(slug, nombre string) string {
+	s := strings.ToLower(slug)
+	n := strings.ToLower(nombre)
 	switch {
-	case tiene("-mount-", "mount-"):
-		return "Monturas"
-	case tiene("-pet-", "pet-"):
-		return "Mascotas"
-	case tiene("platinum", "gold", "token", "coins"):
-		return "Monedas"
-	case tiene("service", "name-change", "boost", "transfer", "faction", "race-change", "character"):
-		return "Servicios"
-	case tiene("announcer", "transmog", "cosmetic"):
-		return "Cosméticos"
-	case tiene("pack", "bundle"):
-		return "Packs y bundles"
-	case tiene("game-time", "forever", "subscription", "suscripcion"):
+	case strings.Contains(n, "forever"):
+		return "Forever"
+	case rePases.MatchString(n) || rePases.MatchString(s):
+		return "Pases"
+	case strings.Contains(n, "game time") || strings.Contains(s, "game-time") || strings.Contains(s, "subscription"):
 		return "Suscripción"
-	case tiene("base-edition", "heroic-edition", "epic-edition", "standard-edition", "premium-edition", "ultimate-edition", "deluxe"):
+	case strings.Contains(s, "-mount-"):
+		return "Monturas"
+	case strings.Contains(s, "-pet-"):
+		return "Mascotas"
+	case reMonedas.MatchString(n) || reMonedas.MatchString(s):
+		return "Monedas"
+	case reServicios.MatchString(s):
+		return "Servicios"
+	case reCosmeticos.MatchString(n) || reCosmeticos.MatchString(s) || reColeccion.MatchString(n):
+		return "Cosméticos y colecciones"
+	case rePacks.MatchString(n) || rePacks.MatchString(s):
+		return "Packs y bundles"
+	case reEdiciones.MatchString(n) || reEdiciones.MatchString(s):
 		return "Ediciones"
 	default:
 		return "Juegos y expansiones"
 	}
+}
+
+// ---- overrides de categoría (config/categorias.json) ----
+
+func cargarOverrides(path string) map[string]string {
+	ov := map[string]string{}
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return ov
+	}
+	var f struct {
+		Overrides map[string]string `json:"overrides"`
+	}
+	if json.Unmarshal(b, &f) != nil {
+		return ov
+	}
+	return f.Overrides
+}
+
+func override(ov map[string]string, id, slug, cat string) string {
+	if c, ok := ov[id]; ok {
+		return c
+	}
+	if c, ok := ov[slug]; ok {
+		return c
+	}
+	return cat
 }

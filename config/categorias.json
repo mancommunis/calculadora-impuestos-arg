@@ -1,0 +1,8 @@
+{
+  "_notas": "Overrides manuales de categoría para el descubrimiento de Battle.net. Clave = id (battlenet:...) o slug del producto. Gana sobre la heurística.",
+  "overrides": {
+    "eternal-orbs": "Monedas",
+    "world-of-warcraft-game-time": "Suscripción",
+    "battle-tag-name-change": "Servicios"
+  }
+}

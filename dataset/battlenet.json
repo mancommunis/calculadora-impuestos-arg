@@ -3,13 +3,14 @@
     {
       "id": "battlenet:announcers-fenix",
       "nombre": "Announcer: Fenix - StarCraft II",
+      "grupo": "StarCraft",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/announcers-fenix",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:arsenal-bundle",
@@ -44,7 +45,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/avowed",
       "edicion": "Avowed Premium Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:avowed:avowed-standard-edition",
@@ -57,7 +58,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/avowed",
       "edicion": "Avowed Standard Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:battle-tag-name-change",
@@ -80,7 +81,7 @@
       "precio": 19.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/blizzard-arcade-collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-4:call-of-duty-black-ops-4",
@@ -106,7 +107,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-4",
       "edicion": "Call of Duty: Black Ops 4 - Battle Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-4:call-of-duty-black-ops-4-digital-deluxe",
@@ -119,7 +120,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-4",
       "edicion": "Call of Duty: Black Ops 4 - Digital Deluxe",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-6",
@@ -179,7 +180,7 @@
       "precio": 19.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-6-wz-reanimeted-ultra-tracer-pack",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7",
@@ -203,7 +204,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-boston-breach-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-carolina-royal-ravens-2026",
@@ -215,7 +216,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-carolina-royal-ravens-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-cloud9-new-york-2026",
@@ -227,7 +228,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-cloud9-new-york-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-faze-vegas-2026",
@@ -239,7 +240,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-faze-vegas-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-g2-minnesota-2026",
@@ -251,7 +252,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-g2-minnesota-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-los-angeles-thieves-2026",
@@ -275,7 +276,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-miami-heretics-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-optic-texas-2026",
@@ -287,7 +288,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-optic-texas-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-paris-gentle-mates-2026",
@@ -311,7 +312,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-riyadh-falcons-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-toronto-koi-2026",
@@ -323,7 +324,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-toronto-koi-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-cdl-vancouver-surge-2026",
@@ -335,7 +336,7 @@
       "precio": 11.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-7-cdl-vancouver-surge-2026",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-7-wz-arachnid-mark-starter-pack",
@@ -422,97 +423,6 @@
       "subgrupo": "Juegos y expansiones"
     },
     {
-      "id": "battlenet:call-of-duty-black-ops-cold-war-cod-points:1-000-100-bonus-cp",
-      "nombre": "1,000 (+100 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 9.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-cold-war-cod-points",
-      "edicion": "1,000 (+100 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-black-ops-cold-war-cod-points:10-000-3-000-bonus-cp",
-      "nombre": "10,000 (+3,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 99.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-cold-war-cod-points",
-      "edicion": "10,000 (+3,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-black-ops-cold-war-cod-points:2-000-400-bonus-cp",
-      "nombre": "2,000 (+400 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 19.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-cold-war-cod-points",
-      "edicion": "2,000 (+400 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-black-ops-cold-war-cod-points:200-cp",
-      "nombre": "200 CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 1.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-cold-war-cod-points",
-      "edicion": "200 CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-black-ops-cold-war-cod-points:4-000-1-000-bonus-cp",
-      "nombre": "4,000 (+1,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 39.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-cold-war-cod-points",
-      "edicion": "4,000 (+1,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-black-ops-cold-war-cod-points:500-cp",
-      "nombre": "500 CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 4.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-cold-war-cod-points",
-      "edicion": "500 CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-black-ops-cold-war-cod-points:7-500-2-000-bonus-cp",
-      "nombre": "7,500 (+2,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 74.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-cold-war-cod-points",
-      "edicion": "7,500 (+2,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
       "id": "battlenet:call-of-duty-black-ops-cold-war-code-battle-doc",
       "nombre": "Call of Duty Endowment (C.O.D.E.) - Battle Doc Pack - Call of Duty: BOCW",
       "grupo": "Call of Duty",
@@ -522,7 +432,7 @@
       "precio": 9.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-cold-war-code-battle-doc",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-cold-war-code-packs",
@@ -546,7 +456,7 @@
       "precio": 49.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-black-ops-pass",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:call-of-duty-black-ops-starter-pack",
@@ -694,7 +604,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-4",
       "edicion": "Call of Duty: Modern Warfare 4 - Vault Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:call-of-duty-modern-warfare-code-packs",
@@ -790,7 +700,7 @@
       "precio": 19.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-iii-wz-custom-molded-ultra-skin-pro-pack",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:call-of-duty-modern-warfare-iii-wz-cyberjunkie-pro-pack",
@@ -886,7 +796,7 @@
       "precio": 19.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-iii-wz-tracer-trash-talk-ultra-pro-pack",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:call-of-duty-modern-warfare-iii-wz-underboss-pro-pack",
@@ -911,97 +821,6 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-iii-wz-zodiac-cancer-pro-pack",
       "subgrupo": "Packs y bundles"
-    },
-    {
-      "id": "battlenet:call-of-duty-modern-warfare-points:1-000-100-bonus-cp",
-      "nombre": "1,000 (+100 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 9.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-points",
-      "edicion": "1,000 (+100 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-modern-warfare-points:10-000-3-000-bonus-cp",
-      "nombre": "10,000 (+3,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 99.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-points",
-      "edicion": "10,000 (+3,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-modern-warfare-points:2-000-400-bonus-cp",
-      "nombre": "2,000 (+400 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 19.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-points",
-      "edicion": "2,000 (+400 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-modern-warfare-points:200-cp",
-      "nombre": "200 CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 1.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-points",
-      "edicion": "200 CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-modern-warfare-points:4-000-1-000-bonus-cp",
-      "nombre": "4,000 (+1,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 39.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-points",
-      "edicion": "4,000 (+1,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-modern-warfare-points:500-cp",
-      "nombre": "500 CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 4.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-points",
-      "edicion": "500 CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-modern-warfare-points:7-500-2-000-bonus-cp",
-      "nombre": "7,500 (+2,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 74.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-modern-warfare-points",
-      "edicion": "7,500 (+2,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
     },
     {
       "id": "battlenet:call-of-duty-mwii-wz2-cosmic-traveler-pro-pack",
@@ -1136,97 +955,6 @@
       "subgrupo": "Packs y bundles"
     },
     {
-      "id": "battlenet:call-of-duty-points:1-000-100-bonus-cp",
-      "nombre": "1,000 (+100 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 9.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-points",
-      "edicion": "1,000 (+100 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-points:10-000-3-000-bonus-cp",
-      "nombre": "10,000 (+3,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 99.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-points",
-      "edicion": "10,000 (+3,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-points:2-000-400-bonus-cp",
-      "nombre": "2,000 (+400 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 19.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-points",
-      "edicion": "2,000 (+400 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-points:200-cp",
-      "nombre": "200 CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 1.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-points",
-      "edicion": "200 CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-points:4-000-1-000-bonus-cp",
-      "nombre": "4,000 (+1,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 39.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-points",
-      "edicion": "4,000 (+1,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-points:500-cp",
-      "nombre": "500 CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 4.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-points",
-      "edicion": "500 CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
-      "id": "battlenet:call-of-duty-points:7-500-2-000-bonus-cp",
-      "nombre": "7,500 (+2,000 Bonus) CP",
-      "grupo": "Call of Duty",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 74.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/call-of-duty-points",
-      "edicion": "7,500 (+2,000 Bonus) CP",
-      "subgrupo": "Juegos y expansiones"
-    },
-    {
       "id": "battlenet:call-of-duty-special-ops-pro-pack",
       "nombre": "Black Ops Cold War - Special Ops Pro Pack - Call of Duty: BOCW",
       "grupo": "Call of Duty",
@@ -1272,7 +1000,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-vanguard-code-gift-of-honor",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-vanguard-code-timeless",
@@ -1284,7 +1012,7 @@
       "precio": 9.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-vanguard-code-timeless",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-vanguard-death-bite-pro-pack",
@@ -1411,7 +1139,7 @@
       "precio": 19.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-vanguard-s5-elegant-threat",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-vanguard-s5-psyops-assassin",
@@ -1423,7 +1151,7 @@
       "precio": 19.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/call-of-duty-vanguard-s5-psyops-assassin",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:call-of-duty-vanguard-skull-collector-pro-pack",
@@ -1464,6 +1192,7 @@
     {
       "id": "battlenet:commander-abathur",
       "nombre": "Commander: Abathur - StarCraft II",
+      "grupo": "StarCraft",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1475,6 +1204,7 @@
     {
       "id": "battlenet:commander-alarak",
       "nombre": "Commander: Alarak - StarCraft II",
+      "grupo": "StarCraft",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1486,6 +1216,7 @@
     {
       "id": "battlenet:commander-dehaka",
       "nombre": "Commander: Dehaka - StarCraft II",
+      "grupo": "StarCraft",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1497,6 +1228,7 @@
     {
       "id": "battlenet:commander-fenix",
       "nombre": "Commander: Fenix - StarCraft II",
+      "grupo": "StarCraft",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1508,6 +1240,7 @@
     {
       "id": "battlenet:commander-nova",
       "nombre": "Commander: Nova - StarCraft II",
+      "grupo": "StarCraft",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1519,6 +1252,7 @@
     {
       "id": "battlenet:commander-stukov",
       "nombre": "Commander: Stukov - StarCraft II",
+      "grupo": "StarCraft",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1542,6 +1276,7 @@
     {
       "id": "battlenet:diablo",
       "nombre": "Diablo",
+      "grupo": "Diablo",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1584,7 +1319,7 @@
       "precio": 39.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo_ii_resurrected",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:diablo-ii-resurrected-reign-of-the-warlock",
@@ -1634,7 +1369,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iii-ros",
       "edicion": "Diablo III: Reaper of Souls – Digital Deluxe Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:diablo-iii:diablo-iii",
@@ -1673,7 +1408,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iii",
       "edicion": "Diablo III: Eternal Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:diablo-immortal",
@@ -1698,7 +1433,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iv-battle-pass-season-of-hells-legacy",
       "edicion": "Deluxe Battle Pass Bundle",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:diablo-iv-battle-pass-season-of-hells-legacy:premium-battle-pass-bundle",
@@ -1711,7 +1446,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iv-battle-pass-season-of-hells-legacy",
       "edicion": "Premium Battle Pass Bundle",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:diablo-iv-lord-of-hatred:diablo-iv-lord-of-hatred-deluxe-edition",
@@ -1724,7 +1459,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iv-lord-of-hatred",
       "edicion": "Diablo IV: Lord of Hatred - Deluxe Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:diablo-iv-lord-of-hatred:diablo-iv-lord-of-hatred-standard-edition",
@@ -1737,7 +1472,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iv-lord-of-hatred",
       "edicion": "Diablo IV: Lord of Hatred - Standard Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:diablo-iv-lord-of-hatred:diablo-iv-lord-of-hatred-ultimate-edition",
@@ -1750,7 +1485,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iv-lord-of-hatred",
       "edicion": "Diablo IV: Lord of Hatred - Ultimate Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:diablo-iv-platinum:1000-platinum",
@@ -1841,7 +1576,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iv",
       "edicion": "Diablo IV: Age of Hatred Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:diablo-iv:diablo-iv-standard-edition",
@@ -1854,7 +1589,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/diablo-iv",
       "edicion": "Diablo IV - Standard Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:doom-the-dark-ages-revelations",
@@ -1879,7 +1614,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/doom-the-dark-ages",
       "edicion": "DOOM: The Dark Ages Premium Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:doom-the-dark-ages:doom-the-dark-ages-standard-edition",
@@ -1892,11 +1627,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/doom-the-dark-ages",
       "edicion": "DOOM: The Dark Ages Standard Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:eternal-orbs:pack-of-15000-eternal-orbs",
       "nombre": "Pack of 15000 Eternal Orbs",
+      "grupo": "Diablo Immortal",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1904,11 +1640,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/eternal-orbs",
       "edicion": "Pack of 15000 Eternal Orbs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:eternal-orbs:pack-of-1650-eternal-orbs",
       "nombre": "Pack of 1650 Eternal Orbs",
+      "grupo": "Diablo Immortal",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1916,11 +1653,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/eternal-orbs",
       "edicion": "Pack of 1650 Eternal Orbs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:eternal-orbs:pack-of-320-eternal-orbs",
       "nombre": "Pack of 320 Eternal Orbs",
+      "grupo": "Diablo Immortal",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1928,11 +1666,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/eternal-orbs",
       "edicion": "Pack of 320 Eternal Orbs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:eternal-orbs:pack-of-3450-eternal-orbs",
       "nombre": "Pack of 3450 Eternal Orbs",
+      "grupo": "Diablo Immortal",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1940,11 +1679,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/eternal-orbs",
       "edicion": "Pack of 3450 Eternal Orbs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:eternal-orbs:pack-of-60-eternal-orbs",
       "nombre": "Pack of 60 Eternal Orbs",
+      "grupo": "Diablo Immortal",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1952,11 +1692,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/eternal-orbs",
       "edicion": "Pack of 60 Eternal Orbs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:eternal-orbs:pack-of-650-eternal-orbs",
       "nombre": "Pack of 650 Eternal Orbs",
+      "grupo": "Diablo Immortal",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1964,11 +1705,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/eternal-orbs",
       "edicion": "Pack of 650 Eternal Orbs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:eternal-orbs:pack-of-7200-eternal-orbs",
       "nombre": "Pack of 7200 Eternal Orbs",
+      "grupo": "Diablo Immortal",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -1976,7 +1718,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/eternal-orbs",
       "edicion": "Pack of 7200 Eternal Orbs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:grand-command-bundle",
@@ -2113,7 +1855,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-ashes-of-outland",
       "edicion": "Hearthstone: 15 Ashes of Outland Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-ashes-of-outland:hearthstone-2-ashes-of-outland-packs",
@@ -2126,7 +1868,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-ashes-of-outland",
       "edicion": "Hearthstone: 2 Ashes of Outland Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-ashes-of-outland:hearthstone-40-ashes-of-outland-packs",
@@ -2139,7 +1881,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-ashes-of-outland",
       "edicion": "Hearthstone: 40 Ashes of Outland Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-ashes-of-outland:hearthstone-60-ashes-of-outland-packs",
@@ -2152,7 +1894,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-ashes-of-outland",
       "edicion": "Hearthstone: 60 Ashes of Outland Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-ashes-of-outland:hearthstone-7-ashes-of-outland-packs",
@@ -2165,7 +1907,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-ashes-of-outland",
       "edicion": "Hearthstone: 7 Ashes of Outland Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-audiopocalypse-golden-mini-set:hearthstone-audiopocalypse-golden-mini-set",
@@ -2178,7 +1920,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-audiopocalypse-golden-mini-set",
       "edicion": "Hearthstone: Audiopocalypse Golden Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-audiopocalypse-golden-mini-set:hearthstone-audiopocalypse-mini-set",
@@ -2191,7 +1933,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-audiopocalypse-golden-mini-set",
       "edicion": "Hearthstone: Audiopocalypse Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-azeroths-most-wanted-golden-class-set:hearthstone-azeroth-s-most-wanted-golden-class-set-bundle",
@@ -2204,7 +1946,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-azeroths-most-wanted-golden-class-set",
       "edicion": "Hearthstone: Azeroth's Most Wanted Golden Class Set Bundle",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-azeroths-most-wanted-golden-class-set:hearthstone-azeroth-s-most-wanted-standard-class-set-bundle",
@@ -2217,7 +1959,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-azeroths-most-wanted-golden-class-set",
       "edicion": "Hearthstone: Azeroth's Most Wanted Standard Class Set Bundle",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-battlegrounds-season-pass:hearthstone-battlegrounds-season-pass",
@@ -2230,7 +1972,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-battlegrounds-season-pass",
       "edicion": "Hearthstone: Battlegrounds Season Pass +",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:hearthstone-battlegrounds-season-pass:hearthstone-battlegrounds-season-pass",
@@ -2243,7 +1985,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-battlegrounds-season-pass",
       "edicion": "Hearthstone: Battlegrounds Season Pass",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:hearthstone-battlegrounds-tokens:hearthstone-100-battlegrounds-tokens",
@@ -2308,7 +2050,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-boomsday-project",
       "edicion": "Hearthstone: 15 The Boomsday Project Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-boomsday-project:hearthstone-2-the-boomsday-project-packs",
@@ -2321,7 +2063,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-boomsday-project",
       "edicion": "Hearthstone: 2 The Boomsday Project Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-boomsday-project:hearthstone-40-the-boomsday-project-packs",
@@ -2334,7 +2076,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-boomsday-project",
       "edicion": "Hearthstone: 40 The Boomsday Project Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-boomsday-project:hearthstone-60-the-boomsday-project-packs",
@@ -2347,7 +2089,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-boomsday-project",
       "edicion": "Hearthstone: 60 The Boomsday Project Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-boomsday-project:hearthstone-7-the-boomsday-project-packs",
@@ -2360,7 +2102,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-boomsday-project",
       "edicion": "Hearthstone: 7 The Boomsday Project Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-cataclysm-packs:hearthstone-15-cataclysm-packs",
@@ -2568,7 +2310,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-day-of-rebirth-golden-mini-set",
       "edicion": "Hearthstone: Day of Rebirth Golden Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-day-of-rebirth-golden-mini-set:hearthstone-day-of-rebirth-mini-set",
@@ -2581,7 +2323,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-day-of-rebirth-golden-mini-set",
       "edicion": "Hearthstone: Day of Rebirth Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-delve-into-deepholm-golden-mini-set:hearthstone-delve-into-deepholm-golden-mini-set",
@@ -2594,7 +2336,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-delve-into-deepholm-golden-mini-set",
       "edicion": "Hearthstone: Delve into Deepholm Golden Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-delve-into-deepholm-golden-mini-set:hearthstone-delve-into-deepholm-mini-set",
@@ -2607,7 +2349,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-delve-into-deepholm-golden-mini-set",
       "edicion": "Hearthstone: Delve into Deepholm Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-descent-of-dragons:15-descent-of-dragons-packs",
@@ -2620,7 +2362,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-descent-of-dragons",
       "edicion": "15 Descent of Dragons Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-descent-of-dragons:2-descent-of-dragons-packs",
@@ -2633,7 +2375,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-descent-of-dragons",
       "edicion": "2 Descent of Dragons Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-descent-of-dragons:40-descent-of-dragons-packs",
@@ -2646,7 +2388,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-descent-of-dragons",
       "edicion": "40 Descent of Dragons Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-descent-of-dragons:60-descent-of-dragons-packs",
@@ -2659,7 +2401,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-descent-of-dragons",
       "edicion": "60 Descent of Dragons Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-descent-of-dragons:7-descent-of-dragons-packs",
@@ -2672,7 +2414,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-descent-of-dragons",
       "edicion": "7 Descent of Dragons Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-dr-booms-incredible-inventions-mini-set:hearthstone-dr-boom-s-incredible-inventions-golden-mini-set",
@@ -2685,7 +2427,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-dr-booms-incredible-inventions-mini-set",
       "edicion": "Hearthstone: Dr. Boom’s Incredible Inventions Golden Mini-Set",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-dr-booms-incredible-inventions-mini-set:hearthstone-dr-boom-s-incredible-inventions-mini-set",
@@ -2698,7 +2440,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-dr-booms-incredible-inventions-mini-set",
       "edicion": "Hearthstone: Dr. Boom’s Incredible Inventions Mini-Set",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-echoes-of-the-infinite-golden-mini-set:hearthstone-echoes-of-the-infinite-golden-mini-set",
@@ -2711,7 +2453,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-echoes-of-the-infinite-golden-mini-set",
       "edicion": "Hearthstone: Echoes of the Infinite Golden Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-echoes-of-the-infinite-golden-mini-set:hearthstone-echoes-of-the-infinite-mini-set",
@@ -2724,7 +2466,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-echoes-of-the-infinite-golden-mini-set",
       "edicion": "Hearthstone: Echoes of the Infinite Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-embers-of-the-world-tree-golden-mini-set:hearthstone-embers-of-the-world-tree-golden-mini-set",
@@ -2737,7 +2479,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-embers-of-the-world-tree-golden-mini-set",
       "edicion": "Hearthstone: Embers of the World Tree Golden Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-embers-of-the-world-tree-golden-mini-set:hearthstone-embers-of-the-world-tree-mini-set",
@@ -2750,7 +2492,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-embers-of-the-world-tree-golden-mini-set",
       "edicion": "Hearthstone: Embers of the World Tree Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-escape-from-violet-hold-packs:hearthstone-15-escape-from-violet-hold-packs",
@@ -2827,7 +2569,7 @@
       "precio": 19.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-escape-from-violet-hold-tavern-pass",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:hearthstone-fall-of-ulduar-golden-mini-set:hearthstone-fall-of-ulduar-golden-mini-set",
@@ -2840,7 +2582,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-fall-of-ulduar-golden-mini-set",
       "edicion": "Hearthstone: Fall of Ulduar Golden Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-fall-of-ulduar-golden-mini-set:hearthstone-fall-of-ulduar-mini-set",
@@ -2853,7 +2595,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-fall-of-ulduar-golden-mini-set",
       "edicion": "Hearthstone: Fall of Ulduar Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-festival-of-legends-golden-packs:hearthstone-11-golden-festival-of-legends-packs",
@@ -2866,7 +2608,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-festival-of-legends-golden-packs",
       "edicion": "Hearthstone: 11 Golden Festival of Legends Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-festival-of-legends-golden-packs:hearthstone-23-golden-festival-of-legends-packs",
@@ -2879,7 +2621,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-festival-of-legends-golden-packs",
       "edicion": "Hearthstone: 23 Golden Festival of Legends Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-festival-of-legends-golden-packs:hearthstone-30-golden-festival-of-legends-packs",
@@ -2892,7 +2634,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-festival-of-legends-golden-packs",
       "edicion": "Hearthstone: 30 Golden Festival of Legends Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-festival-of-legends-golden-packs:hearthstone-5-golden-festival-of-legends-packs",
@@ -2905,7 +2647,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-festival-of-legends-golden-packs",
       "edicion": "Hearthstone: 5 Golden Festival of Legends Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-festival-of-legends-packs:hearthstone-15-festival-of-legends-packs",
@@ -2983,7 +2725,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-forged-in-the-barrens",
       "edicion": "Hearthstone: 15 Forged in the Barrens Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-forged-in-the-barrens:hearthstone-2-forged-in-the-barrens-packs",
@@ -2996,7 +2738,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-forged-in-the-barrens",
       "edicion": "Hearthstone: 2 Forged in the Barrens Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-forged-in-the-barrens:hearthstone-40-forged-in-the-barrens-packs",
@@ -3009,7 +2751,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-forged-in-the-barrens",
       "edicion": "Hearthstone: 40 Forged in the Barrens Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-forged-in-the-barrens:hearthstone-60-forged-in-the-barrens-packs",
@@ -3022,7 +2764,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-forged-in-the-barrens",
       "edicion": "Hearthstone: 60 Forged in the Barrens Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-forged-in-the-barrens:hearthstone-7-forged-in-the-barrens-packs",
@@ -3035,7 +2777,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-forged-in-the-barrens",
       "edicion": "Hearthstone: 7 Forged in the Barrens Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-fractured-in-alterac-valley:hearthstone-15-fractured-in-alterac-valley-packs",
@@ -3048,7 +2790,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 15 Fractured in Alterac Valley Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-fractured-in-alterac-valley:hearthstone-2-fractured-in-alterac-valley-packs",
@@ -3061,7 +2803,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 2 Fractured in Alterac Valley Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-fractured-in-alterac-valley:hearthstone-40-fractured-in-alterac-valley-packs",
@@ -3074,7 +2816,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 40 Fractured in Alterac Valley Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-fractured-in-alterac-valley:hearthstone-60-fractured-in-alterac-valley-packs",
@@ -3087,7 +2829,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 60 Fractured in Alterac Valley Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-fractured-in-alterac-valley:hearthstone-7-fractured-in-alterac-packs",
@@ -3100,7 +2842,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 7 Fractured in Alterac Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-goblins-vs-gnomes:hearthstone-15-goblins-vs-gnomes-packs",
@@ -3113,7 +2855,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-goblins-vs-gnomes",
       "edicion": "Hearthstone: 15 Goblins vs Gnomes Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-goblins-vs-gnomes:hearthstone-2-goblins-vs-gnomes-packs",
@@ -3126,7 +2868,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-goblins-vs-gnomes",
       "edicion": "Hearthstone: 2 Goblins vs Gnomes Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-goblins-vs-gnomes:hearthstone-40-goblins-vs-gnomes-packs",
@@ -3139,7 +2881,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-goblins-vs-gnomes",
       "edicion": "Hearthstone: 40 Goblins vs Gnomes Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-goblins-vs-gnomes:hearthstone-60-goblins-vs-gnomes-packs",
@@ -3152,7 +2894,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-goblins-vs-gnomes",
       "edicion": "Hearthstone: 60 Goblins vs Gnomes Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-goblins-vs-gnomes:hearthstone-7-goblins-vs-gnomes-packs",
@@ -3165,7 +2907,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-goblins-vs-gnomes",
       "edicion": "Hearthstone: 7 Goblins vs Gnomes Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-across-the-timeways-packs:hearthstone-11-golden-across-the-timeways-packs",
@@ -3178,7 +2920,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-across-the-timeways-packs",
       "edicion": "Hearthstone: 11 Golden Across the Timeways Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-across-the-timeways-packs:hearthstone-23-golden-across-the-timeways-packs",
@@ -3191,7 +2933,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-across-the-timeways-packs",
       "edicion": "Hearthstone: 23 Golden Across the Timeways Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-across-the-timeways-packs:hearthstone-30-golden-across-the-timeways-packs",
@@ -3204,7 +2946,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-across-the-timeways-packs",
       "edicion": "Hearthstone: 30 Golden Across the Timeways Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-across-the-timeways-packs:hearthstone-5-golden-across-the-timeways-packs",
@@ -3217,7 +2959,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-across-the-timeways-packs",
       "edicion": "Hearthstone: 5 Golden Across the Timeways Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-cataclysm-packs:hearthstone-11-golden-cataclysm-packs",
@@ -3230,7 +2972,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-cataclysm-packs",
       "edicion": "Hearthstone: 11 Golden CATACLYSM Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-cataclysm-packs:hearthstone-23-golden-cataclysm-packs",
@@ -3243,7 +2985,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-cataclysm-packs",
       "edicion": "Hearthstone: 23 Golden CATACLYSM Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-cataclysm-packs:hearthstone-30-golden-cataclysm-packs",
@@ -3256,7 +2998,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-cataclysm-packs",
       "edicion": "Hearthstone: 30 Golden CATACLYSM Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-cataclysm-packs:hearthstone-5-golden-cataclysm-packs",
@@ -3269,7 +3011,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-cataclysm-packs",
       "edicion": "Hearthstone: 5 Golden CATACLYSM Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-caverns-of-time-packs:hearthstone-11-golden-caverns-of-time-packs",
@@ -3282,7 +3024,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-caverns-of-time-packs",
       "edicion": "Hearthstone: 11 Golden Caverns of Time Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-caverns-of-time-packs:hearthstone-23-golden-caverns-of-time-packs",
@@ -3295,7 +3037,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-caverns-of-time-packs",
       "edicion": "Hearthstone: 23 Golden Caverns of Time Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-caverns-of-time-packs:hearthstone-30-golden-caverns-of-time-packs",
@@ -3308,7 +3050,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-caverns-of-time-packs",
       "edicion": "Hearthstone: 30 Golden Caverns of Time Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-caverns-of-time-packs:hearthstone-5-golden-caverns-of-time-packs",
@@ -3321,7 +3063,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-caverns-of-time-packs",
       "edicion": "Hearthstone: 5 Golden Caverns of Time Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-escape-from-violet-hold-packs:hearthstone-11-golden-escape-from-violet-hold-packs",
@@ -3334,7 +3076,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-escape-from-violet-hold-packs",
       "edicion": "Hearthstone: 11 Golden Escape from Violet Hold Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-escape-from-violet-hold-packs:hearthstone-23-golden-escape-from-violet-hold-packs",
@@ -3347,7 +3089,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-escape-from-violet-hold-packs",
       "edicion": "Hearthstone: 23 Golden Escape from Violet Hold Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-escape-from-violet-hold-packs:hearthstone-30-golden-escape-from-violet-hold-packs",
@@ -3360,7 +3102,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-escape-from-violet-hold-packs",
       "edicion": "Hearthstone: 30 Golden Escape from Violet Hold Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-escape-from-violet-hold-packs:hearthstone-5-golden-escape-from-violet-hold-packs",
@@ -3373,7 +3115,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-escape-from-violet-hold-packs",
       "edicion": "Hearthstone: 5 Golden Escape from Violet Hold Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-forged-in-the-barrens:hearthstone-11-golden-forged-in-the-barrens-packs",
@@ -3386,7 +3128,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-forged-in-the-barrens",
       "edicion": "Hearthstone: 11 Golden Forged in the Barrens Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-forged-in-the-barrens:hearthstone-23-golden-forged-in-the-barrens-packs",
@@ -3399,7 +3141,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-forged-in-the-barrens",
       "edicion": "Hearthstone: 23 Golden Forged in the Barrens Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-forged-in-the-barrens:hearthstone-30-golden-forged-in-the-barrens-packs",
@@ -3412,7 +3154,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-forged-in-the-barrens",
       "edicion": "Hearthstone: 30 Golden Forged in the Barrens Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-forged-in-the-barrens:hearthstone-5-golden-forged-in-the-barrens-packs",
@@ -3425,7 +3167,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-forged-in-the-barrens",
       "edicion": "Hearthstone: 5 Golden Forged in the Barrens Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-fractured-in-alterac-valley:hearthstone-11-golden-fractured-in-alterac-valley-packs",
@@ -3438,7 +3180,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 11 Golden Fractured in Alterac Valley Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-fractured-in-alterac-valley:hearthstone-23-golden-fractured-in-alterac-valley-packs",
@@ -3451,7 +3193,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 23 Golden Fractured in Alterac Valley Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-fractured-in-alterac-valley:hearthstone-30-golden-fractured-in-alterac-valley-packs",
@@ -3464,7 +3206,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 30 Golden Fractured in Alterac Valley Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-fractured-in-alterac-valley:hearthstone-5-golden-fractured-in-alterac-valley-packs",
@@ -3477,7 +3219,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-fractured-in-alterac-valley",
       "edicion": "Hearthstone: 5 Golden Fractured in Alterac Valley Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-into-the-emerald-dream-packs:hearthstone-11-golden-into-the-emerald-dream-packs",
@@ -3490,7 +3232,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-into-the-emerald-dream-packs",
       "edicion": "Hearthstone: 11 Golden Into the Emerald Dream Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-into-the-emerald-dream-packs:hearthstone-23-golden-into-the-emerald-dream-packs",
@@ -3503,7 +3245,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-into-the-emerald-dream-packs",
       "edicion": "Hearthstone: 23 Golden Into the Emerald Dream Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-into-the-emerald-dream-packs:hearthstone-30-golden-into-the-emerald-dream-packs",
@@ -3516,7 +3258,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-into-the-emerald-dream-packs",
       "edicion": "Hearthstone: 30 Golden Into the Emerald Dream Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-into-the-emerald-dream-packs:hearthstone-5-golden-into-the-emerald-dream-packs",
@@ -3529,7 +3271,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-into-the-emerald-dream-packs",
       "edicion": "Hearthstone: 5 Golden Into the Emerald Dream Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-murder-at-castle-nathria:hearthstone-11-golden-murder-at-castle-nathria-packs",
@@ -3542,7 +3284,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-murder-at-castle-nathria",
       "edicion": "Hearthstone: 11 Golden Murder at Castle Nathria Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-murder-at-castle-nathria:hearthstone-23-golden-murder-at-castle-nathria-packs",
@@ -3555,7 +3297,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-murder-at-castle-nathria",
       "edicion": "Hearthstone: 23 Golden Murder at Castle Nathria Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-murder-at-castle-nathria:hearthstone-30-golden-murder-at-castle-nathria-packs",
@@ -3568,7 +3310,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-murder-at-castle-nathria",
       "edicion": "Hearthstone: 30 Golden Murder at Castle Nathria Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-murder-at-castle-nathria:hearthstone-5-golden-murder-at-castle-nathria-packs",
@@ -3581,7 +3323,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-murder-at-castle-nathria",
       "edicion": "Hearthstone: 5 Golden Murder at Castle Nathria Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-perils-in-paradise-packs:hearthstone-11-golden-perils-in-paradise-packs",
@@ -3594,7 +3336,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-perils-in-paradise-packs",
       "edicion": "Hearthstone: 11 Golden Perils in Paradise Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-perils-in-paradise-packs:hearthstone-23-golden-perils-in-paradise-packs",
@@ -3607,7 +3349,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-perils-in-paradise-packs",
       "edicion": "Hearthstone: 23 Golden Perils in Paradise Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-perils-in-paradise-packs:hearthstone-30-golden-perils-in-paradise-packs",
@@ -3620,7 +3362,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-perils-in-paradise-packs",
       "edicion": "Hearthstone: 30 Golden Perils in Paradise Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-perils-in-paradise-packs:hearthstone-5-golden-perils-in-paradise-packs",
@@ -3633,7 +3375,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-perils-in-paradise-packs",
       "edicion": "Hearthstone: 5 Golden Perils in Paradise Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-standard-packs:hearthstone-11-golden-standard-packs",
@@ -3646,7 +3388,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-standard-packs",
       "edicion": "Hearthstone: 11 Golden Standard Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-standard-packs:hearthstone-23-golden-standard-packs",
@@ -3659,7 +3401,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-standard-packs",
       "edicion": "Hearthstone: 23 Golden Standard Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-standard-packs:hearthstone-30-golden-standard-packs",
@@ -3672,7 +3414,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-standard-packs",
       "edicion": "Hearthstone: 30 Golden Standard Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-standard-packs:hearthstone-5-golden-standard-packs",
@@ -3685,7 +3427,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-standard-packs",
       "edicion": "Hearthstone: 5 Golden Standard Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-stormwind-card-packs:hearthstone-11-golden-united-in-stormwind-packs",
@@ -3698,7 +3440,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-stormwind-card-packs",
       "edicion": "Hearthstone: 11 Golden United in Stormwind Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-stormwind-card-packs:hearthstone-23-golden-united-in-stormwind-packs",
@@ -3711,7 +3453,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-stormwind-card-packs",
       "edicion": "Hearthstone: 23 Golden United in Stormwind Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-stormwind-card-packs:hearthstone-30-golden-united-in-stormwind-packs",
@@ -3724,7 +3466,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-stormwind-card-packs",
       "edicion": "Hearthstone: 30 Golden United in Stormwind Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-stormwind-card-packs:hearthstone-5-golden-united-in-stormwind-packs",
@@ -3737,7 +3479,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-stormwind-card-packs",
       "edicion": "Hearthstone: 5 Golden United in Stormwind Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-the-great-dark-beyond-packs:hearthstone-11-golden-the-great-dark-beyond-packs",
@@ -3750,7 +3492,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-the-great-dark-beyond-packs",
       "edicion": "Hearthstone: 11 Golden The Great Dark Beyond Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-the-great-dark-beyond-packs:hearthstone-23-golden-the-great-dark-beyond-packs",
@@ -3763,7 +3505,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-the-great-dark-beyond-packs",
       "edicion": "Hearthstone: 23 Golden The Great Dark Beyond Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-the-great-dark-beyond-packs:hearthstone-30-golden-the-great-dark-beyond-packs",
@@ -3776,7 +3518,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-the-great-dark-beyond-packs",
       "edicion": "Hearthstone: 30 Golden The Great Dark Beyond Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-the-great-dark-beyond-packs:hearthstone-5-golden-the-great-dark-beyond-packs",
@@ -3789,7 +3531,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-the-great-dark-beyond-packs",
       "edicion": "Hearthstone: 5 Golden The Great Dark Beyond Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-the-lost-city-of-ungoro-packs:hearthstone-11-golden-the-lost-city-of-un-goro-packs",
@@ -3802,7 +3544,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-the-lost-city-of-ungoro-packs",
       "edicion": "Hearthstone: 11 Golden The Lost City of Un'Goro Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-the-lost-city-of-ungoro-packs:hearthstone-23-golden-the-lost-city-of-un-goro-packs",
@@ -3815,7 +3557,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-the-lost-city-of-ungoro-packs",
       "edicion": "Hearthstone: 23 Golden The Lost City of Un'Goro Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-the-lost-city-of-ungoro-packs:hearthstone-30-golden-the-lost-city-of-un-goro-packs",
@@ -3828,7 +3570,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-the-lost-city-of-ungoro-packs",
       "edicion": "Hearthstone: 30 Golden The Lost City of Un'Goro Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-the-lost-city-of-ungoro-packs:hearthstone-5-golden-the-lost-city-of-un-goro-packs",
@@ -3841,7 +3583,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-the-lost-city-of-ungoro-packs",
       "edicion": "Hearthstone: 5 Golden The Lost City of Un'Goro Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-voyage-to-the-sunken-city:hearthstone-11-golden-voyage-to-the-sunken-city-packs",
@@ -3854,7 +3596,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 11 Golden Voyage to the Sunken City Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-voyage-to-the-sunken-city:hearthstone-23-golden-voyage-to-the-sunken-city-packs",
@@ -3867,7 +3609,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 23 Golden Voyage to the Sunken City Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-voyage-to-the-sunken-city:hearthstone-30-golden-voyage-to-the-sunken-city-packs",
@@ -3880,7 +3622,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 30 Golden Voyage to the Sunken City Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-voyage-to-the-sunken-city:hearthstone-5-golden-voyage-to-the-sunken-city-packs",
@@ -3893,7 +3635,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 5 Golden Voyage to the Sunken City Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-whizbangs-workshop-packs:hearthstone-11-golden-whizbang-s-workshop-packs",
@@ -3906,7 +3648,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-whizbangs-workshop-packs",
       "edicion": "Hearthstone: 11 Golden Whizbang's Workshop Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-whizbangs-workshop-packs:hearthstone-23-golden-whizbang-s-workshop-packs",
@@ -3919,7 +3661,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-whizbangs-workshop-packs",
       "edicion": "Hearthstone: 23 Golden Whizbang's Workshop Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-whizbangs-workshop-packs:hearthstone-30-golden-whizbang-s-workshop-packs",
@@ -3932,7 +3674,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-whizbangs-workshop-packs",
       "edicion": "Hearthstone: 30 Golden Whizbang's Workshop Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-whizbangs-workshop-packs:hearthstone-5-golden-whizbang-s-workshop-packs",
@@ -3945,7 +3687,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-whizbangs-workshop-packs",
       "edicion": "Hearthstone: 5 Golden Whizbang's Workshop Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-wild-packs:hearthstone-11-golden-wild-packs",
@@ -3958,7 +3700,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-wild-packs",
       "edicion": "Hearthstone: 11 Golden Wild Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-wild-packs:hearthstone-23-golden-wild-packs",
@@ -3971,7 +3713,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-wild-packs",
       "edicion": "Hearthstone: 23 Golden Wild Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-wild-packs:hearthstone-30-golden-wild-packs",
@@ -3984,7 +3726,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-wild-packs",
       "edicion": "Hearthstone: 30 Golden Wild Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-golden-wild-packs:hearthstone-5-golden-wild-packs",
@@ -3997,7 +3739,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-golden-wild-packs",
       "edicion": "Hearthstone: 5 Golden Wild Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-grand-tournament:hearthstone-15-grand-tournament-packs",
@@ -4010,7 +3752,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-grand-tournament",
       "edicion": "Hearthstone: 15 Grand Tournament Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-grand-tournament:hearthstone-2-grand-tournament-packs",
@@ -4023,7 +3765,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-grand-tournament",
       "edicion": "Hearthstone: 2 Grand Tournament Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-grand-tournament:hearthstone-40-grand-tournament-packs",
@@ -4036,7 +3778,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-grand-tournament",
       "edicion": "Hearthstone: 40 Grand Tournament Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-grand-tournament:hearthstone-60-grand-tournament-packs",
@@ -4049,7 +3791,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-grand-tournament",
       "edicion": "Hearthstone: 60 Grand Tournament Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-grand-tournament:hearthstone-7-grand-tournament-packs",
@@ -4062,7 +3804,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-grand-tournament",
       "edicion": "Hearthstone: 7 Grand Tournament Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-heroes-of-starcraft-golden-mini-set:hearthstone-heroes-of-starcraft-golden-mini-set",
@@ -4075,7 +3817,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-heroes-of-starcraft-golden-mini-set",
       "edicion": "Hearthstone: Heroes of StarCraft Golden Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-heroes-of-starcraft-golden-mini-set:hearthstone-heroes-of-starcraft-mini-set",
@@ -4088,7 +3830,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-heroes-of-starcraft-golden-mini-set",
       "edicion": "Hearthstone: Heroes of StarCraft Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-into-the-emerald-dream-packs:hearthstone-15-into-the-emerald-dream-packs",
@@ -4166,7 +3908,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-journey-to-ungoro",
       "edicion": "Hearthstone: 15 Journey to Un'Goro Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-journey-to-ungoro:hearthstone-2-journey-to-un-goro-packs",
@@ -4179,7 +3921,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-journey-to-ungoro",
       "edicion": "Hearthstone: 2 Journey to Un'Goro Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-journey-to-ungoro:hearthstone-40-journey-to-un-goro-packs",
@@ -4192,7 +3934,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-journey-to-ungoro",
       "edicion": "Hearthstone: 40 Journey to Un'Goro Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-journey-to-ungoro:hearthstone-60-journey-to-un-goro-packs",
@@ -4205,7 +3947,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-journey-to-ungoro",
       "edicion": "Hearthstone: 60 Journey to Un'Goro Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-journey-to-ungoro:hearthstone-7-journey-to-un-goro-packs",
@@ -4218,7 +3960,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-journey-to-ungoro",
       "edicion": "Hearthstone: 7 Journey to Un'Goro Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-knights-of-the-frozen-throne-adventure",
@@ -4243,7 +3985,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-knights-of-the-frozen-throne",
       "edicion": "Hearthstone: 15 Knights of the Frozen Throne Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-knights-of-the-frozen-throne:hearthstone-2-knights-of-the-frozen-throne-packs",
@@ -4256,7 +3998,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-knights-of-the-frozen-throne",
       "edicion": "Hearthstone: 2 Knights of the Frozen Throne Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-knights-of-the-frozen-throne:hearthstone-40-knights-of-the-frozen-throne-packs",
@@ -4269,7 +4011,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-knights-of-the-frozen-throne",
       "edicion": "Hearthstone: 40 Knights of the Frozen Throne Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-knights-of-the-frozen-throne:hearthstone-60-knights-of-the-frozen-throne-packs",
@@ -4282,7 +4024,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-knights-of-the-frozen-throne",
       "edicion": "Hearthstone: 60 Knights of the Frozen Throne Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-knights-of-the-frozen-throne:hearthstone-7-knights-of-the-frozen-throne-packs",
@@ -4295,7 +4037,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-knights-of-the-frozen-throne",
       "edicion": "Hearthstone: 7 Knights of the Frozen Throne Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-kobolds-and-catacombs-adventure",
@@ -4320,7 +4062,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-kobolds-and-catacombs",
       "edicion": "Hearthstone: 15 Kobolds \u0026 Catacombs Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-kobolds-and-catacombs:hearthstone-2-kobolds-catacombs-packs",
@@ -4333,7 +4075,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-kobolds-and-catacombs",
       "edicion": "Hearthstone: 2 Kobolds \u0026 Catacombs Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-kobolds-and-catacombs:hearthstone-40-kobolds-catacombs-packs",
@@ -4346,7 +4088,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-kobolds-and-catacombs",
       "edicion": "Hearthstone: 40 Kobolds \u0026 Catacombs Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-kobolds-and-catacombs:hearthstone-60-kobolds-catacombs-packs",
@@ -4359,7 +4101,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-kobolds-and-catacombs",
       "edicion": "Hearthstone: 60 Kobolds \u0026 Catacombs Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-kobolds-and-catacombs:hearthstone-7-kobolds-catacombs-packs",
@@ -4372,7 +4114,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-kobolds-and-catacombs",
       "edicion": "Hearthstone: 7 Kobolds \u0026 Catacombs Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-madness-darkmoon-faire:hearthstone-15-madness-at-the-darkmoon-faire-packs",
@@ -4385,7 +4127,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-madness-darkmoon-faire",
       "edicion": "Hearthstone: 15 Madness at the Darkmoon Faire Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-madness-darkmoon-faire:hearthstone-2-madness-at-the-darkmoon-faire-packs",
@@ -4398,7 +4140,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-madness-darkmoon-faire",
       "edicion": "Hearthstone: 2 Madness at the Darkmoon Faire Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-madness-darkmoon-faire:hearthstone-40-madness-at-the-darkmoon-faire-packs",
@@ -4411,7 +4153,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-madness-darkmoon-faire",
       "edicion": "Hearthstone: 40 Madness at the Darkmoon Faire Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-madness-darkmoon-faire:hearthstone-60-madness-at-the-darkmoon-faire-packs",
@@ -4424,7 +4166,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-madness-darkmoon-faire",
       "edicion": "Hearthstone: 60 Madness at the Darkmoon Faire Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-madness-darkmoon-faire:hearthstone-7-madness-at-the-darkmoon-faire",
@@ -4515,7 +4257,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-march-of-the-lich-king-signature-golden-packs",
       "edicion": "Hearthstone: 11 Signature Golden March of the Lich King Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-march-of-the-lich-king-signature-golden-packs:hearthstone-18-signature-golden-march-of-the-lich-king-packs",
@@ -4528,7 +4270,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-march-of-the-lich-king-signature-golden-packs",
       "edicion": "Hearthstone: 18 Signature Golden March of the Lich King Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-march-of-the-lich-king-signature-golden-packs:hearthstone-24-signature-golden-march-of-the-lich-king-packs",
@@ -4541,7 +4283,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-march-of-the-lich-king-signature-golden-packs",
       "edicion": "Hearthstone: 24 Signature Golden March of the Lich King Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-march-of-the-lich-king-signature-golden-packs:hearthstone-5-signature-golden-march-of-the-lich-king-packs",
@@ -4554,7 +4296,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-march-of-the-lich-king-signature-golden-packs",
       "edicion": "Hearthstone: 5 Signature Golden March of the Lich King Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-maw-and-disorder-golden-mini-set",
@@ -4566,7 +4308,7 @@
       "precio": 69.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-maw-and-disorder-golden-mini-set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-mean-streets:hearthstone-15-mean-streets-of-gadgetzan-packs",
@@ -4579,7 +4321,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-mean-streets",
       "edicion": "Hearthstone: 15 Mean Streets of Gadgetzan Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-mean-streets:hearthstone-2-mean-streets-of-gadgetzan-packs",
@@ -4592,7 +4334,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-mean-streets",
       "edicion": "Hearthstone: 2 Mean Streets of Gadgetzan Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-mean-streets:hearthstone-40-mean-streets-of-gadgetzan-packs",
@@ -4605,7 +4347,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-mean-streets",
       "edicion": "Hearthstone: 40 Mean Streets of Gadgetzan Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-mean-streets:hearthstone-60-mean-streets-of-gadgetzan-packs",
@@ -4618,7 +4360,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-mean-streets",
       "edicion": "Hearthstone: 60 Mean Streets of Gadgetzan Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-mean-streets:hearthstone-7-mean-streets-of-gadgetzan-packs",
@@ -4631,7 +4373,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-mean-streets",
       "edicion": "Hearthstone: 7 Mean Streets of Gadgetzan Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-murder-at-castle-nathria:hearthstone-15-murder-at-castle-nathria-packs",
@@ -4644,7 +4386,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-murder-at-castle-nathria",
       "edicion": "Hearthstone: 15 Murder at Castle Nathria Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-murder-at-castle-nathria:hearthstone-2-murder-at-castle-nathria-packs",
@@ -4657,7 +4399,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-murder-at-castle-nathria",
       "edicion": "Hearthstone: 2 Murder at Castle Nathria Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-murder-at-castle-nathria:hearthstone-40-murder-at-castle-nathria-packs",
@@ -4670,7 +4412,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-murder-at-castle-nathria",
       "edicion": "Hearthstone: 40 Murder at Castle Nathria Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-murder-at-castle-nathria:hearthstone-60-murder-at-castle-nathria-packs",
@@ -4683,7 +4425,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-murder-at-castle-nathria",
       "edicion": "Hearthstone: 60 Murder at Castle Nathria Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-murder-at-castle-nathria:hearthstone-7-murder-at-castle-nathria-packs",
@@ -4696,7 +4438,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-murder-at-castle-nathria",
       "edicion": "Hearthstone: 7 Murder at Castle Nathria Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-old-gods:hearthstone-15-whispers-of-the-old-gods-packs",
@@ -4709,7 +4451,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-old-gods",
       "edicion": "Hearthstone: 15 Whispers of the Old Gods Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-old-gods:hearthstone-2-whispers-of-the-old-gods-packs",
@@ -4722,7 +4464,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-old-gods",
       "edicion": "Hearthstone: 2 Whispers of the Old Gods Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-old-gods:hearthstone-40-whispers-of-the-old-gods-packs",
@@ -4735,7 +4477,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-old-gods",
       "edicion": "Hearthstone: 40 Whispers of the Old Gods Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-old-gods:hearthstone-60-whispers-of-the-old-gods-packs",
@@ -4748,7 +4490,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-old-gods",
       "edicion": "Hearthstone: 60 Whispers of the Old Gods Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-old-gods:hearthstone-7-whispers-of-the-old-gods-packs",
@@ -4761,7 +4503,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-old-gods",
       "edicion": "Hearthstone: 7 Whispers of the Old Gods Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-perils-in-paradise-packs:hearthstone-15-perils-in-paradise-packs",
@@ -4839,7 +4581,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rastakhans-rumble",
       "edicion": "Hearthstone: 15 Rastakhan's Rumble Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rastakhans-rumble:hearthstone-2-rastakhan-s-rumble-packs",
@@ -4852,7 +4594,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rastakhans-rumble",
       "edicion": "Hearthstone: 2 Rastakhan's Rumble Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rastakhans-rumble:hearthstone-40-rastakhan-s-rumble-packs",
@@ -4865,7 +4607,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rastakhans-rumble",
       "edicion": "Hearthstone: 40 Rastakhan's Rumble Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rastakhans-rumble:hearthstone-60-rastakhan-s-rumble-packs",
@@ -4878,7 +4620,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rastakhans-rumble",
       "edicion": "Hearthstone: 60 Rastakhan's Rumble Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rastakhans-rumble:hearthstone-7-rastakhan-s-rumble-packs",
@@ -4891,7 +4633,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rastakhans-rumble",
       "edicion": "Hearthstone: 7 Rastakhan's Rumble Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-reign-of-the-black-empire-mega-bundle:hearthstone-reign-of-the-black-empire-bundle-pre-purchase",
@@ -4930,7 +4672,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-restoration-of-azeroth-golden-class-set",
       "edicion": "Hearthstone: Restoration of Azeroth Class Set Bundle",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-restoration-of-azeroth-golden-class-set:hearthstone-restoration-of-azeroth-golden-class-set-bundle",
@@ -4943,7 +4685,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-restoration-of-azeroth-golden-class-set",
       "edicion": "Hearthstone: Restoration of Azeroth Golden Class Set Bundle",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-return-to-naxxramas-golden-mini-set",
@@ -4955,7 +4697,7 @@
       "precio": 69.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-return-to-naxxramas-golden-mini-set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rise-of-shadows:hearthstone-15-rise-of-shadows-packs",
@@ -4968,7 +4710,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rise-of-shadows",
       "edicion": "Hearthstone: 15 Rise of Shadows Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rise-of-shadows:hearthstone-2-rise-of-shadows-packs",
@@ -4981,7 +4723,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rise-of-shadows",
       "edicion": "Hearthstone: 2 Rise of Shadows Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rise-of-shadows:hearthstone-40-rise-of-shadows-packs",
@@ -4994,7 +4736,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rise-of-shadows",
       "edicion": "Hearthstone: 40 Rise of Shadows Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rise-of-shadows:hearthstone-60-rise-of-shadows-packs",
@@ -5007,7 +4749,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rise-of-shadows",
       "edicion": "Hearthstone: 60 Rise of Shadows Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-rise-of-shadows:hearthstone-7-rise-of-shadows-packs",
@@ -5020,7 +4762,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-rise-of-shadows",
       "edicion": "Hearthstone: 7 Rise of Shadows Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-runestones-bundles:hearthstone-1000-runestones",
@@ -5111,7 +4853,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-saviors-of-uldum",
       "edicion": "Hearthstone: 15 Saviors of Uldum Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-saviors-of-uldum:hearthstone-2-saviors-of-uldum-packs",
@@ -5124,7 +4866,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-saviors-of-uldum",
       "edicion": "Hearthstone: 2 Saviors of Uldum Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-saviors-of-uldum:hearthstone-40-saviors-of-uldum-packs",
@@ -5137,7 +4879,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-saviors-of-uldum",
       "edicion": "Hearthstone: 40 Saviors of Uldum Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-saviors-of-uldum:hearthstone-60-saviors-of-uldum-packs",
@@ -5150,7 +4892,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-saviors-of-uldum",
       "edicion": "Hearthstone: 60 Saviors of Uldum Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-saviors-of-uldum:hearthstone-7-saviors-of-uldum-packs",
@@ -5163,7 +4905,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-saviors-of-uldum",
       "edicion": "Hearthstone: 7 Saviors of Uldum Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-scholomance-academy:hearthstone-15-scholomance-academy-packs",
@@ -5176,7 +4918,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-scholomance-academy",
       "edicion": "Hearthstone: 15 Scholomance Academy Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-scholomance-academy:hearthstone-2-scholomance-academy-packs",
@@ -5189,7 +4931,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-scholomance-academy",
       "edicion": "Hearthstone: 2 Scholomance Academy Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-scholomance-academy:hearthstone-40-scholomance-academy-packs",
@@ -5202,7 +4944,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-scholomance-academy",
       "edicion": "Hearthstone: 40 Scholomance Academy Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-scholomance-academy:hearthstone-60-scholomance-academy-packs",
@@ -5215,7 +4957,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-scholomance-academy",
       "edicion": "Hearthstone: 60 Scholomance Academy Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-scholomance-academy:hearthstone-7-scholomance-academy-packs",
@@ -5228,7 +4970,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-scholomance-academy",
       "edicion": "Hearthstone: 7 Scholomance Academy Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-showdown-in-the-badlands-golden-packs:hearthstone-11-golden-showdown-in-the-badlands-packs",
@@ -5241,7 +4983,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-showdown-in-the-badlands-golden-packs",
       "edicion": "Hearthstone: 11 Golden Showdown in the Badlands Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-showdown-in-the-badlands-golden-packs:hearthstone-23-golden-showdown-in-the-badlands-packs",
@@ -5254,7 +4996,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-showdown-in-the-badlands-golden-packs",
       "edicion": "Hearthstone: 23 Golden Showdown in the Badlands Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-showdown-in-the-badlands-golden-packs:hearthstone-30-golden-showdown-in-the-badlands-packs",
@@ -5267,7 +5009,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-showdown-in-the-badlands-golden-packs",
       "edicion": "Hearthstone: 30 Golden Showdown in the Badlands Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-showdown-in-the-badlands-golden-packs:hearthstone-5-golden-showdown-in-the-badlands-packs",
@@ -5280,7 +5022,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-showdown-in-the-badlands-golden-packs",
       "edicion": "Hearthstone: 5 Golden Showdown in the Badlands Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-showdown-in-the-badlands-packs:hearthstone-15-showdown-in-the-badlands-packs",
@@ -5618,7 +5360,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-the-traveling-travel-agency-golden-mini-set",
       "edicion": "Hearthstone: The Traveling Travel Agency Golden Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-the-traveling-travel-agency-golden-mini-set:hearthstone-the-traveling-travel-agency-mini-set",
@@ -5631,7 +5373,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-the-traveling-travel-agency-golden-mini-set",
       "edicion": "Hearthstone: The Traveling Travel Agency Mini-Set",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-the-witchwood:hearthstone-15-the-witchwood-packs",
@@ -5644,7 +5386,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-the-witchwood",
       "edicion": "Hearthstone: 15 The Witchwood Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-the-witchwood:hearthstone-2-the-witchwood-packs",
@@ -5657,7 +5399,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-the-witchwood",
       "edicion": "Hearthstone: 2 The Witchwood Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-the-witchwood:hearthstone-40-the-witchwood-packs",
@@ -5670,7 +5412,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-the-witchwood",
       "edicion": "Hearthstone: 40 The Witchwood Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-the-witchwood:hearthstone-60-the-witchwood-packs",
@@ -5683,7 +5425,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-the-witchwood",
       "edicion": "Hearthstone: 60 The Witchwood Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-the-witchwood:hearthstone-7-the-witchwood-packs",
@@ -5696,7 +5438,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-the-witchwood",
       "edicion": "Hearthstone: 7 The Witchwood Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-throne-of-the-tides-mini-set",
@@ -5708,7 +5450,7 @@
       "precio": 69.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-throne-of-the-tides-mini-set",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-titans-golden-packs:hearthstone-11-golden-titans-packs",
@@ -5721,7 +5463,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-titans-golden-packs",
       "edicion": "Hearthstone: 11 Golden TITANS Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-titans-golden-packs:hearthstone-23-golden-titans-packs",
@@ -5734,7 +5476,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-titans-golden-packs",
       "edicion": "Hearthstone: 23 Golden TITANS Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-titans-golden-packs:hearthstone-30-golden-titans-packs",
@@ -5747,7 +5489,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-titans-golden-packs",
       "edicion": "Hearthstone: 30 Golden TITANS Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-titans-golden-packs:hearthstone-5-golden-titans-packs",
@@ -5760,7 +5502,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-titans-golden-packs",
       "edicion": "Hearthstone: 5 Golden TITANS Packs",
-      "subgrupo": "Monedas"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-titans-packs:hearthstone-15-titans-packs",
@@ -5838,7 +5580,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 15 Voyage to the Sunken City Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-voyage-to-the-sunken-city:hearthstone-2-voyage-to-the-sunken-city-packs",
@@ -5851,7 +5593,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 2 Voyage to the Sunken City Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-voyage-to-the-sunken-city:hearthstone-40-voyage-to-the-sunken-city-packs",
@@ -5864,7 +5606,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 40 Voyage to the Sunken City Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-voyage-to-the-sunken-city:hearthstone-60-voyage-to-the-sunken-city-packs",
@@ -5877,7 +5619,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 60 Voyage to the Sunken City Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-voyage-to-the-sunken-city:hearthstone-7-voyage-to-the-sunken-city-packs",
@@ -5890,7 +5632,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/hearthstone-voyage-to-the-sunken-city",
       "edicion": "Hearthstone: 7 Voyage to the Sunken City Packs",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:hearthstone-whizbangs-workshop-packs:hearthstone-15-whizbang-s-workshop-packs",
@@ -6172,7 +5914,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-battle-pass",
       "edicion": "Premium Battle Pass 2026: Season 5",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-battle-pass:premium-battle-pass-2026-season-5-20-tier-skips",
@@ -6185,7 +5927,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-battle-pass",
       "edicion": "Premium Battle Pass 2026: Season 5 + 20 Tier Skips",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-battle-pass:ultimate-battle-pass-bundle-2026-season-5",
@@ -6198,7 +5940,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-battle-pass",
       "edicion": "Ultimate Battle Pass Bundle 2026: Season 5",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-coins:1-000-coins",
@@ -6353,7 +6095,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-tier-skip",
       "edicion": "1 Battle Pass Tier",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-tier-skip:10-battle-pass-tiers",
@@ -6366,7 +6108,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-tier-skip",
       "edicion": "10 Battle Pass Tiers",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-tier-skip:15-battle-pass-tiers",
@@ -6379,7 +6121,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-tier-skip",
       "edicion": "15 Battle Pass Tiers",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-tier-skip:2-battle-pass-tiers",
@@ -6392,7 +6134,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-tier-skip",
       "edicion": "2 Battle Pass Tiers",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-tier-skip:3-battle-pass-tiers",
@@ -6405,7 +6147,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-tier-skip",
       "edicion": "3 Battle Pass Tiers",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-tier-skip:5-battle-pass-tiers",
@@ -6418,7 +6160,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-tier-skip",
       "edicion": "5 Battle Pass Tiers",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:overwatch-ultimate-bundle",
@@ -6430,7 +6172,7 @@
       "precio": 39.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/overwatch-ultimate-bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:primal-bundle",
@@ -6454,7 +6196,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves-ancient-coin-packs",
       "edicion": "1,000 Ancient Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:sea-of-thieves-ancient-coin-packs:150-ancient-coins",
@@ -6467,7 +6209,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves-ancient-coin-packs",
       "edicion": "150 Ancient Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:sea-of-thieves-ancient-coin-packs:2-550-ancient-coins",
@@ -6480,7 +6222,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves-ancient-coin-packs",
       "edicion": "2,550 Ancient Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:sea-of-thieves-ancient-coin-packs:4-250-ancient-coins",
@@ -6493,7 +6235,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves-ancient-coin-packs",
       "edicion": "4,250 Ancient Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:sea-of-thieves-ancient-coin-packs:550-ancient-coins",
@@ -6506,7 +6248,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves-ancient-coin-packs",
       "edicion": "550 Ancient Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:sea-of-thieves-bilge-dog-bundle",
@@ -6662,7 +6404,7 @@
       "precio": 9.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves-s21-season-pass-premium-tier",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Pases"
     },
     {
       "id": "battlenet:sea-of-thieves-toucan-toolbox-pack",
@@ -6687,7 +6429,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves",
       "edicion": "Sea of Thieves: 2026 Deluxe Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:sea-of-thieves:sea-of-thieves-2026-edition",
@@ -6700,7 +6442,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves",
       "edicion": "Sea of Thieves: 2026 Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:sea-of-thieves:sea-of-thieves-2026-premium-edition",
@@ -6713,7 +6455,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/sea-of-thieves",
       "edicion": "Sea of Thieves: 2026 Premium Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:starcraft-cartooned",
@@ -6738,7 +6480,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-bundle",
       "edicion": "Starcraft II: Announcer Jeon",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-bundle:starcraft-ii-announcer-kim",
@@ -6751,7 +6493,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-bundle",
       "edicion": "Starcraft II: Announcer Kim",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-bundle:starcraft-ii-announcer-um",
@@ -6764,7 +6506,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-bundle",
       "edicion": "Starcraft II: Announcer Um",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-bundle:starcraft-ii-voices-of-legend-announcer-bundle",
@@ -6777,7 +6519,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-bundle",
       "edicion": "Starcraft II: Voices of Legend Announcer Bundle",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-horner-han",
@@ -6789,7 +6531,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-horner-han",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-lowko",
@@ -6801,7 +6543,7 @@
       "precio": 7.49,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-lowko",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-mengsk",
@@ -6813,7 +6555,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-mengsk",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-sheng",
@@ -6825,7 +6567,7 @@
       "precio": 7.49,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-sheng",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-stetmann",
@@ -6837,7 +6579,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-stetmann",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-tychus",
@@ -6849,7 +6591,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-tychus",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-white-ra",
@@ -6861,7 +6603,7 @@
       "precio": 7.49,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-white-ra",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-winter",
@@ -6873,7 +6615,7 @@
       "precio": 7.49,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-winter",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcer-zeratul",
@@ -6885,7 +6627,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcer-zeratul",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers-dehaka",
@@ -6897,7 +6639,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers-dehaka",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers-dva",
@@ -6909,7 +6651,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers-dva",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers-nova",
@@ -6921,7 +6663,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers-nova",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers-scboy",
@@ -6933,7 +6675,7 @@
       "precio": 7.49,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers-scboy",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers-tastosis",
@@ -6945,7 +6687,7 @@
       "precio": 7.49,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers-tastosis",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers-totalbiscuit",
@@ -6957,7 +6699,7 @@
       "precio": 0,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers-totalbiscuit",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers:announcer-abathur",
@@ -6970,7 +6712,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers",
       "edicion": "Announcer: Abathur",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers:announcer-alarak",
@@ -6983,7 +6725,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers",
       "edicion": "Announcer: Alarak",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers:announcer-artanis",
@@ -6996,7 +6738,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers",
       "edicion": "Announcer: Artanis",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers:announcer-kerrigan",
@@ -7009,7 +6751,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers",
       "edicion": "Announcer: Kerrigan",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers:announcer-raynor",
@@ -7022,7 +6764,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers",
       "edicion": "Announcer: Raynor",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-announcers:announcer-swann",
@@ -7035,7 +6777,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-announcers",
       "edicion": "Announcer: Swann",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-ark-star",
@@ -7047,7 +6789,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-ark-star",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:starcraft-ii-bc-2017-war-chest-skin-bundles:protoss-forged-skins-bundle",
@@ -7060,7 +6802,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-bc-2017-war-chest-skin-bundles",
       "edicion": "Protoss Forged Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-bc-2017-war-chest-skin-bundles:terran-special-forces-skins-bundle",
@@ -7073,7 +6815,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-bc-2017-war-chest-skin-bundles",
       "edicion": "Terran Special Forces Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-bc-2017-war-chest-skin-bundles:zerg-leviathan-skins-bundle",
@@ -7086,7 +6828,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-bc-2017-war-chest-skin-bundles",
       "edicion": "Zerg Leviathan Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-bc-2018-war-chest-skin-bundles:protoss-golden-age-skins-bundle",
@@ -7099,7 +6841,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-bc-2018-war-chest-skin-bundles",
       "edicion": "Protoss Golden Age Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-bc-2018-war-chest-skin-bundles:terran-umojan-skins-bundle",
@@ -7112,7 +6854,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-bc-2018-war-chest-skin-bundles",
       "edicion": "Terran Umojan Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-bc-2018-war-chest-skin-bundles:zerg-simulant-skins-bundle",
@@ -7125,7 +6867,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-bc-2018-war-chest-skin-bundles",
       "edicion": "Zerg Simulant Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-carbot-complete-bundle",
@@ -7173,7 +6915,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-direct-strike",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:starcraft-ii-kw-2018-war-chest-skin-bundles:protoss-purifier-skins-bundle",
@@ -7186,7 +6928,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-kw-2018-war-chest-skin-bundles",
       "edicion": "Protoss Purifier Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-kw-2018-war-chest-skin-bundles:terran-mira-s-marauders-skins-bundle",
@@ -7199,7 +6941,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-kw-2018-war-chest-skin-bundles",
       "edicion": "Terran Mira's Marauders Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-kw-2018-war-chest-skin-bundles:zerg-primal-skins-bundle",
@@ -7212,7 +6954,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-kw-2018-war-chest-skin-bundles",
       "edicion": "Zerg Primal Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-kw-2019-structure-skin-bundles:starcraft-ii-protoss-forged-structure-skins-bundle",
@@ -7225,7 +6967,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-kw-2019-structure-skin-bundles",
       "edicion": "StarCraft II: Protoss Forged Structure Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-kw-2019-structure-skin-bundles:starcraft-ii-terran-special-forces-structure-skins-bundle",
@@ -7238,7 +6980,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-kw-2019-structure-skin-bundles",
       "edicion": "StarCraft II: Terran Special Forces Structure Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-kw-2019-structure-skin-bundles:starcraft-ii-zerg-simulant-structure-skins-bundle",
@@ -7251,7 +6993,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-kw-2019-structure-skin-bundles",
       "edicion": "StarCraft II: Zerg Simulant Structure Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-mira-horner-commander",
@@ -7275,7 +7017,7 @@
       "precio": 9.5,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-nova-covert-ops",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:starcraft-ii-tychus-commander",
@@ -7300,7 +7042,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-war-chest-5-skins",
       "edicion": "StarCraft II: War Chest 5 Protoss Ihan-rii Skins Bundle",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-war-chest-5-skins:starcraft-ii-war-chest-5-terran-tyrador-skins-bundle",
@@ -7313,7 +7055,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-war-chest-5-skins",
       "edicion": "StarCraft II: War Chest 5 Terran Tyrador Skins Bundle",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-war-chest-5-skins:starcraft-ii-war-chest-5-zerg-cerberus-skins-bundle",
@@ -7326,7 +7068,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-war-chest-5-skins",
       "edicion": "StarCraft II:War Chest 5 Zerg Cerberus Skins Bundle",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-warchest-6-skin-bundles:starcraft-ii-protoss-ihan-rii-structure-skins-bundle",
@@ -7339,7 +7081,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-warchest-6-skin-bundles",
       "edicion": "StarCraft II: Protoss Ihan-rii Structure Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-warchest-6-skin-bundles:starcraft-ii-terran-tyrador-structure-skins-bundle",
@@ -7352,7 +7094,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-warchest-6-skin-bundles",
       "edicion": "StarCraft II: Terran Tyrador Structure Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-warchest-6-skin-bundles:starcraft-ii-zerg-cerberus-structure-skins-bundle",
@@ -7365,7 +7107,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii-warchest-6-skin-bundles",
       "edicion": "StarCraft II: Zerg Cerberus Structure Skins Bundle",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii-zeratul-commander",
@@ -7390,7 +7132,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii",
       "edicion": "StarCraft II: Campaign Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii:starcraft-ii-campaign-collection-digital-deluxe",
@@ -7403,7 +7145,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-ii",
       "edicion": "StarCraft II: Campaign Collection Digital Deluxe",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-ii:starcraft-ii-wings-of-liberty",
@@ -7429,7 +7171,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-remastered-announcer-bundle",
       "edicion": "StarCraft Remastered: Announcer Jeon",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-remastered-announcer-bundle:starcraft-remastered-announcer-kim",
@@ -7442,7 +7184,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-remastered-announcer-bundle",
       "edicion": "StarCraft Remastered: Announcer Kim",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-remastered-announcer-bundle:starcraft-remastered-announcer-um",
@@ -7455,7 +7197,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-remastered-announcer-bundle",
       "edicion": "StarCraft Remastered: Announcer Um",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-remastered-announcer-bundle:starcraft-remastered-voices-of-legend-bundle",
@@ -7468,7 +7210,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-remastered-announcer-bundle",
       "edicion": "StarCraft Remastered: Voices of Legend Bundle",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-remastered-announcer-hey-jini",
@@ -7480,7 +7222,7 @@
       "precio": 4.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/starcraft-remastered-announcer-hey-jini",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:starcraft-remastered:starcraft",
@@ -7532,7 +7274,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/the-outer-worlds-2",
       "edicion": "The Outer Worlds 2 Premium Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:the-outer-worlds-2:the-outer-worlds-2-standard-edition",
@@ -7545,7 +7287,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/the-outer-worlds-2",
       "edicion": "The Outer Worlds 2 Standard Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:the-witcher-3-wild-hunt-remastered:the-witcher-3-wild-hunt-remastered",
@@ -7582,7 +7324,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/tony-hawks-pro-skater-3-4",
       "edicion": "Tony Hawk's Pro Skater 3 + 4 Digital Deluxe Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:tony-hawks-pro-skater-3-4:tony-hawk-s-pro-skater-3-4-standard-edition",
@@ -7595,7 +7337,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/tony-hawks-pro-skater-3-4",
       "edicion": "Tony Hawk's Pro Skater 3 + 4 Standard Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:warcraft-1-remastered",
@@ -7619,7 +7361,7 @@
       "precio": 9.99,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/warcraft-2-battle-net-edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:warcraft-2-remastered",
@@ -7644,7 +7386,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/warcraft-3-reforged",
       "edicion": "Warcraft Forever Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Forever"
     },
     {
       "id": "battlenet:warcraft-3-reforged:warcraft-iii-reforged",
@@ -7712,7 +7454,7 @@
     {
       "id": "battlenet:warcraft-rumble",
       "nombre": "Warcraft Rumble - Warcraft Rumble",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "",
@@ -7724,7 +7466,7 @@
     {
       "id": "battlenet:warcraft-rumble-coin-packs:1260-coins",
       "nombre": "1260 Coins",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -7732,12 +7474,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/warcraft-rumble-coin-packs",
       "edicion": "1260 Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:warcraft-rumble-coin-packs:12600-coins",
       "nombre": "12600 Coins",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -7745,12 +7487,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/warcraft-rumble-coin-packs",
       "edicion": "12600 Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:warcraft-rumble-coin-packs:3150-coins",
       "nombre": "3150 Coins",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -7758,12 +7500,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/warcraft-rumble-coin-packs",
       "edicion": "3150 Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:warcraft-rumble-coin-packs:525-coins",
       "nombre": "525 Coins",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -7771,12 +7513,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/warcraft-rumble-coin-packs",
       "edicion": "525 Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:warcraft-rumble-coin-packs:6300-coins",
       "nombre": "6300 Coins",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -7784,12 +7526,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/warcraft-rumble-coin-packs",
       "edicion": "6300 Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:warcraft-rumble-coin-packs:95-coins",
       "nombre": "95 Coins",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -7797,12 +7539,12 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/warcraft-rumble-coin-packs",
       "edicion": "95 Coins",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Monedas"
     },
     {
       "id": "battlenet:warcraft-rumble-kickstart-packs:warcraft-rumble-deluxe-kickstart-p-a-c-k",
       "nombre": "Warcraft Rumble: Deluxe Kickstart P.A.C.K.",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -7815,7 +7557,7 @@
     {
       "id": "battlenet:warcraft-rumble-kickstart-packs:warcraft-rumble-standard-kickstart-p-a-c-k",
       "nombre": "Warcraft Rumble: Standard Kickstart P.A.C.K.",
-      "grupo": "Warcraft",
+      "grupo": "Warcraft Rumble",
       "aliases": null,
       "regimen": "gaming",
       "moneda": "USD",
@@ -7836,7 +7578,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-abyssal-crown-collection",
       "edicion": "Abyssal Crown Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-abyssal-crown-collection:azshara-s-darkscale-raiment",
@@ -7849,7 +7591,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-abyssal-crown-collection",
       "edicion": "Azshara’s Darkscale Raiment",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-abyssal-crown-collection:azshara-s-deepscale-raiment",
@@ -7862,7 +7604,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-abyssal-crown-collection",
       "edicion": "Azshara’s Deepscale Raiment",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-abyssal-crown-collection:zothwing-darkseeker",
@@ -7875,7 +7617,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-abyssal-crown-collection",
       "edicion": "Zothwing Darkseeker",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-abyssal-crown-collection:zothwing-deepseeker",
@@ -7888,7 +7630,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-abyssal-crown-collection",
       "edicion": "Zothwing Deepseeker",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-ascended-regalia-pack",
@@ -7925,7 +7667,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-burning-crusade-classic-anniversary-edition-upgrades",
       "edicion": "Outland Epic Pack",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-burning-crusade-classic-anniversary-edition-upgrades:outland-heroic-pack",
@@ -7938,7 +7680,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-burning-crusade-classic-anniversary-edition-upgrades",
       "edicion": "Outland Heroic Pack",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-celestial-observers-ensemble",
@@ -7950,7 +7692,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-celestial-observers-ensemble",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-cozy-kobold-collection:blue-candlelight-kobold-romper",
@@ -7989,7 +7731,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-cozy-kobold-collection",
       "edicion": "Cozy Kobold Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-cozy-kobold-collection:pink-candlelight-kobold-romper",
@@ -8040,7 +7782,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-forever",
       "edicion": "Skyborne Epic Pack",
-      "subgrupo": "Suscripción"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-forever:skyborne-heroic-pack",
@@ -8053,7 +7795,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-forever",
       "edicion": "Skyborne Heroic Pack",
-      "subgrupo": "Suscripción"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-forever:warcraft-forever-collection",
@@ -8066,7 +7808,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-forever",
       "edicion": "Warcraft Forever Collection",
-      "subgrupo": "Suscripción"
+      "subgrupo": "Forever"
     },
     {
       "id": "battlenet:world-of-warcraft-free-trial",
@@ -8102,7 +7844,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-grizzly-hills-packmaster",
-      "subgrupo": "Packs y bundles"
+      "subgrupo": "Juegos y expansiones"
     },
     {
       "id": "battlenet:world-of-warcraft-hearthsteel:100-hearthsteel",
@@ -8205,7 +7947,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Autumnal Witchwick Pack",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-hexed-witchwick-collection:blushing-witchwick-pack",
@@ -8218,7 +7960,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Blushing Witchwick Pack",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-hexed-witchwick-collection:hexed-witchwick-collection",
@@ -8231,7 +7973,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Hexed Witchwick Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-hexed-witchwick-collection:moonlit-witchwick-pack",
@@ -8244,7 +7986,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Moonlit Witchwick Pack",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-hexed-witchwick-collection:wintry-witchwick-pack",
@@ -8257,7 +7999,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-hexed-witchwick-collection",
       "edicion": "Wintry Witchwick Pack",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-marvelous-meeksi-collection:meeksi-brewthief",
@@ -8335,7 +8077,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-midnight",
       "edicion": "Midnight Base Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:world-of-warcraft-midnight:midnight-epic-edition",
@@ -8348,7 +8090,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-midnight",
       "edicion": "Midnight Epic Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:world-of-warcraft-midnight:midnight-heroic-edition",
@@ -8361,7 +8103,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-midnight",
       "edicion": "Midnight Heroic Edition",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Ediciones"
     },
     {
       "id": "battlenet:world-of-warcraft-mists-of-pandaria-classic-upgrades:sha-infused-epic-pack",
@@ -8374,7 +8116,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-mists-of-pandaria-classic-upgrades",
       "edicion": "Sha-Infused Epic Pack",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-mists-of-pandaria-classic-upgrades:sha-infused-heroic-pack",
@@ -8387,7 +8129,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-mists-of-pandaria-classic-upgrades",
       "edicion": "Sha-Infused Heroic Pack",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Packs y bundles"
     },
     {
       "id": "battlenet:world-of-warcraft-mount-algarian-stormrider",
@@ -9186,7 +8928,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-scurrywind-groveglider-collection",
       "edicion": "Scurrywind Groveglider Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-service-character-boost:enhanced-level-80-character-boost",
@@ -9488,7 +9230,7 @@
       "precio": 8,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-transmog-diadem-of-the-spell-keeper",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-transmog-fireplume-regalia",
@@ -9500,7 +9242,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-transmog-fireplume-regalia",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-transmog-green-snugglefin-romper",
@@ -9512,7 +9254,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-transmog-green-snugglefin-romper",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-transmog-lanathels-crimson-couture",
@@ -9524,7 +9266,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-transmog-lanathels-crimson-couture",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-transmog-sprite-darter",
@@ -9536,7 +9278,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-transmog-sprite-darter",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-transmog-stormriders-attire",
@@ -9548,7 +9290,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-transmog-stormriders-attire",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-transmog-waveborne-diplomats-regalia",
@@ -9560,7 +9302,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-transmog-waveborne-diplomats-regalia",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-transmog-wings-of-awakening",
@@ -9572,7 +9314,7 @@
       "precio": 15,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-transmog-wings-of-awakening",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-vibrant-petalweave-collection:azure-petalweave-ensemble",
@@ -9585,7 +9327,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-vibrant-petalweave-collection",
       "edicion": "Azure Petalweave Ensemble",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-vibrant-petalweave-collection:blush-petalweave-ensemble",
@@ -9598,7 +9340,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-vibrant-petalweave-collection",
       "edicion": "Blush Petalweave Ensemble",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-vibrant-petalweave-collection:scarlet-petalweave-ensemble",
@@ -9611,7 +9353,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-vibrant-petalweave-collection",
       "edicion": "Scarlet Petalweave Ensemble",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-vibrant-petalweave-collection:sunlit-petalweave-ensemble",
@@ -9624,7 +9366,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-vibrant-petalweave-collection",
       "edicion": "Sunlit Petalweave Ensemble",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-vibrant-petalweave-collection:vibrant-petalweave-collection",
@@ -9637,7 +9379,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/world-of-warcraft-vibrant-petalweave-collection",
       "edicion": "Vibrant Petalweave Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:world-of-warcraft-wings-and-wisdom-pack",
@@ -9861,18 +9603,6 @@
       "subgrupo": "Mascotas"
     },
     {
-      "id": "battlenet:wow-classic-pet-lil-wrathion",
-      "nombre": "Lil' Wrathion Pet",
-      "grupo": "World of Warcraft",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 10,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/wow-classic-pet-lil-wrathion",
-      "subgrupo": "Mascotas"
-    },
-    {
       "id": "battlenet:wow-classic-pet-pebble-the-penguin",
       "nombre": "Pebble the Penguin - World of Warcraft Classic",
       "grupo": "World of Warcraft",
@@ -9981,7 +9711,7 @@
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-scurrysoar-groveglider-collection",
       "edicion": "Scurrysoar Groveglider Collection",
-      "subgrupo": "Juegos y expansiones"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-scurrysoar-groveglider-collection:shadowbough-groveglider",
@@ -10322,7 +10052,7 @@
       "precio": 8,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-transmog-tabard-of-flame",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-transmog-twilights-hammer-regalia",
@@ -10334,7 +10064,7 @@
       "precio": 20,
       "tienda": "battle_net",
       "url": "https://us.shop.battle.net/en-us/product/wow-classic-transmog-twilights-hammer-regalia",
-      "subgrupo": "Cosméticos"
+      "subgrupo": "Cosméticos y colecciones"
     },
     {
       "id": "battlenet:wow-classic-wings-of-the-guardian-pack",
