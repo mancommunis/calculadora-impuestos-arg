@@ -12,6 +12,7 @@ import (
 	"os"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 
@@ -80,18 +81,9 @@ func correr(out string, ov map[string]string, delay time.Duration) error {
 		}
 	}
 
-	// Dedup por grupo+nombre (el mismo producto aparece en dos páginas).
-	vistos := map[string]bool{}
-	unicos := productos[:0]
-	for _, p := range productos {
-		k := p.Grupo + "|" + p.Nombre
-		if vistos[k] {
-			continue
-		}
-		vistos[k] = true
-		unicos = append(unicos, p)
-	}
-	productos = unicos
+	// El mismo producto aparece en más de una página (la propia y como oferta
+	// cruzada en otras): se conserva una sola entrada.
+	productos = dedupeProductos(productos)
 
 	sort.Slice(productos, func(i, j int) bool { return productos[i].ID < productos[j].ID })
 	if err := configuracion.GuardarCatalogo(out, configuracion.Catalogo{Productos: productos}); err != nil {
@@ -112,6 +104,56 @@ func slugDe(s string) string {
 		s = s[i+1:]
 	}
 	return strings.Trim(reSlug.ReplaceAllString(s, "-"), "-")
+}
+
+// dedupeProductos descarta entradas repetidas del mismo producto: battle.net lo
+// publica en varias páginas (la propia y como oferta cruzada en otras). La
+// identidad es nombre+tienda+moneda+precio — NO el grupo, que es justo lo que
+// cambia según la página donde aparezca. De las repetidas gana la mejor
+// clasificada: la canónica que comparte más palabras con el nombre del ítem.
+func dedupeProductos(productos []configuracion.Servicio) []configuracion.Servicio {
+	enSalida := map[string]int{}
+	salida := make([]configuracion.Servicio, 0, len(productos))
+	for _, p := range productos {
+		k := claveProducto(p)
+		i, visto := enSalida[k]
+		if !visto {
+			enSalida[k] = len(salida)
+			salida = append(salida, p)
+			continue
+		}
+		if pesoCanonica(p.Nombre, p.Canonica) > pesoCanonica(salida[i].Nombre, salida[i].Canonica) {
+			salida[i] = p
+		}
+	}
+	return salida
+}
+
+// claveProducto identifica al producto más allá de en qué página se lo encontró.
+func claveProducto(p configuracion.Servicio) string {
+	var precio float64
+	if p.Precio != nil {
+		precio = *p.Precio
+	}
+	return strings.ToLower(strings.TrimSpace(p.Nombre)) + "|" +
+		p.Tienda + "|" + p.Moneda + "|" + strconv.FormatFloat(precio, 'f', 2, 64)
+}
+
+// pesoCanonica cuenta cuántas palabras comparte la canónica (slug de la página)
+// con el nombre del ítem: la página propia lo nombra en su slug, la de una
+// oferta cruzada no. Desempata entre entradas repetidas.
+func pesoCanonica(nombre, canonica string) int {
+	palabras := map[string]bool{}
+	for _, tok := range strings.Split(slugDe(nombre), "-") {
+		palabras[tok] = true
+	}
+	n := 0
+	for _, tok := range strings.Split(canonica, "-") {
+		if palabras[tok] {
+			n++
+		}
+	}
+	return n
 }
 
 var franquiciasSlug = []struct{ prefijo, nombre string }{

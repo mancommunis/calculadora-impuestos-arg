@@ -7943,20 +7943,6 @@
       "canonica": "warcraft-2-remastered"
     },
     {
-      "id": "battlenet:warcraft-3-reforged:warcraft-forever-collection",
-      "nombre": "Warcraft Forever Collection",
-      "grupo": "Warcraft",
-      "aliases": null,
-      "regimen": "gaming",
-      "moneda": "USD",
-      "precio": 79.99,
-      "tienda": "battle_net",
-      "url": "https://us.shop.battle.net/en-us/product/warcraft-3-reforged",
-      "edicion": "Warcraft Forever Collection",
-      "subgrupo": "Forever",
-      "canonica": "warcraft-3-reforged"
-    },
-    {
       "id": "battlenet:warcraft-3-reforged:warcraft-iii-reforged",
       "nombre": "Warcraft III: Reforged",
       "grupo": "Warcraft",
