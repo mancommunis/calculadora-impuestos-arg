@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"strings"
 	"testing"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -126,4 +127,68 @@ func TestDeepSeekCalcula(t *testing.T) {
 		}
 	}
 	t.Logf("%d medios · mejor: %s = $%.2f", len(mod.calculos), mod.calculos[0].medio.Nombre, mod.calculos[0].desglose.TotalARS)
+}
+
+// El árbol lista TODOS los ítems con su nombre real (el levantado de la web):
+// sin filas paraguas con nombres inventados ("Battle.net → Suscripción") y sin
+// saltear el nivel del tipo cuando tiene un solo ítem.
+func TestArbolListaTodosLosItemsConNombreReal(t *testing.T) {
+	precio := func(f float64) *float64 { return &f }
+	cfg := configuracion.Config{Servicios: []configuracion.Servicio{
+		{ID: "a", Nombre: "World of Warcraft - suscripcion mensual", Grupo: "World of Warcraft", Subgrupo: "Suscripción", Tienda: "battle_net", Moneda: "USD", Precio: precio(14.99)},
+		{ID: "b", Nombre: "60 Days of Game Time - World of Warcraft", Grupo: "World of Warcraft", Subgrupo: "Suscripción", Canonica: "world-of-warcraft-game-time", Tienda: "battle_net", Moneda: "USD", Precio: precio(29.99)},
+		{ID: "c", Nombre: "WoW Token - World of Warcraft", Grupo: "World of Warcraft", Subgrupo: "Monedas", Canonica: "world-of-warcraft-token", Tienda: "battle_net", Moneda: "USD", Precio: precio(20)},
+	}}
+
+	m := inicial()
+	m.cfg = cfg
+	m.input.SetValue("warcraft")
+	m.expandido["g:World of Warcraft"] = true
+	m.expandido["s:World of Warcraft|Suscripción"] = true
+	m.expandido["s:World of Warcraft|Monedas"] = true
+	m.actualizarFilas()
+
+	tipos := map[string]int{}
+	lineas := map[string]string{}
+	for i, f := range m.filas {
+		switch f.tipo {
+		case 1:
+			tipos[f.nombre] = f.n
+		case 2:
+			t.Errorf("fila paraguas (tipo 2) inesperada: %q", f.nombre)
+		case 3:
+			lineas[f.item.ID] = m.lineaFila(i)
+		}
+	}
+
+	if len(lineas) != len(cfg.Servicios) {
+		t.Fatalf("el árbol mostró %d ítems de %d", len(lineas), len(cfg.Servicios))
+	}
+	if tipos["Monedas"] != 1 {
+		t.Errorf("el tipo 'Monedas' (1 ítem) debería tener su renglón; tipos=%v", tipos)
+	}
+	if tipos["Suscripción"] != 2 {
+		t.Errorf("'Suscripción' debería contar 2 ítems; tipos=%v", tipos)
+	}
+
+	// Formato del renglón: "Grupo - nombre real del ítem (tienda)" + precio.
+	esperados := map[string]string{
+		"a": "World of Warcraft - suscripcion mensual (Battle.net)",
+		"b": "World of Warcraft - 60 Days of Game Time (Battle.net)",
+		"c": "World of Warcraft - WoW Token (Battle.net)",
+	}
+	for id, esperado := range esperados {
+		if !strings.Contains(lineas[id], esperado) {
+			t.Errorf("renglón %q no contiene %q", lineas[id], esperado)
+		}
+	}
+	if n := strings.Count(lineas["b"], "World of Warcraft"); n != 1 {
+		t.Errorf("el grupo se repite en el renglón (%d veces): %q", n, lineas["b"])
+	}
+	if !strings.Contains(lineas["b"], "29,99 USD") {
+		t.Errorf("falta el precio en el renglón: %q", lineas["b"])
+	}
+	if strings.Contains(lineas["b"], "→") {
+		t.Errorf("el renglón sigue usando un nombre generalizado: %q", lineas["b"])
+	}
 }

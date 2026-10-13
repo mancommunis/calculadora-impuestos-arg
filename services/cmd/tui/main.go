@@ -67,6 +67,7 @@ type fila struct {
 	tipo   int
 	clave  string
 	sub    string
+	grupo  string
 	nombre string
 	n      int
 	item   configuracion.Servicio
@@ -544,16 +545,12 @@ func (m modelo) lineaFila(i int) string {
 	case 2:
 		nombre = "    " + f.nombre
 	case 3:
-		tienda := nombreTienda(f.item.Tienda)
-		if f.sub != "" && tienda != "" {
-			nombre = "      " + tienda + " → " + f.sub
-			meta = monedaPrecio(f.item)
-		} else {
-			if tienda == "" {
-				tienda = f.item.Regimen
-			}
-			nombre = "    " + f.nombre
-			meta = tienda + " · " + monedaPrecio(f.item)
+		// Renglón del ítem: "Grupo - nombre real (tienda)" + precio. El nombre es el
+		// que publica la tienda (el levantado de la web), sin paraguas inventados.
+		nombre = "      " + etiquetaItem(f.grupo, f.nombre, nombreTienda(f.item.Tienda))
+		meta = monedaPrecio(f.item)
+		if f.item.Tienda == "" && f.item.Regimen != "" {
+			meta = f.item.Regimen + " · " + meta
 		}
 	}
 	if i == m.cursor {
@@ -573,6 +570,33 @@ func nombreTienda(t string) string {
 		return "Steam"
 	}
 	return t
+}
+
+// etiquetaItem arma el renglón de un ítem: "Grupo - nombre real (tienda)".
+// El grupo no se repite dentro del nombre (battle.net publica, por ejemplo,
+// "60 Days of Game Time - World of Warcraft").
+func etiquetaItem(grupo, nombre, tienda string) string {
+	et := nombre
+	if grupo != "" && !strings.EqualFold(grupo, nombre) {
+		if base := sinGrupo(nombre, grupo); base != "" {
+			et = grupo + " - " + base
+		}
+	}
+	if tienda != "" {
+		et += " (" + tienda + ")"
+	}
+	return et
+}
+
+// sinGrupo saca el nombre del grupo del nombre del ítem, como prefijo o sufijo.
+func sinGrupo(nombre, grupo string) string {
+	if pre := grupo + " - "; strings.HasPrefix(nombre, pre) {
+		return strings.TrimSpace(strings.TrimPrefix(nombre, pre))
+	}
+	if suf := " - " + grupo; strings.HasSuffix(nombre, suf) {
+		return strings.TrimSpace(strings.TrimSuffix(nombre, suf))
+	}
+	return nombre
 }
 
 func (m modelo) viewDetalle() string {
@@ -683,14 +707,14 @@ func parsearCampo(b []byte, campo string) (float64, error) {
 	return 0, fmt.Errorf("campo %q ausente", campo)
 }
 
-// actualizarFilas reconstruye la lista visible (grupo → subgrupo → juego → ítem).
+// actualizarFilas reconstruye la lista visible (grupo → tipo → ítem).
 func (m *modelo) actualizarFilas() {
 	grupos := configuracion.BuscarArbol(m.cfg.Servicios, m.input.Value())
 	m.filas = m.filas[:0]
 	for _, g := range grupos {
 		if g.Total == 1 && len(g.Subgrupos) == 1 && len(g.Subgrupos[0].Juegos) == 1 && len(g.Subgrupos[0].Juegos[0].Items) == 1 {
 			it := g.Subgrupos[0].Juegos[0].Items[0]
-			m.filas = append(m.filas, fila{tipo: 3, clave: g.Clave, nombre: it.Nombre, item: it})
+			m.filas = append(m.filas, fila{tipo: 3, clave: g.Clave, grupo: g.Nombre, nombre: it.Nombre, item: it})
 			continue
 		}
 		m.filas = append(m.filas, fila{tipo: 0, clave: g.Clave, nombre: g.Nombre, n: g.Total})
@@ -698,24 +722,18 @@ func (m *modelo) actualizarFilas() {
 			continue
 		}
 		for _, sg := range g.Subgrupos {
-			if sg.Count == 1 && len(sg.Juegos) == 1 && len(sg.Juegos[0].Items) == 1 {
-				it := sg.Juegos[0].Items[0]
-				m.filas = append(m.filas, fila{tipo: 3, clave: g.Clave, sub: sg.Nombre, nombre: it.Nombre, item: it})
-				continue
-			}
+			// El nivel "tipo" (subgrupo) se dibuja siempre: antes se salteaba cuando
+			// tenía un solo ítem y el ítem subía un nivel.
 			m.filas = append(m.filas, fila{tipo: 1, clave: g.Clave, sub: sg.Nombre, nombre: sg.Nombre, n: sg.Count})
 			if !m.expandido["s:"+g.Clave+"|"+sg.Nombre] {
 				continue
 			}
+			// Todos los ítems, cada uno con su nombre real: la canónica (juego) no
+			// genera renglón paraguas, porque su nombre es agrupación nuestra y no
+			// el nombre que la tienda publica.
 			for _, j := range sg.Juegos {
-				if len(j.Items) == 1 {
-					it := j.Items[0]
-					m.filas = append(m.filas, fila{tipo: 3, sub: sg.Nombre, clave: g.Clave, nombre: it.Nombre, item: it})
-					continue
-				}
-				m.filas = append(m.filas, fila{tipo: 2, clave: g.Clave, sub: j.Nombre, nombre: j.Nombre})
 				for _, it := range j.Items {
-					m.filas = append(m.filas, fila{tipo: 3, sub: j.Nombre, clave: g.Clave, nombre: it.Nombre, item: it})
+					m.filas = append(m.filas, fila{tipo: 3, sub: sg.Nombre, clave: g.Clave, grupo: g.Nombre, nombre: it.Nombre, item: it})
 				}
 			}
 		}
