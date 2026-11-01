@@ -1,0 +1,4 @@
+{
+  "resumen": "La fuente de ARCA es solo una redirección sin contenido fiscal utilizable. La fuente de Impuestito contiene un artículo con datos fiscales (IVA 21%, IIBB provincial, percepción de Ganancias 0% para juegos desde abril 2025, fin del Impuesto PAIS), pero no incluye el JSON actual de config/tax-config.json, por lo que no puedo contrastar valores actuales ni proponer cambios de campo concretos sin inventar. No se proponen modificaciones.",
+  "propuestas": []
+}
